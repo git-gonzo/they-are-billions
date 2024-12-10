@@ -49,6 +49,58 @@ namespace Quantum.Prototypes.Unity {
   using RuntimeInitializeOnLoadMethodAttribute = UnityEngine.RuntimeInitializeOnLoadMethodAttribute;
   #endif //;
   
+  [System.SerializableAttribute()]
+  public unsafe partial class PlayerComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.PlayerComponentPrototype> {
+    [DynamicCollectionAttribute()]
+    public Quantum.QuantumEntityPrototype[] FreeWorkers = {};
+    partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.PlayerComponentPrototype prototype);
+    public override Quantum.Prototypes.PlayerComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
+      var result = new Quantum.Prototypes.PlayerComponentPrototype();
+      converter.Convert(this.FreeWorkers, out result.FreeWorkers);
+      ConvertUser(converter, ref result);
+      return result;
+    }
+  }
+  [System.SerializableAttribute()]
+  public unsafe partial class ResourceCollectorComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.ResourceCollectorComponentPrototype> {
+    public Quantum.QuantumEntityPrototype playerEntity;
+    public Quantum.QEnum32<ResourceType> lookForResource;
+    partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.ResourceCollectorComponentPrototype prototype);
+    public override Quantum.Prototypes.ResourceCollectorComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
+      var result = new Quantum.Prototypes.ResourceCollectorComponentPrototype();
+      converter.Convert(this.playerEntity, out result.playerEntity);
+      converter.Convert(this.lookForResource, out result.lookForResource);
+      ConvertUser(converter, ref result);
+      return result;
+    }
+  }
+  [System.SerializableAttribute()]
+  public unsafe partial class UnitComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.UnitComponentPrototype> {
+    public Quantum.QEnum32<UnitState> state;
+    public Quantum.QuantumEntityPrototype owner;
+    public FP Speed;
+    public FP HaverstTime;
+    public FP DeployTime;
+    public FP CurrentTime;
+    public Int32 ResourcesCapacity;
+    public Quantum.Prototypes.ResourceAmountPrototype inventory;
+    public Quantum.QuantumEntityPrototype targetEntity;
+    partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.UnitComponentPrototype prototype);
+    public override Quantum.Prototypes.UnitComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
+      var result = new Quantum.Prototypes.UnitComponentPrototype();
+      converter.Convert(this.state, out result.state);
+      converter.Convert(this.owner, out result.owner);
+      converter.Convert(this.Speed, out result.Speed);
+      converter.Convert(this.HaverstTime, out result.HaverstTime);
+      converter.Convert(this.DeployTime, out result.DeployTime);
+      converter.Convert(this.CurrentTime, out result.CurrentTime);
+      converter.Convert(this.ResourcesCapacity, out result.ResourcesCapacity);
+      converter.Convert(this.inventory, out result.inventory);
+      converter.Convert(this.targetEntity, out result.targetEntity);
+      ConvertUser(converter, ref result);
+      return result;
+    }
+  }
 }
 #pragma warning restore 0109
 #pragma warning restore 1591

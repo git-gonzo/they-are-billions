@@ -59,6 +59,125 @@ namespace Quantum.Prototypes {
         MaterializeUser(frame, ref result, in context);
     }
   }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.PlayerComponent))]
+  public unsafe class PlayerComponentPrototype : ComponentPrototype<Quantum.PlayerComponent> {
+    [DynamicCollectionAttribute()]
+    public MapEntityId[] FreeWorkers = {};
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.PlayerComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.PlayerComponent result, in PrototypeMaterializationContext context = default) {
+        if (this.FreeWorkers.Length == 0) {
+          result.FreeWorkers = default;
+        } else {
+          var list = frame.AllocateList(out result.FreeWorkers, this.FreeWorkers.Length);
+          for (int i = 0; i < this.FreeWorkers.Length; ++i) {
+            EntityRef tmp = default;
+            PrototypeValidator.FindMapEntity(this.FreeWorkers[i], in context, out tmp);
+            list.Add(tmp);
+          }
+        }
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.PlayerEconomyComponent))]
+  public unsafe partial class PlayerEconomyComponentPrototype : ComponentPrototype<Quantum.PlayerEconomyComponent> {
+    [DynamicCollectionAttribute()]
+    public Quantum.Prototypes.ResourceAmountPrototype[] resources = {};
+    partial void MaterializeUser(Frame frame, ref Quantum.PlayerEconomyComponent result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.PlayerEconomyComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.PlayerEconomyComponent result, in PrototypeMaterializationContext context = default) {
+        if (this.resources.Length == 0) {
+          result.resources = default;
+        } else {
+          var list = frame.AllocateList(out result.resources, this.resources.Length);
+          for (int i = 0; i < this.resources.Length; ++i) {
+            Quantum.ResourceAmount tmp = default;
+            this.resources[i].Materialize(frame, ref tmp, in context);
+            list.Add(tmp);
+          }
+        }
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.ResourceAmount))]
+  public unsafe partial class ResourceAmountPrototype : StructPrototype {
+    public Quantum.QEnum32<ResourceType> Resource;
+    public Int32 Amount;
+    partial void MaterializeUser(Frame frame, ref Quantum.ResourceAmount result, in PrototypeMaterializationContext context);
+    public void Materialize(Frame frame, ref Quantum.ResourceAmount result, in PrototypeMaterializationContext context = default) {
+        result.Resource = this.Resource;
+        result.Amount = this.Amount;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.ResourceCollectorComponent))]
+  public unsafe class ResourceCollectorComponentPrototype : ComponentPrototype<Quantum.ResourceCollectorComponent> {
+    public MapEntityId playerEntity;
+    public Quantum.QEnum32<ResourceType> lookForResource;
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.ResourceCollectorComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.ResourceCollectorComponent result, in PrototypeMaterializationContext context = default) {
+        PrototypeValidator.FindMapEntity(this.playerEntity, in context, out result.playerEntity);
+        result.lookForResource = this.lookForResource;
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.ResourceContainerComponent))]
+  public unsafe partial class ResourceContainerComponentPrototype : ComponentPrototype<Quantum.ResourceContainerComponent> {
+    public Quantum.Prototypes.ResourceAmountPrototype resources;
+    partial void MaterializeUser(Frame frame, ref Quantum.ResourceContainerComponent result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.ResourceContainerComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.ResourceContainerComponent result, in PrototypeMaterializationContext context = default) {
+        this.resources.Materialize(frame, ref result.resources, in context);
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.UnitComponent))]
+  public unsafe class UnitComponentPrototype : ComponentPrototype<Quantum.UnitComponent> {
+    public Quantum.QEnum32<UnitState> state;
+    public MapEntityId owner;
+    public FP Speed;
+    public FP HaverstTime;
+    public FP DeployTime;
+    public FP CurrentTime;
+    public Int32 ResourcesCapacity;
+    public Quantum.Prototypes.ResourceAmountPrototype inventory;
+    public MapEntityId targetEntity;
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.UnitComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.UnitComponent result, in PrototypeMaterializationContext context = default) {
+        result.state = this.state;
+        PrototypeValidator.FindMapEntity(this.owner, in context, out result.owner);
+        result.Speed = this.Speed;
+        result.HaverstTime = this.HaverstTime;
+        result.DeployTime = this.DeployTime;
+        result.CurrentTime = this.CurrentTime;
+        result.ResourcesCapacity = this.ResourcesCapacity;
+        this.inventory.Materialize(frame, ref result.inventory, in context);
+        PrototypeValidator.FindMapEntity(this.targetEntity, in context, out result.targetEntity);
+    }
+  }
 }
 #pragma warning restore 0109
 #pragma warning restore 1591

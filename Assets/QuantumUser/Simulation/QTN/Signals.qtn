@@ -1,0 +1,2 @@
+//TODO: Add player entity
+signal OnResourceAdded (EntityRef playerEntity, ResourceAmount resource);

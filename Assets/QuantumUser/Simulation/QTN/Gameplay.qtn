@@ -1,0 +1,55 @@
+
+component PlayerComponent
+{
+	list<EntityRef> FreeWorkers;
+}
+
+component PlayerEconomyComponent
+{
+	list<ResourceAmount> resources;
+}
+
+component ResourceContainerComponent
+{
+	ResourceAmount resources;
+}
+
+component ResourceCollectorComponent
+{
+	EntityRef playerEntity;
+	ResourceType lookForResource;
+}
+
+component UnitComponent
+{
+	UnitState state;
+	EntityRef owner;
+	FP Speed;
+	FP HaverstTime;
+	FP DeployTime;
+	FP CurrentTime;
+	int ResourcesCapacity;
+	ResourceAmount inventory;
+	EntityRef targetEntity;
+}
+
+enum UnitState
+{
+	Idle,
+	Moving,
+	Harversting,
+	Deploying
+}
+
+enum ResourceType
+{
+	None,
+	Stone,
+	Wood
+}
+
+struct ResourceAmount
+{
+	ResourceType Resource;
+	int Amount;
+}

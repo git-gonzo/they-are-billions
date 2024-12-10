@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 01b49aa93b431a6438ba96ef4da69bd7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261484
+  packageName: 'Low Poly Nature: Lush and Diverse Environments'
+  packageVersion: 1.0
+  assetPath: Assets/VertexRageStudio/LowPolyNature/Models/Env/Ground/SmallPiles/Colliders/GrassPileB_ConvexHull_0.asset
+  uploadId: 613152

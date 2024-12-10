@@ -30,12 +30,6 @@ MonoBehaviour:
     StartDisabled: 0
     Children: []
   - SystemType:
-      AssemblyQualifiedName: Quantum.Core.PhysicsSystem2D, Quantum.Simulation, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    SystemName: 
-    StartDisabled: 0
-    Children: []
-  - SystemType:
       AssemblyQualifiedName: Quantum.Core.PhysicsSystem3D, Quantum.Simulation, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     SystemName: 
@@ -56,6 +50,11 @@ MonoBehaviour:
   - SystemType:
       AssemblyQualifiedName: Quantum.Core.PlayerConnectedSystem, Quantum.Simulation,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    SystemName: 
+    StartDisabled: 0
+    Children: []
+  - SystemType:
+      AssemblyQualifiedName: Quantum.UnitsSystem2, Quantum.Simulation
     SystemName: 
     StartDisabled: 0
     Children: []
