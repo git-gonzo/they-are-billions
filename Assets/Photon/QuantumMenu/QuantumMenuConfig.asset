@@ -22,14 +22,25 @@ MonoBehaviour:
   - au
   - eu
   - in
-  - hk
   - jp
   - za
   - sa
-  - kr
   - us
   - usw
-  _availableScenes: []
-  _machineId: {fileID: -755480892457977500, guid: fbd1d0c57fd428c44b08e505acb8d851,
-    type: 3}
+  _availableScenes:
+  - Name: Gameplay
+    ScenePath: Assets/QuantumUser/Scenes/Gameplay.unity
+    Preview: {fileID: 21300000, guid: e43d4c530865a8342957f23fe8a873b2, type: 3}
+    RuntimeConfig:
+      Seed: -1137026310
+      Map:
+        Id:
+          Value: 470024716738325352
+      SimulationConfig:
+        Id:
+          Value: 1089645273994609877
+      SystemsConfig:
+        Id:
+          Value: 1799081616076795205
+  _machineId: {fileID: -755480892457977500, guid: fbd1d0c57fd428c44b08e505acb8d851, type: 3}
   _codeGenerator: {fileID: 11400000, guid: e38f1fac5a1a5c94da2b4ef21bd48419, type: 2}

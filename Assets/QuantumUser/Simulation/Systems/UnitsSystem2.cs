@@ -7,13 +7,20 @@ namespace Quantum
     [Preserve]
     public unsafe class UnitsSystem2 : SystemMainThreadFilter<UnitsSystem2.Filter>
     {
+        public struct Filter
+        {
+            public EntityRef Entity;
+            public UnitComponent* UnitComponent;
+            public Transform3D* Transform;
+        }
+
         public override void Update(Frame f, ref Filter filter)
         {
             var unit = filter.UnitComponent;
-            if(unit->owner != EntityRef.None && 
+            if(unit->buildingAssigned != EntityRef.None && 
                 unit->inventory.Amount <= 0 && filter.UnitComponent->state == UnitState.Idle)
             {
-                var resourceType = f.Get<ResourceCollectorComponent>(unit->owner).lookForResource;
+                var resourceType = f.Get<ResourceCollectorComponent>(unit->buildingAssigned).lookForResource;
                 var target = FindClosestResourceContainer(f, resourceType);
                 unit->targetEntity = target;
                 unit->state = UnitState.Moving;
@@ -52,10 +59,10 @@ namespace Quantum
                         unit->inventory.Resource = resource;
 
                         //Set Target to House, state to moving 
-                        if(f.TryGet(unit->owner, out Transform3D t)) 
+                        if(f.TryGet(unit->buildingAssigned, out Transform3D t)) 
                         { 
                             unit->state = UnitState.Moving;
-                            unit->targetEntity = unit->owner;
+                            unit->targetEntity = unit->buildingAssigned;
                         }
                         else 
                         {
@@ -68,12 +75,11 @@ namespace Quantum
                     unit->CurrentTime += f.DeltaTime;
                     if (unit->CurrentTime >= unit->DeployTime) //Harvesting END
                     {
-                        var playerEntity = f.Get<ResourceCollectorComponent>(unit->owner).playerEntity;
                         var resource = unit->inventory;
                         unit->inventory = new ResourceAmount();
                         unit->CurrentTime = 0;
                         unit->state = UnitState.Idle;
-                        f.Signals.OnResourceAdded(playerEntity, resource);
+                        f.Signals.OnResourceAdded(unit->playerOwner, resource);
                     }
                     break;
             }
@@ -90,11 +96,6 @@ namespace Quantum
             return EntityRef.None;
         }
 
-        public struct Filter
-        {
-            public EntityRef Entity;
-            public UnitComponent* UnitComponent;
-            public Transform3D* Transform;
-        }
+
     }
 }

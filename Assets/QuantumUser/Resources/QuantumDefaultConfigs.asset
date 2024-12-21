@@ -420,3 +420,7 @@ MonoBehaviour:
   HeapPageShift: 15
   HeapPageCount: 256
   HeapExtraCount: 0
+  initialWorkers: 3
+  workerPrototype:
+    Id:
+      Value: 1520969653244342770

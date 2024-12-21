@@ -65,11 +65,13 @@ namespace Quantum.Prototypes.Unity {
   public unsafe partial class ResourceCollectorComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.ResourceCollectorComponentPrototype> {
     public Quantum.QuantumEntityPrototype playerEntity;
     public Quantum.QEnum32<ResourceType> lookForResource;
+    public Int32 workersAssigned;
     partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.ResourceCollectorComponentPrototype prototype);
     public override Quantum.Prototypes.ResourceCollectorComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
       var result = new Quantum.Prototypes.ResourceCollectorComponentPrototype();
       converter.Convert(this.playerEntity, out result.playerEntity);
       converter.Convert(this.lookForResource, out result.lookForResource);
+      converter.Convert(this.workersAssigned, out result.workersAssigned);
       ConvertUser(converter, ref result);
       return result;
     }
@@ -77,7 +79,8 @@ namespace Quantum.Prototypes.Unity {
   [System.SerializableAttribute()]
   public unsafe partial class UnitComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.UnitComponentPrototype> {
     public Quantum.QEnum32<UnitState> state;
-    public Quantum.QuantumEntityPrototype owner;
+    public Quantum.QuantumEntityPrototype playerOwner;
+    public Quantum.QuantumEntityPrototype buildingAssigned;
     public FP Speed;
     public FP HaverstTime;
     public FP DeployTime;
@@ -89,7 +92,8 @@ namespace Quantum.Prototypes.Unity {
     public override Quantum.Prototypes.UnitComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
       var result = new Quantum.Prototypes.UnitComponentPrototype();
       converter.Convert(this.state, out result.state);
-      converter.Convert(this.owner, out result.owner);
+      converter.Convert(this.playerOwner, out result.playerOwner);
+      converter.Convert(this.buildingAssigned, out result.buildingAssigned);
       converter.Convert(this.Speed, out result.Speed);
       converter.Convert(this.HaverstTime, out result.HaverstTime);
       converter.Convert(this.DeployTime, out result.DeployTime);

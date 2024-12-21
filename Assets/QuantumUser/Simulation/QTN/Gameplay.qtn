@@ -1,4 +1,9 @@
 
+component PlayerLink
+{
+	PlayerRef PlayerRef;
+}
+
 component PlayerComponent
 {
 	list<EntityRef> FreeWorkers;
@@ -9,6 +14,8 @@ component PlayerEconomyComponent
 	list<ResourceAmount> resources;
 }
 
+component WorkerSpawnPointComponent{}
+
 component ResourceContainerComponent
 {
 	ResourceAmount resources;
@@ -18,12 +25,14 @@ component ResourceCollectorComponent
 {
 	EntityRef playerEntity;
 	ResourceType lookForResource;
+	int workersAssigned;
 }
 
 component UnitComponent
 {
 	UnitState state;
-	EntityRef owner;
+	EntityRef playerOwner;
+	EntityRef buildingAssigned;
 	FP Speed;
 	FP HaverstTime;
 	FP DeployTime;

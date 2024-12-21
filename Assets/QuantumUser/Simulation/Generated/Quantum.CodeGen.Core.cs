@@ -580,23 +580,45 @@ namespace Quantum {
     }
   }
   [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct PlayerLink : Quantum.IComponent {
+    public const Int32 SIZE = 4;
+    public const Int32 ALIGNMENT = 4;
+    [FieldOffset(0)]
+    public PlayerRef PlayerRef;
+    public override Int32 GetHashCode() {
+      unchecked { 
+        var hash = 21391;
+        hash = hash * 31 + PlayerRef.GetHashCode();
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (PlayerLink*)ptr;
+        PlayerRef.Serialize(&p->PlayerRef, serializer);
+    }
+  }
+  [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct ResourceCollectorComponent : Quantum.IComponent {
     public const Int32 SIZE = 16;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(8)]
     public EntityRef playerEntity;
-    [FieldOffset(0)]
+    [FieldOffset(4)]
     public ResourceType lookForResource;
+    [FieldOffset(0)]
+    public Int32 workersAssigned;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 7069;
         hash = hash * 31 + playerEntity.GetHashCode();
         hash = hash * 31 + (Int32)lookForResource;
+        hash = hash * 31 + workersAssigned.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (ResourceCollectorComponent*)ptr;
+        serializer.Stream.Serialize(&p->workersAssigned);
         serializer.Stream.Serialize((Int32*)&p->lookForResource);
         EntityRef.Serialize(&p->playerEntity, serializer);
     }
@@ -621,31 +643,34 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct UnitComponent : Quantum.IComponent {
-    public const Int32 SIZE = 64;
+    public const Int32 SIZE = 72;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(4)]
     public UnitState state;
+    [FieldOffset(16)]
+    public EntityRef playerOwner;
     [FieldOffset(8)]
-    public EntityRef owner;
-    [FieldOffset(48)]
+    public EntityRef buildingAssigned;
+    [FieldOffset(56)]
     public FP Speed;
-    [FieldOffset(40)]
+    [FieldOffset(48)]
     public FP HaverstTime;
-    [FieldOffset(32)]
+    [FieldOffset(40)]
     public FP DeployTime;
-    [FieldOffset(24)]
+    [FieldOffset(32)]
     public FP CurrentTime;
     [FieldOffset(0)]
     public Int32 ResourcesCapacity;
-    [FieldOffset(56)]
+    [FieldOffset(64)]
     public ResourceAmount inventory;
-    [FieldOffset(16)]
+    [FieldOffset(24)]
     public EntityRef targetEntity;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 2417;
         hash = hash * 31 + (Int32)state;
-        hash = hash * 31 + owner.GetHashCode();
+        hash = hash * 31 + playerOwner.GetHashCode();
+        hash = hash * 31 + buildingAssigned.GetHashCode();
         hash = hash * 31 + Speed.GetHashCode();
         hash = hash * 31 + HaverstTime.GetHashCode();
         hash = hash * 31 + DeployTime.GetHashCode();
@@ -660,7 +685,8 @@ namespace Quantum {
         var p = (UnitComponent*)ptr;
         serializer.Stream.Serialize(&p->ResourcesCapacity);
         serializer.Stream.Serialize((Int32*)&p->state);
-        EntityRef.Serialize(&p->owner, serializer);
+        EntityRef.Serialize(&p->buildingAssigned, serializer);
+        EntityRef.Serialize(&p->playerOwner, serializer);
         EntityRef.Serialize(&p->targetEntity, serializer);
         FP.Serialize(&p->CurrentTime, serializer);
         FP.Serialize(&p->DeployTime, serializer);
@@ -669,13 +695,33 @@ namespace Quantum {
         Quantum.ResourceAmount.Serialize(&p->inventory, serializer);
     }
   }
+  [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct WorkerSpawnPointComponent : Quantum.IComponent {
+    public const Int32 SIZE = 4;
+    public const Int32 ALIGNMENT = 4;
+    [FieldOffset(0)]
+    private fixed Byte _alignment_padding_[4];
+    public override Int32 GetHashCode() {
+      unchecked { 
+        var hash = 10559;
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (WorkerSpawnPointComponent*)ptr;
+    }
+  }
   public unsafe partial interface ISignalOnResourceAdded : ISignal {
     void OnResourceAdded(Frame f, EntityRef playerEntity, ResourceAmount resource);
+  }
+  public unsafe partial interface ISignalOnWorkerAdded : ISignal {
+    void OnWorkerAdded(Frame f, EntityRef buildingEntity, Int32 amount);
   }
   public static unsafe partial class Constants {
   }
   public unsafe partial class Frame {
     private ISignalOnResourceAdded[] _ISignalOnResourceAddedSystems;
+    private ISignalOnWorkerAdded[] _ISignalOnWorkerAddedSystems;
     partial void AllocGen() {
       _globals = (_globals_*)Context.Allocator.AllocAndClear(sizeof(_globals_));
     }
@@ -688,6 +734,7 @@ namespace Quantum {
     partial void InitGen() {
       Initialize(this, this.SimulationConfig.Entities, 256);
       _ISignalOnResourceAddedSystems = BuildSignalsArray<ISignalOnResourceAdded>();
+      _ISignalOnWorkerAddedSystems = BuildSignalsArray<ISignalOnWorkerAdded>();
       _ComponentSignalsOnAdded = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       _ComponentSignalsOnRemoved = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       BuildSignalsArrayOnComponentAdded<CharacterController2D>();
@@ -724,6 +771,8 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<Quantum.PlayerComponent>();
       BuildSignalsArrayOnComponentAdded<Quantum.PlayerEconomyComponent>();
       BuildSignalsArrayOnComponentRemoved<Quantum.PlayerEconomyComponent>();
+      BuildSignalsArrayOnComponentAdded<Quantum.PlayerLink>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.PlayerLink>();
       BuildSignalsArrayOnComponentAdded<Quantum.ResourceCollectorComponent>();
       BuildSignalsArrayOnComponentRemoved<Quantum.ResourceCollectorComponent>();
       BuildSignalsArrayOnComponentAdded<Quantum.ResourceContainerComponent>();
@@ -738,6 +787,8 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<Quantum.UnitComponent>();
       BuildSignalsArrayOnComponentAdded<View>();
       BuildSignalsArrayOnComponentRemoved<View>();
+      BuildSignalsArrayOnComponentAdded<Quantum.WorkerSpawnPointComponent>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.WorkerSpawnPointComponent>();
     }
     partial void SetPlayerInputCodeGen(PlayerRef player, Input input) {
       if ((int)player >= (int)_globals->input.Length) { throw new System.ArgumentOutOfRangeException("player"); }
@@ -763,6 +814,15 @@ namespace Quantum {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
             s.OnResourceAdded(_f, playerEntity, resource);
+          }
+        }
+      }
+      public void OnWorkerAdded(EntityRef buildingEntity, Int32 amount) {
+        var array = _f._ISignalOnWorkerAddedSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.OnWorkerAdded(_f, buildingEntity, amount);
           }
         }
       }
@@ -842,6 +902,7 @@ namespace Quantum {
       typeRegistry.Register(typeof(PhysicsSceneSettings), PhysicsSceneSettings.SIZE);
       typeRegistry.Register(typeof(Quantum.PlayerComponent), Quantum.PlayerComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.PlayerEconomyComponent), Quantum.PlayerEconomyComponent.SIZE);
+      typeRegistry.Register(typeof(Quantum.PlayerLink), Quantum.PlayerLink.SIZE);
       typeRegistry.Register(typeof(PlayerRef), PlayerRef.SIZE);
       typeRegistry.Register(typeof(Ptr), Ptr.SIZE);
       typeRegistry.Register(typeof(QBoolean), QBoolean.SIZE);
@@ -862,16 +923,19 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum.UnitComponent), Quantum.UnitComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.UnitState), 4);
       typeRegistry.Register(typeof(View), View.SIZE);
+      typeRegistry.Register(typeof(Quantum.WorkerSpawnPointComponent), Quantum.WorkerSpawnPointComponent.SIZE);
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 5)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 7)
         .AddBuiltInComponents()
         .Add<Quantum.PlayerComponent>(Quantum.PlayerComponent.Serialize, null, Quantum.PlayerComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.PlayerEconomyComponent>(Quantum.PlayerEconomyComponent.Serialize, null, Quantum.PlayerEconomyComponent.OnRemoved, ComponentFlags.None)
+        .Add<Quantum.PlayerLink>(Quantum.PlayerLink.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourceCollectorComponent>(Quantum.ResourceCollectorComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourceContainerComponent>(Quantum.ResourceContainerComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.UnitComponent>(Quantum.UnitComponent.Serialize, null, null, ComponentFlags.None)
+        .Add<Quantum.WorkerSpawnPointComponent>(Quantum.WorkerSpawnPointComponent.Serialize, null, null, ComponentFlags.None)
         .Finish();
     }
     [Preserve()]

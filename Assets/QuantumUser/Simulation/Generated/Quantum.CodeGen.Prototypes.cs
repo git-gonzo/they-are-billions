@@ -108,6 +108,21 @@ namespace Quantum.Prototypes {
     }
   }
   [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.PlayerLink))]
+  public unsafe partial class PlayerLinkPrototype : ComponentPrototype<Quantum.PlayerLink> {
+    public PlayerRef PlayerRef;
+    partial void MaterializeUser(Frame frame, ref Quantum.PlayerLink result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.PlayerLink component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.PlayerLink result, in PrototypeMaterializationContext context = default) {
+        result.PlayerRef = this.PlayerRef;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.ResourceAmount))]
   public unsafe partial class ResourceAmountPrototype : StructPrototype {
     public Quantum.QEnum32<ResourceType> Resource;
@@ -124,6 +139,7 @@ namespace Quantum.Prototypes {
   public unsafe class ResourceCollectorComponentPrototype : ComponentPrototype<Quantum.ResourceCollectorComponent> {
     public MapEntityId playerEntity;
     public Quantum.QEnum32<ResourceType> lookForResource;
+    public Int32 workersAssigned;
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
         Quantum.ResourceCollectorComponent component = default;
         Materialize((Frame)f, ref component, in context);
@@ -132,6 +148,7 @@ namespace Quantum.Prototypes {
     public void Materialize(Frame frame, ref Quantum.ResourceCollectorComponent result, in PrototypeMaterializationContext context = default) {
         PrototypeValidator.FindMapEntity(this.playerEntity, in context, out result.playerEntity);
         result.lookForResource = this.lookForResource;
+        result.workersAssigned = this.workersAssigned;
     }
   }
   [System.SerializableAttribute()]
@@ -153,7 +170,8 @@ namespace Quantum.Prototypes {
   [Quantum.Prototypes.Prototype(typeof(Quantum.UnitComponent))]
   public unsafe class UnitComponentPrototype : ComponentPrototype<Quantum.UnitComponent> {
     public Quantum.QEnum32<UnitState> state;
-    public MapEntityId owner;
+    public MapEntityId playerOwner;
+    public MapEntityId buildingAssigned;
     public FP Speed;
     public FP HaverstTime;
     public FP DeployTime;
@@ -168,7 +186,8 @@ namespace Quantum.Prototypes {
     }
     public void Materialize(Frame frame, ref Quantum.UnitComponent result, in PrototypeMaterializationContext context = default) {
         result.state = this.state;
-        PrototypeValidator.FindMapEntity(this.owner, in context, out result.owner);
+        PrototypeValidator.FindMapEntity(this.playerOwner, in context, out result.playerOwner);
+        PrototypeValidator.FindMapEntity(this.buildingAssigned, in context, out result.buildingAssigned);
         result.Speed = this.Speed;
         result.HaverstTime = this.HaverstTime;
         result.DeployTime = this.DeployTime;
@@ -176,6 +195,21 @@ namespace Quantum.Prototypes {
         result.ResourcesCapacity = this.ResourcesCapacity;
         this.inventory.Materialize(frame, ref result.inventory, in context);
         PrototypeValidator.FindMapEntity(this.targetEntity, in context, out result.targetEntity);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.WorkerSpawnPointComponent))]
+  public unsafe partial class WorkerSpawnPointComponentPrototype : ComponentPrototype<Quantum.WorkerSpawnPointComponent> {
+    [HideInInspector()]
+    public Int32 _empty_prototype_dummy_field_;
+    partial void MaterializeUser(Frame frame, ref Quantum.WorkerSpawnPointComponent result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.WorkerSpawnPointComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.WorkerSpawnPointComponent result, in PrototypeMaterializationContext context = default) {
+        MaterializeUser(frame, ref result, in context);
     }
   }
 }
