@@ -264,13 +264,13 @@ MonoBehaviour:
     RawValue: 32768
   AvoidanceLayer: 0
   AvoidanceMask:
-    BitMask: -1
-  MaxAvoidanceCandidates: 64
+    BitMask: 55
+  MaxAvoidanceCandidates: 20
   ReduceAvoidanceAtWaypoints: 0
   ReduceAvoidanceFactor:
     RawValue: 262144
   AvoidanceCanReduceSpeed: 0
-  ShowDebugAvoidance: 0
+  ShowDebugAvoidance: 1
 --- !u!114 &7020476344697839643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,8 +366,8 @@ MonoBehaviour:
     - 
     - Water
     - UI
-    - 
-    - 
+    - Floor
+    - Props
     - 
     - 
     - 
@@ -406,8 +406,8 @@ MonoBehaviour:
     RawPathAllocationStrategy: 0
     EnableAvoidance: 1
     AvoidanceRange:
-      RawValue: 131072
-    MaxAvoidanceCandidates: 64
+      RawValue: 32768
+    MaxAvoidanceCandidates: 20
     VelocityObstacleTruncationFactor:
       RawValue: 72090
   AutoLoadSceneFromMap: 2
@@ -420,7 +420,4 @@ MonoBehaviour:
   HeapPageShift: 15
   HeapPageCount: 256
   HeapExtraCount: 0
-  initialWorkers: 3
-  workerPrototype:
-    Id:
-      Value: 1520969653244342770
+  GameConfig: {fileID: 11400000, guid: 9d8c65627e6e5e140942bc2c89795ef3, type: 2}

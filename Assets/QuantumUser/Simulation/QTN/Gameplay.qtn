@@ -15,10 +15,18 @@ component PlayerEconomyComponent
 }
 
 component WorkerSpawnPointComponent{}
+component ResourcesSpawnPointComponent
+{
+	list<AssetRef<EntityPrototype>> Resources;
+	FPVector2 treeCountRange;
+	FPVector2 size;
+	FP separation;
+}
 
 component ResourceContainerComponent
 {
 	ResourceAmount resources;
+	FP workerStopDistance;
 }
 
 component ResourceCollectorComponent
@@ -30,16 +38,17 @@ component ResourceCollectorComponent
 
 component UnitComponent
 {
-	UnitState state;
-	EntityRef playerOwner;
-	EntityRef buildingAssigned;
+	[ExcludeFromPrototype] UnitState state;
+	[ExcludeFromPrototype] EntityRef playerOwner;
+	[ExcludeFromPrototype] EntityRef buildingAssigned;
+	[ExcludeFromPrototype] FP CurrentTime;
+	[ExcludeFromPrototype] ResourceAmount inventory;
+	[ExcludeFromPrototype] EntityRef targetEntity;
+	[ExcludeFromPrototype] FPVector3 patrolTarget;
 	FP Speed;
 	FP HaverstTime;
 	FP DeployTime;
-	FP CurrentTime;
 	int ResourcesCapacity;
-	ResourceAmount inventory;
-	EntityRef targetEntity;
 }
 
 enum UnitState

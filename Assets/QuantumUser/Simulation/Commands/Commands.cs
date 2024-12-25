@@ -19,4 +19,21 @@ namespace Quantum
             
         }
     }
+    
+    public class CommandBuyWorker : DeterministicCommand
+    {
+        public EntityRef buildingEntityRef;
+        public int amount;
+
+        public override void Serialize(BitStream stream)
+        {
+            stream.Serialize(ref buildingEntityRef);
+            stream.Serialize(ref amount);
+        }
+
+        public void Execute(Frame f) 
+        {
+            
+        }
+    }
 }

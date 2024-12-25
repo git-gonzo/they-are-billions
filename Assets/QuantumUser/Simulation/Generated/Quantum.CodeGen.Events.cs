@@ -52,7 +52,7 @@ namespace Quantum {
   public unsafe partial class Frame {
     public unsafe partial struct FrameEvents {
       static partial void GetEventTypeCountCodeGen(ref Int32 eventCount) {
-        eventCount = 2;
+        eventCount = 6;
       }
       static partial void GetParentEventIDCodeGen(Int32 eventID, ref Int32 parentEventID) {
         switch (eventID) {
@@ -62,12 +62,42 @@ namespace Quantum {
       static partial void GetEventTypeCodeGen(Int32 eventID, ref System.Type result) {
         switch (eventID) {
           case EventUpdateWorkers.ID: result = typeof(EventUpdateWorkers); return;
+          case EventUpdateResources.ID: result = typeof(EventUpdateResources); return;
+          case EventUnitMoving.ID: result = typeof(EventUnitMoving); return;
+          case EventUnitHarvesting.ID: result = typeof(EventUnitHarvesting); return;
+          case EventUnitIdle.ID: result = typeof(EventUnitIdle); return;
           default: break;
         }
       }
       public EventUpdateWorkers UpdateWorkers(EntityRef playerEntity) {
         var ev = _f.Context.AcquireEvent<EventUpdateWorkers>(EventUpdateWorkers.ID);
         ev.playerEntity = playerEntity;
+        _f.AddEvent(ev);
+        return ev;
+      }
+      public EventUpdateResources UpdateResources(EntityRef playerEntity) {
+        var ev = _f.Context.AcquireEvent<EventUpdateResources>(EventUpdateResources.ID);
+        ev.playerEntity = playerEntity;
+        _f.AddEvent(ev);
+        return ev;
+      }
+      public EventUnitMoving UnitMoving(EntityRef unitEntity, FPVector3 target) {
+        var ev = _f.Context.AcquireEvent<EventUnitMoving>(EventUnitMoving.ID);
+        ev.unitEntity = unitEntity;
+        ev.target = target;
+        _f.AddEvent(ev);
+        return ev;
+      }
+      public EventUnitHarvesting UnitHarvesting(EntityRef unitEntity, ResourceType resourceType) {
+        var ev = _f.Context.AcquireEvent<EventUnitHarvesting>(EventUnitHarvesting.ID);
+        ev.unitEntity = unitEntity;
+        ev.resourceType = resourceType;
+        _f.AddEvent(ev);
+        return ev;
+      }
+      public EventUnitIdle UnitIdle(EntityRef unitEntity) {
+        var ev = _f.Context.AcquireEvent<EventUnitIdle>(EventUnitIdle.ID);
+        ev.unitEntity = unitEntity;
         _f.AddEvent(ev);
         return ev;
       }
@@ -94,6 +124,110 @@ namespace Quantum {
       unchecked {
         var hash = 41;
         hash = hash * 31 + playerEntity.GetHashCode();
+        return hash;
+      }
+    }
+  }
+  public unsafe partial class EventUpdateResources : EventBase {
+    public new const Int32 ID = 2;
+    public EntityRef playerEntity;
+    protected EventUpdateResources(Int32 id, EventFlags flags) : 
+        base(id, flags) {
+    }
+    public EventUpdateResources() : 
+        base(2, EventFlags.Server|EventFlags.Client) {
+    }
+    public new QuantumGame Game {
+      get {
+        return (QuantumGame)base.Game;
+      }
+      set {
+        base.Game = value;
+      }
+    }
+    public override Int32 GetHashCode() {
+      unchecked {
+        var hash = 43;
+        hash = hash * 31 + playerEntity.GetHashCode();
+        return hash;
+      }
+    }
+  }
+  public unsafe partial class EventUnitMoving : EventBase {
+    public new const Int32 ID = 3;
+    public EntityRef unitEntity;
+    public FPVector3 target;
+    protected EventUnitMoving(Int32 id, EventFlags flags) : 
+        base(id, flags) {
+    }
+    public EventUnitMoving() : 
+        base(3, EventFlags.Server|EventFlags.Client) {
+    }
+    public new QuantumGame Game {
+      get {
+        return (QuantumGame)base.Game;
+      }
+      set {
+        base.Game = value;
+      }
+    }
+    public override Int32 GetHashCode() {
+      unchecked {
+        var hash = 47;
+        hash = hash * 31 + unitEntity.GetHashCode();
+        hash = hash * 31 + target.GetHashCode();
+        return hash;
+      }
+    }
+  }
+  public unsafe partial class EventUnitHarvesting : EventBase {
+    public new const Int32 ID = 4;
+    public EntityRef unitEntity;
+    public ResourceType resourceType;
+    protected EventUnitHarvesting(Int32 id, EventFlags flags) : 
+        base(id, flags) {
+    }
+    public EventUnitHarvesting() : 
+        base(4, EventFlags.Server|EventFlags.Client) {
+    }
+    public new QuantumGame Game {
+      get {
+        return (QuantumGame)base.Game;
+      }
+      set {
+        base.Game = value;
+      }
+    }
+    public override Int32 GetHashCode() {
+      unchecked {
+        var hash = 53;
+        hash = hash * 31 + unitEntity.GetHashCode();
+        hash = hash * 31 + resourceType.GetHashCode();
+        return hash;
+      }
+    }
+  }
+  public unsafe partial class EventUnitIdle : EventBase {
+    public new const Int32 ID = 5;
+    public EntityRef unitEntity;
+    protected EventUnitIdle(Int32 id, EventFlags flags) : 
+        base(id, flags) {
+    }
+    public EventUnitIdle() : 
+        base(5, EventFlags.Server|EventFlags.Client) {
+    }
+    public new QuantumGame Game {
+      get {
+        return (QuantumGame)base.Game;
+      }
+      set {
+        base.Game = value;
+      }
+    }
+    public override Int32 GetHashCode() {
+      unchecked {
+        var hash = 59;
+        hash = hash * 31 + unitEntity.GetHashCode();
         return hash;
       }
     }

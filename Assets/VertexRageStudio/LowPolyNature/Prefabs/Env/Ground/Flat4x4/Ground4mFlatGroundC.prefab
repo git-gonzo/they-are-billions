@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2839294943361284766}
   - component: {fileID: 2327754615914167816}
-  - component: {fileID: 7147934561126620718}
   m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2839294943361284766
 Transform:
@@ -25,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3807636434847151112}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 399088022869948089}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2327754615914167816
 BoxCollider:
@@ -41,25 +40,19 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3807636434847151112}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 4, y: 0.0064626504, z: 4}
   m_Center: {x: -2, y: 0.0017814379, z: -2}
---- !u!64 &7147934561126620718
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3807636434847151112}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6270785613759225266, guid: 008c393e93fa6de4589ed71b06457453, type: 3}
 --- !u!1 &6006491697670332945
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,12 +62,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 399088022869948089}
+  - component: {fileID: 3275355586431628189}
   m_Layer: 0
   m_Name: Ground4mFlatGroundC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &399088022869948089
 Transform:
@@ -83,6 +77,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6006491697670332945}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -91,13 +86,56 @@ Transform:
   - {fileID: 2839294943361284766}
   - {fileID: 543450651924915017}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3275355586431628189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006491697670332945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc94c3ce6de4c74989839aecde663d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceCollider: {fileID: 2327754615914167816}
+  Size:
+    X:
+      RawValue: 262144
+    Y:
+      RawValue: 423
+    Z:
+      RawValue: 262144
+  PositionOffset:
+    X:
+      RawValue: -131072
+    Y:
+      RawValue: 116
+    Z:
+      RawValue: -131072
+  RotationOffset:
+    X:
+      RawValue: 0
+    Y:
+      RawValue: 0
+    Z:
+      RawValue: 0
+  Settings:
+    MutableMode: 0
+    PhysicsMaterial:
+      Id:
+        Value: 0
+    Asset:
+      Id:
+        Value: 0
+    Trigger: 0
 --- !u!1001 &1783432354
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 399088022869948089}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 008c393e93fa6de4589ed71b06457453, type: 3}
@@ -148,7 +186,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground 4m Flat Ground C
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 008c393e93fa6de4589ed71b06457453, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 008c393e93fa6de4589ed71b06457453, type: 3}
 --- !u!4 &543450651924915017 stripped
 Transform:

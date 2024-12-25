@@ -31,6 +31,7 @@ namespace Quantum
                 Debug.Log("New Resource added " + resource.Resource);
                 resources.Add(resource);
             }
+            f.Events.UpdateResources(playerEntity);
         }
     }
 }

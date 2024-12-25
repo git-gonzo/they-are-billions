@@ -625,59 +625,110 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct ResourceContainerComponent : Quantum.IComponent {
-    public const Int32 SIZE = 8;
-    public const Int32 ALIGNMENT = 4;
-    [FieldOffset(0)]
+    public const Int32 SIZE = 16;
+    public const Int32 ALIGNMENT = 8;
+    [FieldOffset(8)]
     public ResourceAmount resources;
+    [FieldOffset(0)]
+    public FP workerStopDistance;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 4721;
         hash = hash * 31 + resources.GetHashCode();
+        hash = hash * 31 + workerStopDistance.GetHashCode();
         return hash;
       }
     }
     public static void Serialize(void* ptr, FrameSerializer serializer) {
         var p = (ResourceContainerComponent*)ptr;
+        FP.Serialize(&p->workerStopDistance, serializer);
         Quantum.ResourceAmount.Serialize(&p->resources, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct ResourcesSpawnPointComponent : Quantum.IComponent {
+    public const Int32 SIZE = 48;
+    public const Int32 ALIGNMENT = 8;
+    [FieldOffset(0)]
+    public QListPtr<AssetRef<EntityPrototype>> Resources;
+    [FieldOffset(32)]
+    public FPVector2 treeCountRange;
+    [FieldOffset(16)]
+    public FPVector2 size;
+    [FieldOffset(8)]
+    public FP separation;
+    public override Int32 GetHashCode() {
+      unchecked { 
+        var hash = 11503;
+        hash = hash * 31 + Resources.GetHashCode();
+        hash = hash * 31 + treeCountRange.GetHashCode();
+        hash = hash * 31 + size.GetHashCode();
+        hash = hash * 31 + separation.GetHashCode();
+        return hash;
+      }
+    }
+    public void ClearPointers(FrameBase f, EntityRef entity) {
+      Resources = default;
+    }
+    public static void OnRemoved(FrameBase frame, EntityRef entity, void* ptr) {
+      var p = (Quantum.ResourcesSpawnPointComponent*)ptr;
+      p->ClearPointers((Frame)frame, entity);
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (ResourcesSpawnPointComponent*)ptr;
+        QList.Serialize(&p->Resources, serializer, Statics.SerializeAssetRef);
+        FP.Serialize(&p->separation, serializer);
+        FPVector2.Serialize(&p->size, serializer);
+        FPVector2.Serialize(&p->treeCountRange, serializer);
+    }
+  }
+  [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct UnitComponent : Quantum.IComponent {
-    public const Int32 SIZE = 72;
+    public const Int32 SIZE = 96;
     public const Int32 ALIGNMENT = 8;
     [FieldOffset(4)]
+    [ExcludeFromPrototype()]
     public UnitState state;
     [FieldOffset(16)]
+    [ExcludeFromPrototype()]
     public EntityRef playerOwner;
     [FieldOffset(8)]
+    [ExcludeFromPrototype()]
     public EntityRef buildingAssigned;
+    [FieldOffset(32)]
+    [ExcludeFromPrototype()]
+    public FP CurrentTime;
+    [FieldOffset(64)]
+    [ExcludeFromPrototype()]
+    public ResourceAmount inventory;
+    [FieldOffset(24)]
+    [ExcludeFromPrototype()]
+    public EntityRef targetEntity;
+    [FieldOffset(72)]
+    [ExcludeFromPrototype()]
+    public FPVector3 patrolTarget;
     [FieldOffset(56)]
     public FP Speed;
     [FieldOffset(48)]
     public FP HaverstTime;
     [FieldOffset(40)]
     public FP DeployTime;
-    [FieldOffset(32)]
-    public FP CurrentTime;
     [FieldOffset(0)]
     public Int32 ResourcesCapacity;
-    [FieldOffset(64)]
-    public ResourceAmount inventory;
-    [FieldOffset(24)]
-    public EntityRef targetEntity;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 2417;
         hash = hash * 31 + (Int32)state;
         hash = hash * 31 + playerOwner.GetHashCode();
         hash = hash * 31 + buildingAssigned.GetHashCode();
+        hash = hash * 31 + CurrentTime.GetHashCode();
+        hash = hash * 31 + inventory.GetHashCode();
+        hash = hash * 31 + targetEntity.GetHashCode();
+        hash = hash * 31 + patrolTarget.GetHashCode();
         hash = hash * 31 + Speed.GetHashCode();
         hash = hash * 31 + HaverstTime.GetHashCode();
         hash = hash * 31 + DeployTime.GetHashCode();
-        hash = hash * 31 + CurrentTime.GetHashCode();
         hash = hash * 31 + ResourcesCapacity.GetHashCode();
-        hash = hash * 31 + inventory.GetHashCode();
-        hash = hash * 31 + targetEntity.GetHashCode();
         return hash;
       }
     }
@@ -693,6 +744,7 @@ namespace Quantum {
         FP.Serialize(&p->HaverstTime, serializer);
         FP.Serialize(&p->Speed, serializer);
         Quantum.ResourceAmount.Serialize(&p->inventory, serializer);
+        FPVector3.Serialize(&p->patrolTarget, serializer);
     }
   }
   [StructLayout(LayoutKind.Explicit)]
@@ -777,6 +829,8 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<Quantum.ResourceCollectorComponent>();
       BuildSignalsArrayOnComponentAdded<Quantum.ResourceContainerComponent>();
       BuildSignalsArrayOnComponentRemoved<Quantum.ResourceContainerComponent>();
+      BuildSignalsArrayOnComponentAdded<Quantum.ResourcesSpawnPointComponent>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.ResourcesSpawnPointComponent>();
       BuildSignalsArrayOnComponentAdded<Transform2D>();
       BuildSignalsArrayOnComponentRemoved<Transform2D>();
       BuildSignalsArrayOnComponentAdded<Transform2DVertical>();
@@ -831,10 +885,12 @@ namespace Quantum {
   public unsafe partial class Statics {
     public static FrameSerializer.Delegate SerializeEntityRef;
     public static FrameSerializer.Delegate SerializeResourceAmount;
+    public static FrameSerializer.Delegate SerializeAssetRef;
     public static FrameSerializer.Delegate SerializeInput;
     static partial void InitStaticDelegatesGen() {
       SerializeEntityRef = EntityRef.Serialize;
       SerializeResourceAmount = Quantum.ResourceAmount.Serialize;
+      SerializeAssetRef = AssetRef.Serialize;
       SerializeInput = Quantum.Input.Serialize;
     }
     static partial void RegisterSimulationTypesGen(TypeRegistry typeRegistry) {
@@ -913,6 +969,7 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum.ResourceCollectorComponent), Quantum.ResourceCollectorComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.ResourceContainerComponent), Quantum.ResourceContainerComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.ResourceType), 4);
+      typeRegistry.Register(typeof(Quantum.ResourcesSpawnPointComponent), Quantum.ResourcesSpawnPointComponent.SIZE);
       typeRegistry.Register(typeof(Shape2D), Shape2D.SIZE);
       typeRegistry.Register(typeof(Shape3D), Shape3D.SIZE);
       typeRegistry.Register(typeof(SpringJoint), SpringJoint.SIZE);
@@ -927,13 +984,14 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 7)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 8)
         .AddBuiltInComponents()
         .Add<Quantum.PlayerComponent>(Quantum.PlayerComponent.Serialize, null, Quantum.PlayerComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.PlayerEconomyComponent>(Quantum.PlayerEconomyComponent.Serialize, null, Quantum.PlayerEconomyComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.PlayerLink>(Quantum.PlayerLink.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourceCollectorComponent>(Quantum.ResourceCollectorComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourceContainerComponent>(Quantum.ResourceContainerComponent.Serialize, null, null, ComponentFlags.None)
+        .Add<Quantum.ResourcesSpawnPointComponent>(Quantum.ResourcesSpawnPointComponent.Serialize, null, Quantum.ResourcesSpawnPointComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.UnitComponent>(Quantum.UnitComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.WorkerSpawnPointComponent>(Quantum.WorkerSpawnPointComponent.Serialize, null, null, ComponentFlags.None)
         .Finish();

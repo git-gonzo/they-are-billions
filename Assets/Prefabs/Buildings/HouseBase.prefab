@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4877869068792237815}
   - component: {fileID: 5395719139319749352}
   - component: {fileID: 6949601898896688468}
+  - component: {fileID: 8294148519653074297}
   - component: {fileID: 266225157882159514}
   - component: {fileID: 3663802616847984315}
   - component: {fileID: 968546379284761993}
@@ -310,6 +311,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8294148519653074297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158157667486569838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0008c51fe3af00b4da5d44f02d9b3dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BindBehaviour: 0
+  ManualDisposal: 0
+  ViewFlags: 0
+  InterpolationMode: 0
+  ErrorCorrectionRateMin: 3.3
+  ErrorCorrectionRateMax: 10
+  ErrorPositionBlendStart: 0.25
+  ErrorPositionBlendEnd: 1
+  ErrorRotationBlendStart: 0.1
+  ErrorRotationBlendEnd: 0.5
+  ErrorPositionMinCorrection: 0.025
+  ErrorPositionTeleportDistance: 2
+  ErrorRotationTeleportDistance: 0.5
+  OnEntityInstantiated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEntityDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &266225157882159514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +358,7 @@ MonoBehaviour:
     playerEntity: {fileID: 0}
     lookForResource:
       Value: 2
+    workersAssigned: 0
 --- !u!114 &3663802616847984315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,22 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355d5850032327f478e08d62d2275b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BindBehaviour: 0
-  ManualDisposal: 0
-  ViewFlags: 0
-  InterpolationMode: 0
-  ErrorCorrectionRateMin: 3.3
-  ErrorCorrectionRateMax: 10
-  ErrorPositionBlendStart: 0.25
-  ErrorPositionBlendEnd: 1
-  ErrorRotationBlendStart: 0.1
-  ErrorRotationBlendEnd: 0.5
-  ErrorPositionMinCorrection: 0.025
-  ErrorPositionTeleportDistance: 2
-  ErrorRotationTeleportDistance: 0.5
-  OnEntityInstantiated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEntityDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
+  _buildingData:
+    buildingName: 
+    buildingDescrip: 
+    icon: {fileID: 0}
+    maxWorkers: 0

@@ -2,3 +2,21 @@ event UpdateWorkers
 {
 	EntityRef playerEntity;
 }
+event UpdateResources
+{
+	EntityRef playerEntity;
+}
+event UnitMoving
+{
+	EntityRef unitEntity;
+	FPVector3 target;
+}
+event UnitHarvesting
+{
+	EntityRef unitEntity;
+	ResourceType resourceType;
+}
+event UnitIdle
+{
+	EntityRef unitEntity;
+}

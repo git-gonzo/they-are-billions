@@ -76,35 +76,6 @@ namespace Quantum.Prototypes.Unity {
       return result;
     }
   }
-  [System.SerializableAttribute()]
-  public unsafe partial class UnitComponentPrototype : Quantum.QuantumUnityPrototypeAdapter<Quantum.Prototypes.UnitComponentPrototype> {
-    public Quantum.QEnum32<UnitState> state;
-    public Quantum.QuantumEntityPrototype playerOwner;
-    public Quantum.QuantumEntityPrototype buildingAssigned;
-    public FP Speed;
-    public FP HaverstTime;
-    public FP DeployTime;
-    public FP CurrentTime;
-    public Int32 ResourcesCapacity;
-    public Quantum.Prototypes.ResourceAmountPrototype inventory;
-    public Quantum.QuantumEntityPrototype targetEntity;
-    partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.UnitComponentPrototype prototype);
-    public override Quantum.Prototypes.UnitComponentPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
-      var result = new Quantum.Prototypes.UnitComponentPrototype();
-      converter.Convert(this.state, out result.state);
-      converter.Convert(this.playerOwner, out result.playerOwner);
-      converter.Convert(this.buildingAssigned, out result.buildingAssigned);
-      converter.Convert(this.Speed, out result.Speed);
-      converter.Convert(this.HaverstTime, out result.HaverstTime);
-      converter.Convert(this.DeployTime, out result.DeployTime);
-      converter.Convert(this.CurrentTime, out result.CurrentTime);
-      converter.Convert(this.ResourcesCapacity, out result.ResourcesCapacity);
-      converter.Convert(this.inventory, out result.inventory);
-      converter.Convert(this.targetEntity, out result.targetEntity);
-      ConvertUser(converter, ref result);
-      return result;
-    }
-  }
 }
 #pragma warning restore 0109
 #pragma warning restore 1591

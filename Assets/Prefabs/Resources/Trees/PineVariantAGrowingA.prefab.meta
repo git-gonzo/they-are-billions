@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: feda029511ac82e479c3b9f24095be7f
+labels:
+- QuantumAsset
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261484
+  packageName: 'Low Poly Nature: Lush and Diverse Environments'
+  packageVersion: 1.0
+  assetPath: Assets/VertexRageStudio/LowPolyNature/Prefabs/Env/Trees/Pines/PinesVariantA/PineVariantAGrowingA.prefab
+  uploadId: 613152
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

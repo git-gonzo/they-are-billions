@@ -22,7 +22,7 @@ namespace Quantum
             economy->resources = f.AllocateList<ResourceAmount>();
 
             // ADD WORKERS
-            var config = f.SimulationConfig;
+            var config = f.SimulationConfig.GameConfig;
             for (int i = 0; i < config.initialWorkers; i++)
             {
                 var unit = f.Create(config.workerPrototype);
@@ -53,15 +53,16 @@ namespace Quantum
     {
         public unsafe static FPVector3 GetSpawnPoint<T>(Frame f) where T : unmanaged, IComponent
         {
+            //Todo: Could be optimized, trying not to call it multimple times if there is no need
             List<FPVector3> spawnPoints = new List<FPVector3>();
             var allSpawnPoints = f.Unsafe.GetComponentBlockIterator<T>();
             //allSpawnPoints.
             foreach (var (spawnPointEntity, spawnPointComponent) in allSpawnPoints)
             {
                 spawnPoints.Add(f.Get<Transform3D>(spawnPointEntity).Position);
-                Debug.Log("Add spawnpoint to list");
+                //Debug.Log("Add spawnpoint to list");
             }
-            Debug.Log("total spawnpoints " + spawnPoints.Count);
+            //Debug.Log("total spawnpoints " + spawnPoints.Count);
             int i = f.RNG->Next(0, spawnPoints.Count);
 
             return spawnPoints[i];
