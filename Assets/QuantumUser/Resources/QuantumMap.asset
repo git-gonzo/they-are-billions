@@ -12719,8 +12719,17 @@ MonoBehaviour:
     - rid: 5609275873246052352
     - rid: 5609275873246052353
   - Components:
+    - rid: 2869171254764503040
+    - rid: 2869171254764503041
+  - Components:
     - rid: 3546891399431454720
     - rid: 3546891399431454721
+  - Components:
+    - rid: 1836802504982003712
+    - rid: 1836802504982003713
+  - Components:
+    - rid: 6201489753842384896
+    - rid: 6201489753842384897
   - Components:
     - rid: 2570172568820514816
     - rid: 2570172568820514817
@@ -12795,6 +12804,45 @@ MonoBehaviour:
         lookForResource:
           Value: 1
         workersAssigned: 0
+    - rid: 1836802504982003712
+      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: -3212574
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: -1335623
+        Rotation:
+          X:
+            RawValue: 0
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 0
+    - rid: 1836802504982003713
+      type: {class: ResourcesSpawnPointComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        Resources:
+        - Id:
+            Value: 1448512857237642249
+        - Id:
+            Value: 1364689660763527968
+        - Id:
+            Value: 1455709306117612240
+        treeCountRange:
+          X:
+            RawValue: 983040
+          Y:
+            RawValue: 1638400
+        size:
+          X:
+            RawValue: 262144
+          Y:
+            RawValue: 262144
+        separation:
+          RawValue: 117965
     - rid: 2570172568820514816
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
@@ -12872,7 +12920,46 @@ MonoBehaviour:
             Value: 2
           Amount: 3
         workerStopDistance:
-          RawValue: 32768
+          RawValue: 52429
+    - rid: 2869171254764503040
+      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: -2641100
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 1887436
+        Rotation:
+          X:
+            RawValue: 0
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 0
+    - rid: 2869171254764503041
+      type: {class: ResourcesSpawnPointComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        Resources:
+        - Id:
+            Value: 1505797600387327544
+        - Id:
+            Value: 1461255755089550992
+        - Id:
+            Value: 1495533157552050960
+        treeCountRange:
+          X:
+            RawValue: 983040
+          Y:
+            RawValue: 1638400
+        size:
+          X:
+            RawValue: 393216
+          Y:
+            RawValue: 393216
+        separation:
+          RawValue: 131072
     - rid: 3386590719442419712
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
@@ -12919,18 +13006,20 @@ MonoBehaviour:
             Value: 1448512857237642249
         - Id:
             Value: 1364689660763527968
+        - Id:
+            Value: 1455709306117612240
         treeCountRange:
           X:
-            RawValue: 524288
+            RawValue: 589824
           Y:
-            RawValue: 786432
+            RawValue: 983040
         size:
           X:
-            RawValue: 327680
+            RawValue: 262144
           Y:
-            RawValue: 327680
+            RawValue: 262144
         separation:
-          RawValue: 163840
+          RawValue: 131072
     - rid: 4930739070612537344
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
@@ -13050,7 +13139,7 @@ MonoBehaviour:
             Value: 2
           Amount: 2
         workerStopDistance:
-          RawValue: 32768
+          RawValue: 52429
     - rid: 5554679146627465216
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
@@ -13109,6 +13198,45 @@ MonoBehaviour:
             RawValue: 393216
           Y:
             RawValue: 393216
+        separation:
+          RawValue: 131072
+    - rid: 6201489753842384896
+      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: 1069547
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: -1133117
+        Rotation:
+          X:
+            RawValue: 0
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 0
+    - rid: 6201489753842384897
+      type: {class: ResourcesSpawnPointComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        Resources:
+        - Id:
+            Value: 1448512857237642249
+        - Id:
+            Value: 1364689660763527968
+        - Id:
+            Value: 1455709306117612240
+        treeCountRange:
+          X:
+            RawValue: 589824
+          Y:
+            RawValue: 983040
+        size:
+          X:
+            RawValue: 262144
+          Y:
+            RawValue: 262144
         separation:
           RawValue: 131072
     - rid: 7346234931355320320
@@ -13188,7 +13316,7 @@ MonoBehaviour:
             Value: 2
           Amount: 2
         workerStopDistance:
-          RawValue: 32768
+          RawValue: 52429
     - rid: 7401444173997408256
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
