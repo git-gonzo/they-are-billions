@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 662d665b1cd8b424790a98fb32268e23
+labels:
+- QuantumAsset
+AssetOrigin:
+  serializedVersion: 1
+  productId: 142554
+  packageName: Forest animals
+  packageVersion: 1.0
+  assetPath: Assets/Realistic/Forest Animals/Bear_Family/Bear_Male/prefabs/Bear_male_LowPoly_IP.prefab
+  uploadId: 301504
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

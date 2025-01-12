@@ -12,7 +12,14 @@ public class UnitControllerBase : QuantumEntityViewComponent
         animator = GetComponentInChildren<Animator>();
         if(animator != null)
         {
-            animator.speed = frame.Get<UnitComponent>(EntityRef).Speed.AsFloat;
+            if(frame.TryGet<UnitComponent>(EntityRef, out var unit)) 
+            { 
+                animator.speed = unit.Speed.AsFloat;
+            }
+            else if(frame.TryGet<AnimalComponent>(EntityRef, out var animal)) 
+            { 
+                animator.speed = animal.Speed.AsFloat;
+            }
         }
         QuantumEvent.Subscribe<EventUnitMoving>(this, OnUnitMoving);
         QuantumEvent.Subscribe<EventUnitHarvesting>(this, OnUnitHarvesting);

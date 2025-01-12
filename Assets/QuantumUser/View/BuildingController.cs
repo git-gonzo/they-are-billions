@@ -2,42 +2,44 @@ using Quantum;
 using System;
 using UnityEngine;
 
-namespace Quantum
+public class BuildingController : QuantumEntityViewComponent<HUDContext>
 {
-    using UnityEngine;
-    using Quantum;
+    [SerializeField] BuildingData _buildingData;
+    bool _isReady;
 
-    public class BuildingController : QuantumEntityViewComponent<HUDContext>
+    public override void OnActivate(Frame frame)
     {
-        [SerializeField] BuildingData _buildingData;
-
-        public override void OnActivate(Frame frame)
-        {
-            _buildingData.Entity = EntityRef;
-        }
-
-        public void OnClickBuilding() 
-        {
-            var buildingComp = PredictedFrame.Get<ResourceCollectorComponent>(EntityRef);
-            var freeWorkers = GetFreeWorkers(buildingComp.playerEntity);
-
-            ViewContext.hudController.ShowBuildingPopup(_buildingData, freeWorkers, buildingComp.workersAssigned);
-            Debug.Log("Click on Building " + gameObject.name);
-        }
-
-        private int GetFreeWorkers(EntityRef playerEntity) 
-        {
-            var freeWorkers = 0;
-            var filter = PredictedFrame.Filter<UnitComponent>();
-            while (filter.Next(out var unitEntity, out var unitComponent))
-            {
-                if (unitComponent.playerOwner != playerEntity) continue;
-                if (unitComponent.buildingAssigned == EntityRef.None) freeWorkers++;
-            }
-            return freeWorkers;
-        }
+        _buildingData.Entity = EntityRef;
+        _isReady = true;
     }
-    
+
+    public void SetPreview(bool value) 
+    { 
+        _isReady = !value;
+    }
+
+    public void OnClickBuilding() 
+    {
+        if(!_isReady) return; 
+
+        var buildingComp = PredictedFrame.Get<ResourceCollectorComponent>(EntityRef);
+        var freeWorkers = GetFreeWorkers(buildingComp.playerEntity);
+
+        ViewContext.hudController.ShowBuildingPopup(_buildingData, freeWorkers, buildingComp.workersAssigned);
+        Debug.Log("Click on Building " + gameObject.name);
+    }
+
+    private int GetFreeWorkers(EntityRef playerEntity) 
+    {
+        var freeWorkers = 0;
+        var filter = PredictedFrame.Filter<UnitComponent>();
+        while (filter.Next(out var unitEntity, out var unitComponent))
+        {
+            if (unitComponent.playerOwner != playerEntity) continue;
+            if (unitComponent.buildingAssigned == EntityRef.None) freeWorkers++;
+        }
+        return freeWorkers;
+    }
 }
 
 [Serializable]

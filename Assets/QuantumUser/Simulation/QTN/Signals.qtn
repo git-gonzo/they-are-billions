@@ -1,2 +1,4 @@
+signal ConsumeCost (EntityRef playerEntity, ResourceAmount resource);
 signal OnResourceAdded (EntityRef playerEntity, ResourceAmount resource);
-signal OnWorkerAdded (EntityRef buildingEntity, int amount);
+signal OnAddWorkerToBuilding (EntityRef buildingEntity, int amount);
+signal CreateUnit (EntityRef playerEntity);

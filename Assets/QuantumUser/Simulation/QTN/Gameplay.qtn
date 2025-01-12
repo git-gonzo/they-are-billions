@@ -51,6 +51,14 @@ component UnitComponent
 	int ResourcesCapacity;
 }
 
+component AnimalComponent
+{
+	FP Speed;
+	[ExcludeFromPrototype] AnimalState state;
+	[ExcludeFromPrototype] FP CurrentTime;
+	[ExcludeFromPrototype] FPVector3 Origin;
+}
+
 enum UnitState
 {
 	Idle,
@@ -59,13 +67,23 @@ enum UnitState
 	Deploying
 }
 
+enum AnimalState
+{
+	Idle,
+	Eating,
+	Moving,
+	Running
+}
+
 enum ResourceType
 {
 	None,
 	Stone,
-	Wood
+	Wood,
+	Meat
 }
 
+//this marked as serializable in a partial struct
 struct ResourceAmount
 {
 	ResourceType Resource;

@@ -10,6 +10,8 @@
             // Add or remove commands to the collection.
             // factories.Add(new NavMeshAgentTestSystem.RunTest());
             factories.Add(new CommandAddWorker());
+            factories.Add(new CommandConsumeCost());
+            factories.Add(new CommandBuyUnit());
         }
     }
 }

@@ -9,7 +9,6 @@ event UpdateResources
 event UnitMoving
 {
 	EntityRef unitEntity;
-	FPVector3 target;
 }
 event UnitHarvesting
 {
@@ -19,4 +18,8 @@ event UnitHarvesting
 event UnitIdle
 {
 	EntityRef unitEntity;
+}
+event OnLocalPlayerCreated
+{
+	EntityRef playerEntity;
 }

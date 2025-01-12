@@ -8,6 +8,7 @@ public class EconomyViewController : QuantumSceneViewComponent
     [SerializeField] TextMeshProUGUI _txtWorkers;
     [SerializeField] TextMeshProUGUI _txtWood;
     [SerializeField] TextMeshProUGUI _txtStone;
+    [SerializeField] TextMeshProUGUI _txtMeat;
     EntityRef _localPlayerEntity;
     public override void OnActivate(Frame f)
     {
@@ -69,6 +70,7 @@ public class EconomyViewController : QuantumSceneViewComponent
         var resources = PredictedFrame.ResolveList(economy.resources);
         _txtWood.text = "0";
         _txtStone.text = "0";
+        _txtMeat.text = "0";
 
         foreach ( var resource in resources )
         {
@@ -79,6 +81,10 @@ public class EconomyViewController : QuantumSceneViewComponent
             else if(resource.Resource == ResourceType.Stone)
             {
                 _txtStone.text = resource.Amount.ToString();
+            }
+            else if(resource.Resource == ResourceType.Meat)
+            {
+                _txtMeat.text = resource.Amount.ToString();
             }
         }
 

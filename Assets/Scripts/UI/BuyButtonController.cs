@@ -1,16 +1,55 @@
+using Quantum;
 using UnityEngine;
 
 public class BuyButtonController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] BuildingPlacementController _buildingPlacementController;
+    public BuildingController buildingPrefab;
+
+    [SerializeField] private ResourceAmount _cost; //TODO: Set this with some logic and config
+
+    public void Init(ResourceAmount cost)
     {
-        
+        _cost = cost;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuyBuilding() 
     {
-        
+        CanBuy();
+        _buildingPlacementController.PlaceBuildingPreview(buildingPrefab);
+    }
+
+    public void BuyWorker() 
+    {
+        if(CanBuy())
+        {
+            //TODO: Add worker and consume cost
+            CommandBuyUnit command = new CommandBuyUnit()
+            {
+                PlayerEntityRef = HudController.LocalPlayerEntity,
+                resourceAmount = _cost
+            };
+            QuantumRunner.Default.Game.SendCommand(command);
+        }
+        else
+        {
+            Debug.Log("Not enough " + _cost.Resource);
+        }
+    }
+
+    private bool CanBuy() 
+    {
+        var f = QuantumRunner.Default.Game.Frames.Predicted;
+        var economy = f.Get<PlayerEconomyComponent>(HudController.LocalPlayerEntity);
+        var resources = f.ResolveList(economy.resources);
+        foreach ( var r in resources )
+        {
+            if(r.Resource == _cost.Resource)
+            {
+                Debug.Log("Trying to buy something that cost " + _cost.Amount + " " + _cost.Resource + " and player has " + r.Amount);
+                return true;
+            }
+        }
+        return false;
     }
 }

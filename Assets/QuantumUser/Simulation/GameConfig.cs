@@ -1,4 +1,6 @@
 ﻿using Photon.Deterministic;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Quantum
 {
@@ -7,7 +9,8 @@ namespace Quantum
         public int initialWorkers = 2;
         public AssetRef<EntityPrototype> workerPrototype;
         public FP workerStopDistance = 2;
-        public int workerCostAmount = 5;
-        public ResourceType workerCostResource = ResourceType.Wood;
+        public List<ResourceAmount> initialResources;
+        [Header("COSTS")]
+        public ResourceAmount workerCost;
     }
 }

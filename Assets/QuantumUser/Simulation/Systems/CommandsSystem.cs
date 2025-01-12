@@ -19,9 +19,19 @@ namespace Quantum
 
             if (command is CommandAddWorker)
             {
-                //Debug.Log("Command ADD WORKER");
                 var c = command as CommandAddWorker;
-                f.Signals.OnWorkerAdded(c.buildingEntityRef, c.amount);
+                f.Signals.OnAddWorkerToBuilding(c.buildingEntityRef, c.amount);
+            }
+            else if (command is CommandConsumeCost)
+            {
+                var c = command as CommandConsumeCost;
+                f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
+            }
+            else if (command is CommandBuyUnit)
+            {
+                var c = command as CommandBuyUnit;
+                f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
+                f.Signals.CreateUnit(c.PlayerEntityRef);
             }
         }
     }

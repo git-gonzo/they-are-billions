@@ -52,7 +52,7 @@ namespace Quantum {
   public unsafe partial class Frame {
     public unsafe partial struct FrameEvents {
       static partial void GetEventTypeCountCodeGen(ref Int32 eventCount) {
-        eventCount = 6;
+        eventCount = 7;
       }
       static partial void GetParentEventIDCodeGen(Int32 eventID, ref Int32 parentEventID) {
         switch (eventID) {
@@ -66,6 +66,7 @@ namespace Quantum {
           case EventUnitMoving.ID: result = typeof(EventUnitMoving); return;
           case EventUnitHarvesting.ID: result = typeof(EventUnitHarvesting); return;
           case EventUnitIdle.ID: result = typeof(EventUnitIdle); return;
+          case EventOnLocalPlayerCreated.ID: result = typeof(EventOnLocalPlayerCreated); return;
           default: break;
         }
       }
@@ -81,10 +82,9 @@ namespace Quantum {
         _f.AddEvent(ev);
         return ev;
       }
-      public EventUnitMoving UnitMoving(EntityRef unitEntity, FPVector3 target) {
+      public EventUnitMoving UnitMoving(EntityRef unitEntity) {
         var ev = _f.Context.AcquireEvent<EventUnitMoving>(EventUnitMoving.ID);
         ev.unitEntity = unitEntity;
-        ev.target = target;
         _f.AddEvent(ev);
         return ev;
       }
@@ -98,6 +98,12 @@ namespace Quantum {
       public EventUnitIdle UnitIdle(EntityRef unitEntity) {
         var ev = _f.Context.AcquireEvent<EventUnitIdle>(EventUnitIdle.ID);
         ev.unitEntity = unitEntity;
+        _f.AddEvent(ev);
+        return ev;
+      }
+      public EventOnLocalPlayerCreated OnLocalPlayerCreated(EntityRef playerEntity) {
+        var ev = _f.Context.AcquireEvent<EventOnLocalPlayerCreated>(EventOnLocalPlayerCreated.ID);
+        ev.playerEntity = playerEntity;
         _f.AddEvent(ev);
         return ev;
       }
@@ -156,7 +162,6 @@ namespace Quantum {
   public unsafe partial class EventUnitMoving : EventBase {
     public new const Int32 ID = 3;
     public EntityRef unitEntity;
-    public FPVector3 target;
     protected EventUnitMoving(Int32 id, EventFlags flags) : 
         base(id, flags) {
     }
@@ -175,7 +180,6 @@ namespace Quantum {
       unchecked {
         var hash = 47;
         hash = hash * 31 + unitEntity.GetHashCode();
-        hash = hash * 31 + target.GetHashCode();
         return hash;
       }
     }
@@ -228,6 +232,31 @@ namespace Quantum {
       unchecked {
         var hash = 59;
         hash = hash * 31 + unitEntity.GetHashCode();
+        return hash;
+      }
+    }
+  }
+  public unsafe partial class EventOnLocalPlayerCreated : EventBase {
+    public new const Int32 ID = 6;
+    public EntityRef playerEntity;
+    protected EventOnLocalPlayerCreated(Int32 id, EventFlags flags) : 
+        base(id, flags) {
+    }
+    public EventOnLocalPlayerCreated() : 
+        base(6, EventFlags.Server|EventFlags.Client) {
+    }
+    public new QuantumGame Game {
+      get {
+        return (QuantumGame)base.Game;
+      }
+      set {
+        base.Game = value;
+      }
+    }
+    public override Int32 GetHashCode() {
+      unchecked {
+        var hash = 61;
+        hash = hash * 31 + playerEntity.GetHashCode();
         return hash;
       }
     }

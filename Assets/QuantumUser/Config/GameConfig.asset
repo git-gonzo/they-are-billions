@@ -22,5 +22,11 @@ MonoBehaviour:
       Value: 1520969653244342770
   workerStopDistance:
     RawValue: 131072
-  workerCostAmount: 5
-  workerCostResource: 2
+  initialResources:
+  - Resource: 3
+    Amount: 5
+  - Resource: 2
+    Amount: 6
+  workerCost:
+    Resource: 3
+    Amount: 5

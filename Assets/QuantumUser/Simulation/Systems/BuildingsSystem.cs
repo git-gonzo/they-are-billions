@@ -3,9 +3,9 @@ using UnityEngine.UIElements;
 
 namespace Quantum
 {
-    public unsafe class BuildingsSystem : SystemSignalsOnly, ISignalOnWorkerAdded
+    public unsafe class BuildingsSystem : SystemSignalsOnly, ISignalOnAddWorkerToBuilding
     {
-        public void OnWorkerAdded(Frame f, EntityRef buildingEntity, int amount)
+        public void OnAddWorkerToBuilding(Frame f, EntityRef buildingEntity, int amount)
         {
             
             var building = f.Unsafe.GetPointer<ResourceCollectorComponent>(buildingEntity);

@@ -49,10 +49,17 @@ namespace Quantum {
   using RuntimeInitializeOnLoadMethodAttribute = UnityEngine.RuntimeInitializeOnLoadMethodAttribute;
   #endif //;
   
+  public enum AnimalState : int {
+    Idle,
+    Eating,
+    Moving,
+    Running,
+  }
   public enum ResourceType : int {
     None,
     Stone,
     Wood,
+    Meat,
   }
   public enum UnitState : int {
     Idle,
@@ -530,6 +537,39 @@ namespace Quantum {
     }
   }
   [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct AnimalComponent : Quantum.IComponent {
+    public const Int32 SIZE = 48;
+    public const Int32 ALIGNMENT = 8;
+    [FieldOffset(16)]
+    public FP Speed;
+    [FieldOffset(0)]
+    [ExcludeFromPrototype()]
+    public AnimalState state;
+    [FieldOffset(8)]
+    [ExcludeFromPrototype()]
+    public FP CurrentTime;
+    [FieldOffset(24)]
+    [ExcludeFromPrototype()]
+    public FPVector3 Origin;
+    public override Int32 GetHashCode() {
+      unchecked { 
+        var hash = 5437;
+        hash = hash * 31 + Speed.GetHashCode();
+        hash = hash * 31 + (Int32)state;
+        hash = hash * 31 + CurrentTime.GetHashCode();
+        hash = hash * 31 + Origin.GetHashCode();
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (AnimalComponent*)ptr;
+        serializer.Stream.Serialize((Int32*)&p->state);
+        FP.Serialize(&p->CurrentTime, serializer);
+        FP.Serialize(&p->Speed, serializer);
+        FPVector3.Serialize(&p->Origin, serializer);
+    }
+  }
+  [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct PlayerComponent : Quantum.IComponent {
     public const Int32 SIZE = 4;
     public const Int32 ALIGNMENT = 4;
@@ -763,17 +803,25 @@ namespace Quantum {
         var p = (WorkerSpawnPointComponent*)ptr;
     }
   }
+  public unsafe partial interface ISignalConsumeCost : ISignal {
+    void ConsumeCost(Frame f, EntityRef playerEntity, ResourceAmount resource);
+  }
   public unsafe partial interface ISignalOnResourceAdded : ISignal {
     void OnResourceAdded(Frame f, EntityRef playerEntity, ResourceAmount resource);
   }
-  public unsafe partial interface ISignalOnWorkerAdded : ISignal {
-    void OnWorkerAdded(Frame f, EntityRef buildingEntity, Int32 amount);
+  public unsafe partial interface ISignalOnAddWorkerToBuilding : ISignal {
+    void OnAddWorkerToBuilding(Frame f, EntityRef buildingEntity, Int32 amount);
+  }
+  public unsafe partial interface ISignalCreateUnit : ISignal {
+    void CreateUnit(Frame f, EntityRef playerEntity);
   }
   public static unsafe partial class Constants {
   }
   public unsafe partial class Frame {
+    private ISignalConsumeCost[] _ISignalConsumeCostSystems;
     private ISignalOnResourceAdded[] _ISignalOnResourceAddedSystems;
-    private ISignalOnWorkerAdded[] _ISignalOnWorkerAddedSystems;
+    private ISignalOnAddWorkerToBuilding[] _ISignalOnAddWorkerToBuildingSystems;
+    private ISignalCreateUnit[] _ISignalCreateUnitSystems;
     partial void AllocGen() {
       _globals = (_globals_*)Context.Allocator.AllocAndClear(sizeof(_globals_));
     }
@@ -785,10 +833,14 @@ namespace Quantum {
     }
     partial void InitGen() {
       Initialize(this, this.SimulationConfig.Entities, 256);
+      _ISignalConsumeCostSystems = BuildSignalsArray<ISignalConsumeCost>();
       _ISignalOnResourceAddedSystems = BuildSignalsArray<ISignalOnResourceAdded>();
-      _ISignalOnWorkerAddedSystems = BuildSignalsArray<ISignalOnWorkerAdded>();
+      _ISignalOnAddWorkerToBuildingSystems = BuildSignalsArray<ISignalOnAddWorkerToBuilding>();
+      _ISignalCreateUnitSystems = BuildSignalsArray<ISignalCreateUnit>();
       _ComponentSignalsOnAdded = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       _ComponentSignalsOnRemoved = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
+      BuildSignalsArrayOnComponentAdded<Quantum.AnimalComponent>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.AnimalComponent>();
       BuildSignalsArrayOnComponentAdded<CharacterController2D>();
       BuildSignalsArrayOnComponentRemoved<CharacterController2D>();
       BuildSignalsArrayOnComponentAdded<CharacterController3D>();
@@ -862,6 +914,15 @@ namespace Quantum {
       Physics3D.Init(_globals->PhysicsState3D.MapStaticCollidersState.TrackedMap);
     }
     public unsafe partial struct FrameSignals {
+      public void ConsumeCost(EntityRef playerEntity, ResourceAmount resource) {
+        var array = _f._ISignalConsumeCostSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.ConsumeCost(_f, playerEntity, resource);
+          }
+        }
+      }
       public void OnResourceAdded(EntityRef playerEntity, ResourceAmount resource) {
         var array = _f._ISignalOnResourceAddedSystems;
         for (Int32 i = 0; i < array.Length; ++i) {
@@ -871,12 +932,21 @@ namespace Quantum {
           }
         }
       }
-      public void OnWorkerAdded(EntityRef buildingEntity, Int32 amount) {
-        var array = _f._ISignalOnWorkerAddedSystems;
+      public void OnAddWorkerToBuilding(EntityRef buildingEntity, Int32 amount) {
+        var array = _f._ISignalOnAddWorkerToBuildingSystems;
         for (Int32 i = 0; i < array.Length; ++i) {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
-            s.OnWorkerAdded(_f, buildingEntity, amount);
+            s.OnAddWorkerToBuilding(_f, buildingEntity, amount);
+          }
+        }
+      }
+      public void CreateUnit(EntityRef playerEntity) {
+        var array = _f._ISignalCreateUnitSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.CreateUnit(_f, playerEntity);
           }
         }
       }
@@ -894,6 +964,8 @@ namespace Quantum {
       SerializeInput = Quantum.Input.Serialize;
     }
     static partial void RegisterSimulationTypesGen(TypeRegistry typeRegistry) {
+      typeRegistry.Register(typeof(Quantum.AnimalComponent), Quantum.AnimalComponent.SIZE);
+      typeRegistry.Register(typeof(Quantum.AnimalState), 4);
       typeRegistry.Register(typeof(AssetGuid), AssetGuid.SIZE);
       typeRegistry.Register(typeof(AssetRef), AssetRef.SIZE);
       typeRegistry.Register(typeof(Quantum.BitSet1024), Quantum.BitSet1024.SIZE);
@@ -984,8 +1056,9 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 8)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 9)
         .AddBuiltInComponents()
+        .Add<Quantum.AnimalComponent>(Quantum.AnimalComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.PlayerComponent>(Quantum.PlayerComponent.Serialize, null, Quantum.PlayerComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.PlayerEconomyComponent>(Quantum.PlayerEconomyComponent.Serialize, null, Quantum.PlayerEconomyComponent.OnRemoved, ComponentFlags.None)
         .Add<Quantum.PlayerLink>(Quantum.PlayerLink.Serialize, null, null, ComponentFlags.None)
@@ -999,6 +1072,7 @@ namespace Quantum {
     [Preserve()]
     public static void EnsureNotStrippedGen() {
       FramePrinter.EnsureNotStripped();
+      FramePrinter.EnsurePrimitiveNotStripped<Quantum.AnimalState>();
       FramePrinter.EnsurePrimitiveNotStripped<CallbackFlags>();
       FramePrinter.EnsurePrimitiveNotStripped<Quantum.InputButtons>();
       FramePrinter.EnsurePrimitiveNotStripped<QueryOptions>();

@@ -11,25 +11,21 @@ namespace Quantum
     {
         public void OnPlayerAdded(Frame f, PlayerRef player, bool firstTime)
         {
-            Debug.Log("Player Joined");
-            //if(f.Has<PlayerEconomyComponent>(player.e))
             RuntimePlayer playerData = f.GetPlayerData(player);
             EntityRef playerCharacter = f.Create(playerData.PlayerAvatar);
-            
+
+            // Cache EntityRef if is local player
+            if (f.IsPlayerVerifiedOrLocal(player)) 
+            {
+                f.Events.OnLocalPlayerCreated(playerCharacter);
+            }
+
             // ADD ECONOMY
             f.Add<PlayerEconomyComponent>(playerCharacter);
-            var economy = f.Unsafe.GetPointer<PlayerEconomyComponent>(playerCharacter);
-            economy->resources = f.AllocateList<ResourceAmount>();
 
             // ADD WORKERS
             var config = f.SimulationConfig.GameConfig;
-            for (int i = 0; i < config.initialWorkers; i++)
-            {
-                var unit = f.Create(config.workerPrototype);
-                var unitComponent = f.Unsafe.GetPointer<UnitComponent>(unit);
-                unitComponent->playerOwner = playerCharacter;
-                f.Unsafe.GetPointer<Transform3D>(unit)->Position = SpawnPointHelper.GetSpawnPoint<WorkerSpawnPointComponent>(f);
-            }
+            for (int i = 0; i < config.initialWorkers; i++) f.Signals.CreateUnit(playerCharacter);
 
             //Assign player to existing buildings (temp) will be replaced when buildings instanciated for the player
             var filter = f.Filter<ResourceCollectorComponent>();
@@ -39,7 +35,7 @@ namespace Quantum
             }
 
             // Store it's PlayerRef so we can later use it for input polling
-            PlayerLink* playerLink = f.Unsafe.GetPointer<PlayerLink>(playerCharacter);
+            var playerLink = f.Unsafe.GetPointer<PlayerLink>(playerCharacter);
             playerLink->PlayerRef = player;
         }
 
