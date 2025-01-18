@@ -10,7 +10,10 @@ namespace Quantum
         public AssetRef<EntityPrototype> workerPrototype;
         public FP workerStopDistance = 2;
         public List<ResourceAmount> initialResources;
+        public List<BuildingConfig> allBuildings;
         [Header("COSTS")]
         public ResourceAmount workerCost;
     }
+
+
 }

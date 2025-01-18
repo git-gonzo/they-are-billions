@@ -27,12 +27,43 @@ namespace Quantum
                 var c = command as CommandConsumeCost;
                 f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
             }
+            else if (command is CommandConsumeCost)
+            {
+                var c = command as CommandConsumeCost;
+                f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
+            }
             else if (command is CommandBuyUnit)
             {
                 var c = command as CommandBuyUnit;
+                if (!Canbuy(f, c.PlayerEntityRef, c.resourceAmount)) return;
+                
                 f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
                 f.Signals.CreateUnit(c.PlayerEntityRef);
             }
+            else if (command is CommandPlaceBuilding)
+            {
+                var c = command as CommandPlaceBuilding;
+                var building = f.FindAsset(c.building);
+                if (!Canbuy(f, c.PlayerEntityRef, building.cost)) return;
+                
+                f.Signals.ConsumeCost(c.PlayerEntityRef, building.cost);
+                f.Signals.CreateBuilding(c.PlayerEntityRef, c.building, c.position);
+            }
+
+        }
+        private bool Canbuy(Frame f, EntityRef playerEntity, ResourceAmount cost) 
+        {
+            if (!f.TryGet<PlayerEconomyComponent>(playerEntity, out var economy)) return false;
+            var resources = f.ResolveList(economy.resources);
+            foreach (var r in resources)
+            {
+                if (r.Resource == cost.Resource)
+                {
+                    Debug.Log($"Simulation, cannot buy ${cost.Amount} {cost.Resource} --Hack?--");
+                    if (r.Amount < cost.Amount) return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -12,6 +12,7 @@
             factories.Add(new CommandAddWorker());
             factories.Add(new CommandConsumeCost());
             factories.Add(new CommandBuyUnit());
+            factories.Add(new CommandPlaceBuilding());
         }
     }
 }

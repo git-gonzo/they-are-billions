@@ -442,6 +442,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a927d8bb3ac7434db5fe487560c6d01, type: 3}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.maxWorkers
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.buildingName
+      value: Wood House
+      objectReference: {fileID: 0}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.buildingDescrip
+      value: Collects wood from trees
+      objectReference: {fileID: 0}
     - target: {fileID: 3175014632995218027, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

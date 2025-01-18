@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06693f0321397794c8a709154ec49d4a, type: 3}
+  m_Name: BuildingWood
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Config/Buildings/BuildingWood
+    Guid:
+      Value: 533384971762544230
+  buildingPrototype: {fileID: 3097001405596171208, guid: bc351b3f55b642446a4db038d1611893, type: 3}
+  cost:
+    Resource: 2
+    Amount: 5

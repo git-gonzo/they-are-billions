@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: Prototype.lookForResource.Value
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: c3a50469f4091324ca319a47dfa59048, type: 3}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.maxWorkers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.buildingName
+      value: Hunt
+      objectReference: {fileID: 0}
+    - target: {fileID: 968546379284761993, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: _buildingData.buildingDescrip
+      value: Hunt Animals to get food
+      objectReference: {fileID: 0}
     - target: {fileID: 3175014632995218027, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

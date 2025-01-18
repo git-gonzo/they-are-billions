@@ -19,7 +19,6 @@ namespace Quantum
             
         }
     }
-    
     public class CommandBuyWorker : DeterministicCommand
     {
         public EntityRef buildingEntityRef;
@@ -36,7 +35,6 @@ namespace Quantum
             
         }
     }
-
     public class CommandConsumeCost : DeterministicCommand
     {
         public EntityRef PlayerEntityRef;
@@ -53,7 +51,6 @@ namespace Quantum
 
         }
     }
-    
     public class CommandBuyUnit : DeterministicCommand
     {
         public EntityRef PlayerEntityRef;
@@ -63,6 +60,24 @@ namespace Quantum
         {
             stream.Serialize(ref PlayerEntityRef);
             resourceAmount.Serialize(stream);
+        }
+
+        public void Execute(Frame f)
+        {
+
+        }
+    }
+    public class CommandPlaceBuilding : DeterministicCommand
+    {
+        public EntityRef PlayerEntityRef;
+        public AssetRef<BuildingConfig> building;
+        public FPVector3 position;
+
+        public override void Serialize(BitStream stream)
+        {
+            stream.Serialize(ref PlayerEntityRef);
+            stream.Serialize(ref building);
+            stream.Serialize(ref position);
         }
 
         public void Execute(Frame f)

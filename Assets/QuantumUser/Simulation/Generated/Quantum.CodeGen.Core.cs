@@ -815,6 +815,9 @@ namespace Quantum {
   public unsafe partial interface ISignalCreateUnit : ISignal {
     void CreateUnit(Frame f, EntityRef playerEntity);
   }
+  public unsafe partial interface ISignalCreateBuilding : ISignal {
+    void CreateBuilding(Frame f, EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position);
+  }
   public static unsafe partial class Constants {
   }
   public unsafe partial class Frame {
@@ -822,6 +825,7 @@ namespace Quantum {
     private ISignalOnResourceAdded[] _ISignalOnResourceAddedSystems;
     private ISignalOnAddWorkerToBuilding[] _ISignalOnAddWorkerToBuildingSystems;
     private ISignalCreateUnit[] _ISignalCreateUnitSystems;
+    private ISignalCreateBuilding[] _ISignalCreateBuildingSystems;
     partial void AllocGen() {
       _globals = (_globals_*)Context.Allocator.AllocAndClear(sizeof(_globals_));
     }
@@ -837,6 +841,7 @@ namespace Quantum {
       _ISignalOnResourceAddedSystems = BuildSignalsArray<ISignalOnResourceAdded>();
       _ISignalOnAddWorkerToBuildingSystems = BuildSignalsArray<ISignalOnAddWorkerToBuilding>();
       _ISignalCreateUnitSystems = BuildSignalsArray<ISignalCreateUnit>();
+      _ISignalCreateBuildingSystems = BuildSignalsArray<ISignalCreateBuilding>();
       _ComponentSignalsOnAdded = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       _ComponentSignalsOnRemoved = new ComponentReactiveCallbackInvoker[ComponentTypeId.Type.Length];
       BuildSignalsArrayOnComponentAdded<Quantum.AnimalComponent>();
@@ -947,6 +952,15 @@ namespace Quantum {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
             s.CreateUnit(_f, playerEntity);
+          }
+        }
+      }
+      public void CreateBuilding(EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position) {
+        var array = _f._ISignalCreateBuildingSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.CreateBuilding(_f, playerEntity, building, position);
           }
         }
       }

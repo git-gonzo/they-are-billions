@@ -1,10 +1,19 @@
-﻿using UnityEngine;
+﻿using Photon.Deterministic;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Quantum
 {
-    public unsafe class BuildingsSystem : SystemSignalsOnly, ISignalOnAddWorkerToBuilding
+    public unsafe class BuildingsSystem : SystemSignalsOnly, ISignalOnAddWorkerToBuilding, ISignalCreateBuilding
     {
+        public void CreateBuilding(Frame f, EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position)
+        {
+            var buildingConfig = f.FindAsset(building);
+            var b = f.Create(buildingConfig.buildingPrototype);
+            f.Unsafe.GetPointer<Transform3D>(b)->Position = position;
+            f.Unsafe.GetPointer<ResourceCollectorComponent>(b)->playerEntity = playerEntity;
+        }
+
         public void OnAddWorkerToBuilding(Frame f, EntityRef buildingEntity, int amount)
         {
             

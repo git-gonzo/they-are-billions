@@ -1,10 +1,12 @@
+
+using System;
 using UnityEngine;
 
 public class BuildingPlacementController : MonoBehaviour
 {
-    //public GameObject buildingPrefab; // Prefab del edificio
     private BuildingController currentPreview; // Modelo en modo vista previa
     public LayerMask placementLayer; // Capas válidas para la colocación
+    Action<Vector3> _placeBuilding;
 
     void Update()
     {
@@ -13,13 +15,15 @@ public class BuildingPlacementController : MonoBehaviour
             HandlePreviewPlacement();
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("Place Building");
                 TryPlaceBuilding();
             }
         }
     }
 
-    public void PlaceBuildingPreview(BuildingController buildingPrefab)
+    public void PlaceBuildingPreview(BuildingController buildingPrefab, Action<Vector3> placeBuilding)
     {
+        _placeBuilding = placeBuilding;
         if (currentPreview == null)
         {
             currentPreview = Instantiate(buildingPrefab);
@@ -46,8 +50,8 @@ public class BuildingPlacementController : MonoBehaviour
         {
             SetPreviewMaterial(currentPreview.gameObject, false); // Quitar transparente
             currentPreview.SetPreview(false);
-
-
+            _placeBuilding?.Invoke(currentPreview.transform.position);
+            Destroy(currentPreview.gameObject);
         }
     }
 
@@ -59,9 +63,9 @@ public class BuildingPlacementController : MonoBehaviour
 
     void SetPreviewMaterial(GameObject obj, bool isPreview)
     {
-        foreach (var renderer in obj.GetComponentsInChildren<Renderer>())
+        /*foreach (var renderer in obj.GetComponentsInChildren<Renderer>())
         {
             renderer.material.color = isPreview ? new Color(1, 1, 1, 0.5f) : Color.white;
-        }
+        }*/
     }
 }
