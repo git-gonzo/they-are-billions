@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BuildingPlacementController : MonoBehaviour
 {
+    [SerializeField] Material _previewBuildingMaterial;
+    [SerializeField] Color _colorYes;
+    [SerializeField] Color _colorNo;
     private BuildingController currentPreview; // Modelo en modo vista previa
     public LayerMask placementLayer; // Capas válidas para la colocación
     Action<Vector3> _placeBuilding;
@@ -63,9 +66,10 @@ public class BuildingPlacementController : MonoBehaviour
 
     void SetPreviewMaterial(GameObject obj, bool isPreview)
     {
-        /*foreach (var renderer in obj.GetComponentsInChildren<Renderer>())
+        foreach (var renderer in obj.GetComponentsInChildren<Renderer>())
         {
-            renderer.material.color = isPreview ? new Color(1, 1, 1, 0.5f) : Color.white;
-        }*/
+            renderer.material = _previewBuildingMaterial;
+            renderer.material.color = _colorYes;
+        }
     }
 }

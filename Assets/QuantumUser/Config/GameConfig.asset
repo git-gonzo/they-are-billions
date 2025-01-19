@@ -24,9 +24,9 @@ MonoBehaviour:
     RawValue: 131072
   initialResources:
   - Resource: 3
-    Amount: 5
+    Amount: 10
   - Resource: 2
-    Amount: 6
+    Amount: 30
   allBuildings:
   - {fileID: 11400000, guid: 7b6bc856df7dcc4429e5bbb887308486, type: 2}
   - {fileID: 11400000, guid: 0955859bbd800f14fac849ae1753e729, type: 2}
