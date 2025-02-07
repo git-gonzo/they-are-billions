@@ -32,11 +32,11 @@ public class BuildingController : QuantumEntityViewComponent<HUDContext>
     private int GetFreeWorkers(EntityRef playerEntity) 
     {
         var freeWorkers = 0;
-        var filter = PredictedFrame.Filter<UnitComponent>();
-        while (filter.Next(out var unitEntity, out var unitComponent))
+        var filter = PredictedFrame.Filter<UnitComponent, FarmerComponent>();
+        while (filter.Next(out var unitEntity, out var unitComponent, out var farmer))
         {
             if (unitComponent.playerOwner != playerEntity) continue;
-            if (unitComponent.buildingAssigned == EntityRef.None) freeWorkers++;
+            if (farmer.buildingAssigned == EntityRef.None) freeWorkers++;
         }
         return freeWorkers;
     }

@@ -1,25 +1,18 @@
-event UpdateWorkers
-{
-	EntityRef playerEntity;
-}
-event UpdateResources
-{
-	EntityRef playerEntity;
-}
-event UnitMoving
-{
-	EntityRef unitEntity;
-}
+event UpdateWorkers { EntityRef playerEntity; }
+event UpdateResources { EntityRef playerEntity; }
+
+event UnitIdle { EntityRef unitEntity; }
+event UnitMoving { EntityRef unitEntity;}
 event UnitHarvesting
 {
 	EntityRef unitEntity;
 	ResourceType resourceType;
 }
-event UnitIdle
-{
-	EntityRef unitEntity;
+
+event OnLocalPlayerCreated { EntityRef playerEntity; }
+
+event OnHealthChanged { 
+	EntityRef entity; 
+	FP amount;
 }
-event OnLocalPlayerCreated
-{
-	EntityRef playerEntity;
-}
+event OnEntityDie { EntityRef entity; }

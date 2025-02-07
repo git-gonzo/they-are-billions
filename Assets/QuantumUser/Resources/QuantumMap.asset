@@ -92,50 +92,6 @@ MonoBehaviour:
       X:
         RawValue: 0
       Y:
-        RawValue: -46340
-      Z:
-        RawValue: 0
-      W:
-        RawValue: 46340
-    Position:
-      X:
-        RawValue: 413792
-      Y:
-        RawValue: 80274
-      Z:
-        RawValue: -492383
-    PhysicsMaterial:
-      Id:
-        Value: 0
-    ShapeType: 2
-    SphereRadius:
-      RawValue: 0
-    CapsuleRadius:
-      RawValue: 0
-    CapsuleHeight:
-      RawValue: 0
-    BoxExtents:
-      X:
-        RawValue: 99416
-      Y:
-        RawValue: 80275
-      Z:
-        RawValue: 97449
-    SmoothSphereMeshCollisions: 0
-    StaticData:
-      Name: HouseStone
-      Tag: Untagged
-      Layer: 0
-      Asset:
-        Id:
-          Value: 0
-      IsTrigger: 0
-      ColliderIndex: 1
-      MutableMode: 0
-  - Rotation:
-      X:
-        RawValue: 0
-      Y:
         RawValue: 0
       Z:
         RawValue: 0
@@ -143,11 +99,11 @@ MonoBehaviour:
         RawValue: 65536
     Position:
       X:
-        RawValue: -837550
+        RawValue: -594411
       Y:
         RawValue: 0
       Z:
-        RawValue: -427950
+        RawValue: -343408
     PhysicsMaterial:
       Id:
         Value: 0
@@ -174,7 +130,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 2
+      ColliderIndex: 1
       MutableMode: 0
   - Rotation:
       X:
@@ -218,7 +174,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 3
+      ColliderIndex: 2
       MutableMode: 0
   - Rotation:
       X:
@@ -262,7 +218,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 4
+      ColliderIndex: 3
       MutableMode: 0
   - Rotation:
       X:
@@ -306,7 +262,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 5
+      ColliderIndex: 4
       MutableMode: 0
   - Rotation:
       X:
@@ -350,7 +306,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 6
+      ColliderIndex: 5
       MutableMode: 0
   - Rotation:
       X:
@@ -394,7 +350,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 7
+      ColliderIndex: 6
       MutableMode: 0
   - Rotation:
       X:
@@ -438,7 +394,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 8
+      ColliderIndex: 7
       MutableMode: 0
   - Rotation:
       X:
@@ -482,7 +438,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 9
+      ColliderIndex: 8
       MutableMode: 0
   - Rotation:
       X:
@@ -526,7 +482,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 10
+      ColliderIndex: 9
       MutableMode: 0
   - Rotation:
       X:
@@ -570,7 +526,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 11
+      ColliderIndex: 10
       MutableMode: 0
   - Rotation:
       X:
@@ -614,7 +570,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 12
+      ColliderIndex: 11
       MutableMode: 0
   - Rotation:
       X:
@@ -658,7 +614,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 13
+      ColliderIndex: 12
       MutableMode: 0
   - Rotation:
       X:
@@ -702,7 +658,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 14
+      ColliderIndex: 13
       MutableMode: 0
   - Rotation:
       X:
@@ -746,7 +702,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 15
+      ColliderIndex: 14
       MutableMode: 0
   - Rotation:
       X:
@@ -790,7 +746,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 16
+      ColliderIndex: 15
       MutableMode: 0
   - Rotation:
       X:
@@ -834,7 +790,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 17
+      ColliderIndex: 16
       MutableMode: 0
   - Rotation:
       X:
@@ -878,7 +834,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 18
+      ColliderIndex: 17
       MutableMode: 0
   - Rotation:
       X:
@@ -922,7 +878,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 19
+      ColliderIndex: 18
       MutableMode: 0
   - Rotation:
       X:
@@ -966,7 +922,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 20
+      ColliderIndex: 19
       MutableMode: 0
   - Rotation:
       X:
@@ -1010,7 +966,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 21
+      ColliderIndex: 20
       MutableMode: 0
   - Rotation:
       X:
@@ -1054,7 +1010,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 22
+      ColliderIndex: 21
       MutableMode: 0
   - Rotation:
       X:
@@ -1098,7 +1054,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 23
+      ColliderIndex: 22
       MutableMode: 0
   - Rotation:
       X:
@@ -1142,7 +1098,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 24
+      ColliderIndex: 23
       MutableMode: 0
   - Rotation:
       X:
@@ -1186,7 +1142,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 25
+      ColliderIndex: 24
       MutableMode: 0
   - Rotation:
       X:
@@ -1230,7 +1186,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 26
+      ColliderIndex: 25
       MutableMode: 0
   - Rotation:
       X:
@@ -1274,7 +1230,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 27
+      ColliderIndex: 26
       MutableMode: 0
   - Rotation:
       X:
@@ -1318,7 +1274,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 28
+      ColliderIndex: 27
       MutableMode: 0
   - Rotation:
       X:
@@ -1362,7 +1318,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 29
+      ColliderIndex: 28
       MutableMode: 0
   - Rotation:
       X:
@@ -1406,7 +1362,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 30
+      ColliderIndex: 29
       MutableMode: 0
   - Rotation:
       X:
@@ -1450,7 +1406,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 31
+      ColliderIndex: 30
       MutableMode: 0
   - Rotation:
       X:
@@ -1494,7 +1450,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 32
+      ColliderIndex: 31
       MutableMode: 0
   - Rotation:
       X:
@@ -1538,7 +1494,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 33
+      ColliderIndex: 32
       MutableMode: 0
   - Rotation:
       X:
@@ -1582,7 +1538,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 34
+      ColliderIndex: 33
       MutableMode: 0
   - Rotation:
       X:
@@ -1626,7 +1582,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 35
+      ColliderIndex: 34
       MutableMode: 0
   - Rotation:
       X:
@@ -1670,7 +1626,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 36
+      ColliderIndex: 35
       MutableMode: 0
   - Rotation:
       X:
@@ -1714,7 +1670,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 37
+      ColliderIndex: 36
       MutableMode: 0
   - Rotation:
       X:
@@ -1758,7 +1714,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 38
+      ColliderIndex: 37
       MutableMode: 0
   - Rotation:
       X:
@@ -1802,7 +1758,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 39
+      ColliderIndex: 38
       MutableMode: 0
   - Rotation:
       X:
@@ -1846,7 +1802,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 40
+      ColliderIndex: 39
       MutableMode: 0
   - Rotation:
       X:
@@ -1890,7 +1846,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 41
+      ColliderIndex: 40
       MutableMode: 0
   - Rotation:
       X:
@@ -1934,7 +1890,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 42
+      ColliderIndex: 41
       MutableMode: 0
   - Rotation:
       X:
@@ -1978,7 +1934,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 43
+      ColliderIndex: 42
       MutableMode: 0
   - Rotation:
       X:
@@ -2022,7 +1978,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 44
+      ColliderIndex: 43
       MutableMode: 0
   - Rotation:
       X:
@@ -2066,7 +2022,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 45
+      ColliderIndex: 44
       MutableMode: 0
   - Rotation:
       X:
@@ -2110,7 +2066,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 46
+      ColliderIndex: 45
       MutableMode: 0
   - Rotation:
       X:
@@ -2154,7 +2110,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 47
+      ColliderIndex: 46
       MutableMode: 0
   - Rotation:
       X:
@@ -2198,7 +2154,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 48
+      ColliderIndex: 47
       MutableMode: 0
   - Rotation:
       X:
@@ -2242,7 +2198,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 49
+      ColliderIndex: 48
       MutableMode: 0
   - Rotation:
       X:
@@ -2286,7 +2242,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 50
+      ColliderIndex: 49
       MutableMode: 0
   - Rotation:
       X:
@@ -2330,7 +2286,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 51
+      ColliderIndex: 50
       MutableMode: 0
   - Rotation:
       X:
@@ -2374,7 +2330,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 52
+      ColliderIndex: 51
       MutableMode: 0
   - Rotation:
       X:
@@ -2418,7 +2374,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 53
+      ColliderIndex: 52
       MutableMode: 0
   - Rotation:
       X:
@@ -2462,7 +2418,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 54
+      ColliderIndex: 53
       MutableMode: 0
   - Rotation:
       X:
@@ -2506,7 +2462,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 55
+      ColliderIndex: 54
       MutableMode: 0
   - Rotation:
       X:
@@ -2550,7 +2506,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 56
+      ColliderIndex: 55
       MutableMode: 0
   - Rotation:
       X:
@@ -2594,7 +2550,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 57
+      ColliderIndex: 56
       MutableMode: 0
   - Rotation:
       X:
@@ -2638,7 +2594,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 58
+      ColliderIndex: 57
       MutableMode: 0
   - Rotation:
       X:
@@ -2682,7 +2638,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 59
+      ColliderIndex: 58
       MutableMode: 0
   - Rotation:
       X:
@@ -2726,7 +2682,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 60
+      ColliderIndex: 59
       MutableMode: 0
   - Rotation:
       X:
@@ -2770,7 +2726,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 61
+      ColliderIndex: 60
       MutableMode: 0
   - Rotation:
       X:
@@ -2814,7 +2770,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 62
+      ColliderIndex: 61
       MutableMode: 0
   - Rotation:
       X:
@@ -2858,7 +2814,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 63
+      ColliderIndex: 62
       MutableMode: 0
   - Rotation:
       X:
@@ -2902,7 +2858,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 64
+      ColliderIndex: 63
       MutableMode: 0
   - Rotation:
       X:
@@ -2946,7 +2902,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 65
+      ColliderIndex: 64
       MutableMode: 0
   - Rotation:
       X:
@@ -2990,7 +2946,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 66
+      ColliderIndex: 65
       MutableMode: 0
   - Rotation:
       X:
@@ -3034,7 +2990,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 67
+      ColliderIndex: 66
       MutableMode: 0
   - Rotation:
       X:
@@ -3078,7 +3034,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 68
+      ColliderIndex: 67
       MutableMode: 0
   - Rotation:
       X:
@@ -3122,7 +3078,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 69
+      ColliderIndex: 68
       MutableMode: 0
   - Rotation:
       X:
@@ -3166,7 +3122,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 70
+      ColliderIndex: 69
       MutableMode: 0
   - Rotation:
       X:
@@ -3210,7 +3166,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 71
+      ColliderIndex: 70
       MutableMode: 0
   - Rotation:
       X:
@@ -3254,7 +3210,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 72
+      ColliderIndex: 71
       MutableMode: 0
   - Rotation:
       X:
@@ -3298,7 +3254,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 73
+      ColliderIndex: 72
       MutableMode: 0
   - Rotation:
       X:
@@ -3342,7 +3298,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 74
+      ColliderIndex: 73
       MutableMode: 0
   - Rotation:
       X:
@@ -3386,7 +3342,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 75
+      ColliderIndex: 74
       MutableMode: 0
   - Rotation:
       X:
@@ -3430,7 +3386,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 76
+      ColliderIndex: 75
       MutableMode: 0
   - Rotation:
       X:
@@ -3474,7 +3430,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 77
+      ColliderIndex: 76
       MutableMode: 0
   - Rotation:
       X:
@@ -3518,7 +3474,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 78
+      ColliderIndex: 77
       MutableMode: 0
   - Rotation:
       X:
@@ -3562,7 +3518,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 79
+      ColliderIndex: 78
       MutableMode: 0
   - Rotation:
       X:
@@ -3606,7 +3562,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 80
+      ColliderIndex: 79
       MutableMode: 0
   - Rotation:
       X:
@@ -3650,7 +3606,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 81
+      ColliderIndex: 80
       MutableMode: 0
   - Rotation:
       X:
@@ -3694,7 +3650,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 82
+      ColliderIndex: 81
       MutableMode: 0
   - Rotation:
       X:
@@ -3738,7 +3694,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 83
+      ColliderIndex: 82
       MutableMode: 0
   - Rotation:
       X:
@@ -3782,7 +3738,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 84
+      ColliderIndex: 83
       MutableMode: 0
   - Rotation:
       X:
@@ -3826,7 +3782,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 85
+      ColliderIndex: 84
       MutableMode: 0
   - Rotation:
       X:
@@ -3870,7 +3826,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 86
+      ColliderIndex: 85
       MutableMode: 0
   - Rotation:
       X:
@@ -3914,7 +3870,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 87
+      ColliderIndex: 86
       MutableMode: 0
   - Rotation:
       X:
@@ -3958,7 +3914,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 88
+      ColliderIndex: 87
       MutableMode: 0
   - Rotation:
       X:
@@ -4002,7 +3958,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 89
+      ColliderIndex: 88
       MutableMode: 0
   - Rotation:
       X:
@@ -4046,7 +4002,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 90
+      ColliderIndex: 89
       MutableMode: 0
   - Rotation:
       X:
@@ -4090,7 +4046,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 91
+      ColliderIndex: 90
       MutableMode: 0
   - Rotation:
       X:
@@ -4134,7 +4090,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 92
+      ColliderIndex: 91
       MutableMode: 0
   - Rotation:
       X:
@@ -4178,7 +4134,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 93
+      ColliderIndex: 92
       MutableMode: 0
   - Rotation:
       X:
@@ -4222,7 +4178,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 94
+      ColliderIndex: 93
       MutableMode: 0
   - Rotation:
       X:
@@ -4266,7 +4222,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 95
+      ColliderIndex: 94
       MutableMode: 0
   - Rotation:
       X:
@@ -4310,7 +4266,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 96
+      ColliderIndex: 95
       MutableMode: 0
   - Rotation:
       X:
@@ -4354,7 +4310,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 97
+      ColliderIndex: 96
       MutableMode: 0
   - Rotation:
       X:
@@ -4398,7 +4354,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 98
+      ColliderIndex: 97
       MutableMode: 0
   - Rotation:
       X:
@@ -4442,7 +4398,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 99
+      ColliderIndex: 98
       MutableMode: 0
   - Rotation:
       X:
@@ -4486,7 +4442,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 100
+      ColliderIndex: 99
       MutableMode: 0
   - Rotation:
       X:
@@ -4530,7 +4486,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 101
+      ColliderIndex: 100
       MutableMode: 0
   - Rotation:
       X:
@@ -4574,7 +4530,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 102
+      ColliderIndex: 101
       MutableMode: 0
   - Rotation:
       X:
@@ -4618,7 +4574,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 103
+      ColliderIndex: 102
       MutableMode: 0
   - Rotation:
       X:
@@ -4662,7 +4618,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 104
+      ColliderIndex: 103
       MutableMode: 0
   - Rotation:
       X:
@@ -4706,7 +4662,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 105
+      ColliderIndex: 104
       MutableMode: 0
   - Rotation:
       X:
@@ -4750,7 +4706,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 106
+      ColliderIndex: 105
       MutableMode: 0
   - Rotation:
       X:
@@ -4794,7 +4750,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 107
+      ColliderIndex: 106
       MutableMode: 0
   - Rotation:
       X:
@@ -4838,7 +4794,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 108
+      ColliderIndex: 107
       MutableMode: 0
   - Rotation:
       X:
@@ -4882,7 +4838,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 109
+      ColliderIndex: 108
       MutableMode: 0
   - Rotation:
       X:
@@ -4926,7 +4882,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 110
+      ColliderIndex: 109
       MutableMode: 0
   - Rotation:
       X:
@@ -4970,7 +4926,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 111
+      ColliderIndex: 110
       MutableMode: 0
   - Rotation:
       X:
@@ -5014,7 +4970,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 112
+      ColliderIndex: 111
       MutableMode: 0
   - Rotation:
       X:
@@ -5058,7 +5014,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 113
+      ColliderIndex: 112
       MutableMode: 0
   - Rotation:
       X:
@@ -5102,7 +5058,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 114
+      ColliderIndex: 113
       MutableMode: 0
   - Rotation:
       X:
@@ -5146,7 +5102,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 115
+      ColliderIndex: 114
       MutableMode: 0
   - Rotation:
       X:
@@ -5190,7 +5146,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 116
+      ColliderIndex: 115
       MutableMode: 0
   - Rotation:
       X:
@@ -5234,7 +5190,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 117
+      ColliderIndex: 116
       MutableMode: 0
   - Rotation:
       X:
@@ -5278,7 +5234,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 118
+      ColliderIndex: 117
       MutableMode: 0
   - Rotation:
       X:
@@ -5322,7 +5278,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 119
+      ColliderIndex: 118
       MutableMode: 0
   - Rotation:
       X:
@@ -5366,7 +5322,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 120
+      ColliderIndex: 119
       MutableMode: 0
   - Rotation:
       X:
@@ -5410,7 +5366,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 121
+      ColliderIndex: 120
       MutableMode: 0
   - Rotation:
       X:
@@ -5454,7 +5410,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 122
+      ColliderIndex: 121
       MutableMode: 0
   - Rotation:
       X:
@@ -5498,7 +5454,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 123
+      ColliderIndex: 122
       MutableMode: 0
   - Rotation:
       X:
@@ -5542,7 +5498,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 124
+      ColliderIndex: 123
       MutableMode: 0
   - Rotation:
       X:
@@ -5586,7 +5542,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 125
+      ColliderIndex: 124
       MutableMode: 0
   - Rotation:
       X:
@@ -5630,7 +5586,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 126
+      ColliderIndex: 125
       MutableMode: 0
   - Rotation:
       X:
@@ -5674,7 +5630,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 127
+      ColliderIndex: 126
       MutableMode: 0
   - Rotation:
       X:
@@ -5718,7 +5674,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 128
+      ColliderIndex: 127
       MutableMode: 0
   - Rotation:
       X:
@@ -5762,7 +5718,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 129
+      ColliderIndex: 128
       MutableMode: 0
   - Rotation:
       X:
@@ -5806,7 +5762,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 130
+      ColliderIndex: 129
       MutableMode: 0
   - Rotation:
       X:
@@ -5850,7 +5806,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 131
+      ColliderIndex: 130
       MutableMode: 0
   - Rotation:
       X:
@@ -5894,7 +5850,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 132
+      ColliderIndex: 131
       MutableMode: 0
   - Rotation:
       X:
@@ -5938,7 +5894,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 133
+      ColliderIndex: 132
       MutableMode: 0
   - Rotation:
       X:
@@ -5982,7 +5938,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 134
+      ColliderIndex: 133
       MutableMode: 0
   - Rotation:
       X:
@@ -6026,7 +5982,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 135
+      ColliderIndex: 134
       MutableMode: 0
   - Rotation:
       X:
@@ -6070,7 +6026,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 136
+      ColliderIndex: 135
       MutableMode: 0
   - Rotation:
       X:
@@ -6114,7 +6070,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 137
+      ColliderIndex: 136
       MutableMode: 0
   - Rotation:
       X:
@@ -6158,7 +6114,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 138
+      ColliderIndex: 137
       MutableMode: 0
   - Rotation:
       X:
@@ -6202,7 +6158,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 139
+      ColliderIndex: 138
       MutableMode: 0
   - Rotation:
       X:
@@ -6246,7 +6202,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 140
+      ColliderIndex: 139
       MutableMode: 0
   - Rotation:
       X:
@@ -6290,7 +6246,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 141
+      ColliderIndex: 140
       MutableMode: 0
   - Rotation:
       X:
@@ -6334,7 +6290,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 142
+      ColliderIndex: 141
       MutableMode: 0
   - Rotation:
       X:
@@ -6378,7 +6334,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 143
+      ColliderIndex: 142
       MutableMode: 0
   - Rotation:
       X:
@@ -6422,7 +6378,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 144
+      ColliderIndex: 143
       MutableMode: 0
   - Rotation:
       X:
@@ -6466,7 +6422,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 145
+      ColliderIndex: 144
       MutableMode: 0
   - Rotation:
       X:
@@ -6510,7 +6466,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 146
+      ColliderIndex: 145
       MutableMode: 0
   - Rotation:
       X:
@@ -6554,7 +6510,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 147
+      ColliderIndex: 146
       MutableMode: 0
   - Rotation:
       X:
@@ -6598,7 +6554,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 148
+      ColliderIndex: 147
       MutableMode: 0
   - Rotation:
       X:
@@ -6642,7 +6598,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 149
+      ColliderIndex: 148
       MutableMode: 0
   - Rotation:
       X:
@@ -6686,7 +6642,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 150
+      ColliderIndex: 149
       MutableMode: 0
   - Rotation:
       X:
@@ -6730,7 +6686,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 151
+      ColliderIndex: 150
       MutableMode: 0
   - Rotation:
       X:
@@ -6774,7 +6730,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 152
+      ColliderIndex: 151
       MutableMode: 0
   - Rotation:
       X:
@@ -6818,7 +6774,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 153
+      ColliderIndex: 152
       MutableMode: 0
   - Rotation:
       X:
@@ -6862,7 +6818,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 154
+      ColliderIndex: 153
       MutableMode: 0
   - Rotation:
       X:
@@ -6906,7 +6862,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 155
+      ColliderIndex: 154
       MutableMode: 0
   - Rotation:
       X:
@@ -6950,7 +6906,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 156
+      ColliderIndex: 155
       MutableMode: 0
   - Rotation:
       X:
@@ -6994,7 +6950,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 157
+      ColliderIndex: 156
       MutableMode: 0
   - Rotation:
       X:
@@ -7038,7 +6994,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 158
+      ColliderIndex: 157
       MutableMode: 0
   - Rotation:
       X:
@@ -7082,7 +7038,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 159
+      ColliderIndex: 158
       MutableMode: 0
   - Rotation:
       X:
@@ -7126,7 +7082,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 160
+      ColliderIndex: 159
       MutableMode: 0
   - Rotation:
       X:
@@ -7170,7 +7126,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 161
+      ColliderIndex: 160
       MutableMode: 0
   - Rotation:
       X:
@@ -7214,7 +7170,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 162
+      ColliderIndex: 161
       MutableMode: 0
   - Rotation:
       X:
@@ -7258,7 +7214,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 163
+      ColliderIndex: 162
       MutableMode: 0
   - Rotation:
       X:
@@ -7302,7 +7258,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 164
+      ColliderIndex: 163
       MutableMode: 0
   - Rotation:
       X:
@@ -7346,7 +7302,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 165
+      ColliderIndex: 164
       MutableMode: 0
   - Rotation:
       X:
@@ -7390,7 +7346,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 166
+      ColliderIndex: 165
       MutableMode: 0
   - Rotation:
       X:
@@ -7434,7 +7390,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 167
+      ColliderIndex: 166
       MutableMode: 0
   - Rotation:
       X:
@@ -7478,7 +7434,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 168
+      ColliderIndex: 167
       MutableMode: 0
   - Rotation:
       X:
@@ -7522,7 +7478,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 169
+      ColliderIndex: 168
       MutableMode: 0
   - Rotation:
       X:
@@ -7566,7 +7522,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 170
+      ColliderIndex: 169
       MutableMode: 0
   - Rotation:
       X:
@@ -7610,7 +7566,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 171
+      ColliderIndex: 170
       MutableMode: 0
   - Rotation:
       X:
@@ -7654,7 +7610,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 172
+      ColliderIndex: 171
       MutableMode: 0
   - Rotation:
       X:
@@ -7698,7 +7654,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 173
+      ColliderIndex: 172
       MutableMode: 0
   - Rotation:
       X:
@@ -7742,7 +7698,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 174
+      ColliderIndex: 173
       MutableMode: 0
   - Rotation:
       X:
@@ -7786,7 +7742,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 175
+      ColliderIndex: 174
       MutableMode: 0
   - Rotation:
       X:
@@ -7830,7 +7786,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 176
+      ColliderIndex: 175
       MutableMode: 0
   - Rotation:
       X:
@@ -7874,7 +7830,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 177
+      ColliderIndex: 176
       MutableMode: 0
   - Rotation:
       X:
@@ -7918,7 +7874,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 178
+      ColliderIndex: 177
       MutableMode: 0
   - Rotation:
       X:
@@ -7962,7 +7918,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 179
+      ColliderIndex: 178
       MutableMode: 0
   - Rotation:
       X:
@@ -8006,7 +7962,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 180
+      ColliderIndex: 179
       MutableMode: 0
   - Rotation:
       X:
@@ -8050,7 +8006,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 181
+      ColliderIndex: 180
       MutableMode: 0
   - Rotation:
       X:
@@ -8094,7 +8050,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 182
+      ColliderIndex: 181
       MutableMode: 0
   - Rotation:
       X:
@@ -8138,7 +8094,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 183
+      ColliderIndex: 182
       MutableMode: 0
   - Rotation:
       X:
@@ -8182,7 +8138,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 184
+      ColliderIndex: 183
       MutableMode: 0
   - Rotation:
       X:
@@ -8226,7 +8182,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 185
+      ColliderIndex: 184
       MutableMode: 0
   - Rotation:
       X:
@@ -8270,7 +8226,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 186
+      ColliderIndex: 185
       MutableMode: 0
   - Rotation:
       X:
@@ -8314,7 +8270,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 187
+      ColliderIndex: 186
       MutableMode: 0
   - Rotation:
       X:
@@ -8358,7 +8314,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 188
+      ColliderIndex: 187
       MutableMode: 0
   - Rotation:
       X:
@@ -8402,7 +8358,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 189
+      ColliderIndex: 188
       MutableMode: 0
   - Rotation:
       X:
@@ -8446,7 +8402,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 190
+      ColliderIndex: 189
       MutableMode: 0
   - Rotation:
       X:
@@ -8490,7 +8446,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 191
+      ColliderIndex: 190
       MutableMode: 0
   - Rotation:
       X:
@@ -8534,7 +8490,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 192
+      ColliderIndex: 191
       MutableMode: 0
   - Rotation:
       X:
@@ -8578,7 +8534,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 193
+      ColliderIndex: 192
       MutableMode: 0
   - Rotation:
       X:
@@ -8622,7 +8578,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 194
+      ColliderIndex: 193
       MutableMode: 0
   - Rotation:
       X:
@@ -8666,7 +8622,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 195
+      ColliderIndex: 194
       MutableMode: 0
   - Rotation:
       X:
@@ -8710,7 +8666,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 196
+      ColliderIndex: 195
       MutableMode: 0
   - Rotation:
       X:
@@ -8754,7 +8710,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 197
+      ColliderIndex: 196
       MutableMode: 0
   - Rotation:
       X:
@@ -8798,7 +8754,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 198
+      ColliderIndex: 197
       MutableMode: 0
   - Rotation:
       X:
@@ -8842,7 +8798,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 199
+      ColliderIndex: 198
       MutableMode: 0
   - Rotation:
       X:
@@ -8886,7 +8842,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 200
+      ColliderIndex: 199
       MutableMode: 0
   - Rotation:
       X:
@@ -8930,7 +8886,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 201
+      ColliderIndex: 200
       MutableMode: 0
   - Rotation:
       X:
@@ -8974,7 +8930,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 202
+      ColliderIndex: 201
       MutableMode: 0
   - Rotation:
       X:
@@ -9018,7 +8974,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 203
+      ColliderIndex: 202
       MutableMode: 0
   - Rotation:
       X:
@@ -9062,7 +9018,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 204
+      ColliderIndex: 203
       MutableMode: 0
   - Rotation:
       X:
@@ -9106,7 +9062,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 205
+      ColliderIndex: 204
       MutableMode: 0
   - Rotation:
       X:
@@ -9150,7 +9106,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 206
+      ColliderIndex: 205
       MutableMode: 0
   - Rotation:
       X:
@@ -9194,7 +9150,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 207
+      ColliderIndex: 206
       MutableMode: 0
   - Rotation:
       X:
@@ -9238,7 +9194,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 208
+      ColliderIndex: 207
       MutableMode: 0
   - Rotation:
       X:
@@ -9282,7 +9238,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 209
+      ColliderIndex: 208
       MutableMode: 0
   - Rotation:
       X:
@@ -9326,7 +9282,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 210
+      ColliderIndex: 209
       MutableMode: 0
   - Rotation:
       X:
@@ -9370,7 +9326,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 211
+      ColliderIndex: 210
       MutableMode: 0
   - Rotation:
       X:
@@ -9414,7 +9370,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 212
+      ColliderIndex: 211
       MutableMode: 0
   - Rotation:
       X:
@@ -9458,7 +9414,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 213
+      ColliderIndex: 212
       MutableMode: 0
   - Rotation:
       X:
@@ -9502,7 +9458,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 214
+      ColliderIndex: 213
       MutableMode: 0
   - Rotation:
       X:
@@ -9546,7 +9502,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 215
+      ColliderIndex: 214
       MutableMode: 0
   - Rotation:
       X:
@@ -9590,7 +9546,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 216
+      ColliderIndex: 215
       MutableMode: 0
   - Rotation:
       X:
@@ -9634,7 +9590,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 217
+      ColliderIndex: 216
       MutableMode: 0
   - Rotation:
       X:
@@ -9678,7 +9634,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 218
+      ColliderIndex: 217
       MutableMode: 0
   - Rotation:
       X:
@@ -9722,7 +9678,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 219
+      ColliderIndex: 218
       MutableMode: 0
   - Rotation:
       X:
@@ -9766,7 +9722,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 220
+      ColliderIndex: 219
       MutableMode: 0
   - Rotation:
       X:
@@ -9810,7 +9766,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 221
+      ColliderIndex: 220
       MutableMode: 0
   - Rotation:
       X:
@@ -9854,7 +9810,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 222
+      ColliderIndex: 221
       MutableMode: 0
   - Rotation:
       X:
@@ -9898,7 +9854,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 223
+      ColliderIndex: 222
       MutableMode: 0
   - Rotation:
       X:
@@ -9942,7 +9898,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 224
+      ColliderIndex: 223
       MutableMode: 0
   - Rotation:
       X:
@@ -9986,7 +9942,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 225
+      ColliderIndex: 224
       MutableMode: 0
   - Rotation:
       X:
@@ -10030,7 +9986,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 226
+      ColliderIndex: 225
       MutableMode: 0
   - Rotation:
       X:
@@ -10074,7 +10030,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 227
+      ColliderIndex: 226
       MutableMode: 0
   - Rotation:
       X:
@@ -10118,7 +10074,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 228
+      ColliderIndex: 227
       MutableMode: 0
   - Rotation:
       X:
@@ -10162,7 +10118,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 229
+      ColliderIndex: 228
       MutableMode: 0
   - Rotation:
       X:
@@ -10206,7 +10162,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 230
+      ColliderIndex: 229
       MutableMode: 0
   - Rotation:
       X:
@@ -10250,7 +10206,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 231
+      ColliderIndex: 230
       MutableMode: 0
   - Rotation:
       X:
@@ -10294,7 +10250,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 232
+      ColliderIndex: 231
       MutableMode: 0
   - Rotation:
       X:
@@ -10338,7 +10294,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 233
+      ColliderIndex: 232
       MutableMode: 0
   - Rotation:
       X:
@@ -10382,7 +10338,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 234
+      ColliderIndex: 233
       MutableMode: 0
   - Rotation:
       X:
@@ -10426,7 +10382,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 235
+      ColliderIndex: 234
       MutableMode: 0
   - Rotation:
       X:
@@ -10470,7 +10426,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 236
+      ColliderIndex: 235
       MutableMode: 0
   - Rotation:
       X:
@@ -10514,7 +10470,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 237
+      ColliderIndex: 236
       MutableMode: 0
   - Rotation:
       X:
@@ -10558,7 +10514,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 238
+      ColliderIndex: 237
       MutableMode: 0
   - Rotation:
       X:
@@ -10602,7 +10558,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 239
+      ColliderIndex: 238
       MutableMode: 0
   - Rotation:
       X:
@@ -10646,7 +10602,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 240
+      ColliderIndex: 239
       MutableMode: 0
   - Rotation:
       X:
@@ -10690,7 +10646,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 241
+      ColliderIndex: 240
       MutableMode: 0
   - Rotation:
       X:
@@ -10734,7 +10690,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 242
+      ColliderIndex: 241
       MutableMode: 0
   - Rotation:
       X:
@@ -10778,7 +10734,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 243
+      ColliderIndex: 242
       MutableMode: 0
   - Rotation:
       X:
@@ -10822,7 +10778,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 244
+      ColliderIndex: 243
       MutableMode: 0
   - Rotation:
       X:
@@ -10866,7 +10822,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 245
+      ColliderIndex: 244
       MutableMode: 0
   - Rotation:
       X:
@@ -10910,7 +10866,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 246
+      ColliderIndex: 245
       MutableMode: 0
   - Rotation:
       X:
@@ -10954,7 +10910,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 247
+      ColliderIndex: 246
       MutableMode: 0
   - Rotation:
       X:
@@ -10998,7 +10954,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 248
+      ColliderIndex: 247
       MutableMode: 0
   - Rotation:
       X:
@@ -11042,7 +10998,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 249
+      ColliderIndex: 248
       MutableMode: 0
   - Rotation:
       X:
@@ -11086,7 +11042,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 250
+      ColliderIndex: 249
       MutableMode: 0
   - Rotation:
       X:
@@ -11130,7 +11086,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 251
+      ColliderIndex: 250
       MutableMode: 0
   - Rotation:
       X:
@@ -11174,7 +11130,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 252
+      ColliderIndex: 251
       MutableMode: 0
   - Rotation:
       X:
@@ -11218,7 +11174,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 253
+      ColliderIndex: 252
       MutableMode: 0
   - Rotation:
       X:
@@ -11262,7 +11218,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 254
+      ColliderIndex: 253
       MutableMode: 0
   - Rotation:
       X:
@@ -11306,7 +11262,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 255
+      ColliderIndex: 254
       MutableMode: 0
   - Rotation:
       X:
@@ -11350,7 +11306,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 256
+      ColliderIndex: 255
       MutableMode: 0
   - Rotation:
       X:
@@ -11394,7 +11350,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 257
+      ColliderIndex: 256
       MutableMode: 0
   - Rotation:
       X:
@@ -11438,7 +11394,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 258
+      ColliderIndex: 257
       MutableMode: 0
   - Rotation:
       X:
@@ -11482,7 +11438,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 259
+      ColliderIndex: 258
       MutableMode: 0
   - Rotation:
       X:
@@ -11526,7 +11482,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 260
+      ColliderIndex: 259
       MutableMode: 0
   - Rotation:
       X:
@@ -11570,7 +11526,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 261
+      ColliderIndex: 260
       MutableMode: 0
   - Rotation:
       X:
@@ -11614,7 +11570,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 262
+      ColliderIndex: 261
       MutableMode: 0
   - Rotation:
       X:
@@ -11658,7 +11614,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 263
+      ColliderIndex: 262
       MutableMode: 0
   - Rotation:
       X:
@@ -11702,7 +11658,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 264
+      ColliderIndex: 263
       MutableMode: 0
   - Rotation:
       X:
@@ -11746,7 +11702,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 265
+      ColliderIndex: 264
       MutableMode: 0
   - Rotation:
       X:
@@ -11790,7 +11746,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 266
+      ColliderIndex: 265
       MutableMode: 0
   - Rotation:
       X:
@@ -11834,7 +11790,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 267
+      ColliderIndex: 266
       MutableMode: 0
   - Rotation:
       X:
@@ -11878,7 +11834,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 268
+      ColliderIndex: 267
       MutableMode: 0
   - Rotation:
       X:
@@ -11922,7 +11878,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 269
+      ColliderIndex: 268
       MutableMode: 0
   - Rotation:
       X:
@@ -11966,7 +11922,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 270
+      ColliderIndex: 269
       MutableMode: 0
   - Rotation:
       X:
@@ -12010,7 +11966,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 271
+      ColliderIndex: 270
       MutableMode: 0
   - Rotation:
       X:
@@ -12054,7 +12010,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 272
+      ColliderIndex: 271
       MutableMode: 0
   - Rotation:
       X:
@@ -12098,7 +12054,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 273
+      ColliderIndex: 272
       MutableMode: 0
   - Rotation:
       X:
@@ -12142,7 +12098,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 274
+      ColliderIndex: 273
       MutableMode: 0
   - Rotation:
       X:
@@ -12186,7 +12142,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 275
+      ColliderIndex: 274
       MutableMode: 0
   - Rotation:
       X:
@@ -12230,7 +12186,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 276
+      ColliderIndex: 275
       MutableMode: 0
   - Rotation:
       X:
@@ -12274,7 +12230,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 277
+      ColliderIndex: 276
       MutableMode: 0
   - Rotation:
       X:
@@ -12318,7 +12274,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 278
+      ColliderIndex: 277
       MutableMode: 0
   - Rotation:
       X:
@@ -12362,7 +12318,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 279
+      ColliderIndex: 278
       MutableMode: 0
   - Rotation:
       X:
@@ -12406,7 +12362,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 280
+      ColliderIndex: 279
       MutableMode: 0
   - Rotation:
       X:
@@ -12450,7 +12406,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 281
+      ColliderIndex: 280
       MutableMode: 0
   - Rotation:
       X:
@@ -12494,7 +12450,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 282
+      ColliderIndex: 281
       MutableMode: 0
   - Rotation:
       X:
@@ -12538,7 +12494,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 283
+      ColliderIndex: 282
       MutableMode: 0
   - Rotation:
       X:
@@ -12582,7 +12538,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 284
+      ColliderIndex: 283
       MutableMode: 0
   - Rotation:
       X:
@@ -12626,7 +12582,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 285
+      ColliderIndex: 284
       MutableMode: 0
   - Rotation:
       X:
@@ -12670,7 +12626,7 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 286
+      ColliderIndex: 285
       MutableMode: 0
   - Rotation:
       X:
@@ -12714,15 +12670,12 @@ MonoBehaviour:
         Id:
           Value: 0
       IsTrigger: 0
-      ColliderIndex: 287
+      ColliderIndex: 286
       MutableMode: 0
   MapEntities:
   - Components:
     - rid: 8128251592232140800
     - rid: 8128251592232140801
-  - Components:
-    - rid: 1727234013053059072
-    - rid: 1727234013053059073
   - Components:
     - rid: 497146428766814208
     - rid: 497146428766814209
@@ -12765,6 +12718,9 @@ MonoBehaviour:
   - Components:
     - rid: 3663217998778335232
     - rid: 3663217998778335233
+  - Components:
+    - rid: 4930456302850670592
+    - rid: 4930456302850670593
   SerializedTriangleDataUncompressedSize: 8
   references:
     version: 2
@@ -12774,11 +12730,11 @@ MonoBehaviour:
       data:
         Position:
           X:
-            RawValue: -837550
+            RawValue: -594411
           Y:
             RawValue: 0
           Z:
-            RawValue: -427950
+            RawValue: -343408
         Rotation:
           X:
             RawValue: 0
@@ -12799,7 +12755,7 @@ MonoBehaviour:
       data:
         Position:
           X:
-            RawValue: -707788
+            RawValue: -524288
           Y:
             RawValue: 0
           Z:
@@ -12833,31 +12789,6 @@ MonoBehaviour:
             RawValue: 327680
         separation:
           RawValue: 131072
-    - rid: 1727234013053059072
-      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
-      data:
-        Position:
-          X:
-            RawValue: 413792
-          Y:
-            RawValue: 0
-          Z:
-            RawValue: -492383
-        Rotation:
-          X:
-            RawValue: 0
-          Y:
-            RawValue: 17694718
-          Z:
-            RawValue: 0
-    - rid: 1727234013053059073
-      type: {class: ResourceCollectorComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
-      data:
-        playerEntity:
-          SceneIndexPlusOne: 0
-        lookForResource:
-          Value: 1
-        workersAssigned: 0
     - rid: 1836802504982003712
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:
@@ -13054,6 +12985,41 @@ MonoBehaviour:
         Resources:
         - Id:
             Value: 1494129059448356453
+        treeCountRange:
+          X:
+            RawValue: 196608
+          Y:
+            RawValue: 393216
+        size:
+          X:
+            RawValue: 262144
+          Y:
+            RawValue: 262144
+        separation:
+          RawValue: 131072
+    - rid: 4930456302850670592
+      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: -1389363
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: -583270
+        Rotation:
+          X:
+            RawValue: 0
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 0
+    - rid: 4930456302850670593
+      type: {class: ResourcesSpawnPointComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        Resources:
+        - Id:
+            Value: 1436456084534370780
         treeCountRange:
           X:
             RawValue: 196608

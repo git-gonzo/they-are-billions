@@ -40,15 +40,21 @@ component UnitComponent
 {
 	[ExcludeFromPrototype] UnitState state;
 	[ExcludeFromPrototype] EntityRef playerOwner;
-	[ExcludeFromPrototype] EntityRef buildingAssigned;
-	[ExcludeFromPrototype] FP CurrentTime;
-	[ExcludeFromPrototype] ResourceAmount inventory;
 	[ExcludeFromPrototype] EntityRef targetEntity;
 	[ExcludeFromPrototype] FPVector3 patrolTarget;
+	[ExcludeFromPrototype] FP CurrentTime;
+	AssetRef<UnitAsset> unitAsset;
+	//uAsset uuuasset;
 	FP Speed;
-	FP HaverstTime;
-	FP DeployTime;
-	int ResourcesCapacity;
+}
+
+component FarmerComponent
+{
+	[ExcludeFromPrototype] EntityRef buildingAssigned;
+	[ExcludeFromPrototype] ResourceAmount inventory;
+
+	
+	
 }
 
 component AnimalComponent
@@ -63,6 +69,7 @@ enum UnitState
 {
 	Idle,
 	Moving,
+	Attacking,
 	Harversting,
 	Deploying
 }
@@ -88,4 +95,26 @@ struct ResourceAmount
 {
 	ResourceType Resource;
 	int Amount;
+}
+
+component HealthComponent
+{
+	[ExcludeFromPrototype] FP CurrentHealth;
+	FP MaxHealth;
+}
+
+struct UnitData
+{
+  AssetRef<UnitAsset> unitAsset;
+}
+
+struct FarmerData
+{
+  AssetRef<FarmerAsset> farmerAsset;
+}
+
+union Data
+{
+  UnitData unitData;
+  FarmerData farmerData;
 }

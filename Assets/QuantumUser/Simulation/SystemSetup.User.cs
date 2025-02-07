@@ -16,6 +16,7 @@
             systems.Add(new CommandsSystem());
             systems.Add(new BuildingsSystem());
             systems.Add(new EconomySystem());
+            systems.Add(new HealthSystem());
     }
   }
 }

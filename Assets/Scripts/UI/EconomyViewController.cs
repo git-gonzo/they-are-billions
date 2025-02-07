@@ -42,13 +42,13 @@ public class EconomyViewController : QuantumSceneViewComponent
         Debug.Log($"Update workers");
         var totalworkers = 0;
         var freeworkers = 0;
-        var f = PredictedFrame.Filter<UnitComponent>();
-        while(f.Next(out var entity,out var unit)) 
+        var f = PredictedFrame.Filter<UnitComponent, FarmerComponent>();
+        while(f.Next(out var entity,out var unit, out var farmer)) 
         {
             if(unit.playerOwner ==  _localPlayerEntity)
             {
                 totalworkers++;
-                if(unit.buildingAssigned == EntityRef.None) 
+                if(farmer.buildingAssigned == EntityRef.None) 
                 {
                     freeworkers++;
                 }

@@ -3,3 +3,6 @@ signal OnResourceAdded (EntityRef playerEntity, ResourceAmount resource);
 signal OnAddWorkerToBuilding (EntityRef buildingEntity, int amount);
 signal CreateUnit (EntityRef playerEntity);
 signal CreateBuilding (EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position);
+
+signal OnEntityDie (EntityRef entity);
+signal OnHealthChanged (EntityRef entity, FP amount);

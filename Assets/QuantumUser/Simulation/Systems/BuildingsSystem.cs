@@ -21,32 +21,32 @@ namespace Quantum
             var playerEntity = building->playerEntity;
 
             //if can find a free worker assign it to building
-            var filter = f.Filter<UnitComponent>();
-            while(filter.Next(out var unitEntity, out var unitComponent)) 
+            var filter = f.Filter<UnitComponent, FarmerComponent>();
+            while(filter.Next(out var unitEntity, out var unitComponent, out var farmer)) 
             {
                 if (unitComponent.playerOwner != playerEntity) continue;
 
                 if (amount > 0) //TRY TO ADD WORKER
                 {
-                    if (unitComponent.buildingAssigned != EntityRef.None) continue;
-                    
-                    var unitPointer = f.Unsafe.GetPointer<UnitComponent>(unitEntity);
-                    unitPointer->buildingAssigned = buildingEntity;
-                    building->workersAssigned += amount;
-                    f.Events.UpdateWorkers(playerEntity);
+                    if (farmer.buildingAssigned != EntityRef.None) continue;
+                    SetBuilding(f, playerEntity, unitEntity, buildingEntity, building, amount);
                     return;
                 }
                 else  // REMOVE WORKER FROM BUILDING, SET HIM FREE
                 {
-                    if (unitComponent.buildingAssigned != buildingEntity) continue;
-                    
-                    var unitPointer = f.Unsafe.GetPointer<UnitComponent>(unitEntity);
-                    unitPointer->buildingAssigned = EntityRef.None;
-                    building->workersAssigned += amount;
-                    f.Events.UpdateWorkers(playerEntity);
+                    if (farmer.buildingAssigned != buildingEntity) continue;
+                    SetBuilding(f, playerEntity, unitEntity, buildingEntity, building, -amount);
                     return;
                 }
             }
+        }
+
+        private void SetBuilding(Frame f, EntityRef playerEntity, EntityRef unitEntity, EntityRef buildingEntity, ResourceCollectorComponent* building, int amount) 
+        {
+            var farmerPointer = f.Unsafe.GetPointer<FarmerComponent>(unitEntity);
+            farmerPointer->buildingAssigned = buildingEntity;
+            building->workersAssigned += amount;
+            f.Events.UpdateWorkers(playerEntity);
         }
     }
 }

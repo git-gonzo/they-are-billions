@@ -65,6 +65,63 @@ namespace Quantum.Prototypes {
     }
   }
   [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.Data))]
+  public unsafe partial class DataPrototype : UnionPrototype {
+    public string _field_used_;
+    public Quantum.Prototypes.UnitDataPrototype unitData;
+    public Quantum.Prototypes.FarmerDataPrototype farmerData;
+    partial void MaterializeUser(Frame frame, ref Quantum.Data result, in PrototypeMaterializationContext context);
+    public void Materialize(Frame frame, ref Quantum.Data result, in PrototypeMaterializationContext context = default) {
+        switch (_field_used_) {
+          case "UNITDATA": this.unitData.Materialize(frame, ref *result.unitData, in context); break;
+          case "FARMERDATA": this.farmerData.Materialize(frame, ref *result.farmerData, in context); break;
+          case "": case null: break;
+          default: PrototypeValidator.UnknownUnionField(_field_used_, in context); break;
+        }
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.FarmerComponent))]
+  public unsafe partial class FarmerComponentPrototype : ComponentPrototype<Quantum.FarmerComponent> {
+    [HideInInspector()]
+    public Int32 _empty_prototype_dummy_field_;
+    partial void MaterializeUser(Frame frame, ref Quantum.FarmerComponent result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.FarmerComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.FarmerComponent result, in PrototypeMaterializationContext context = default) {
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.FarmerData))]
+  public unsafe partial class FarmerDataPrototype : StructPrototype {
+    public AssetRef<FarmerAsset> farmerAsset;
+    partial void MaterializeUser(Frame frame, ref Quantum.FarmerData result, in PrototypeMaterializationContext context);
+    public void Materialize(Frame frame, ref Quantum.FarmerData result, in PrototypeMaterializationContext context = default) {
+        result.farmerAsset = this.farmerAsset;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.HealthComponent))]
+  public unsafe partial class HealthComponentPrototype : ComponentPrototype<Quantum.HealthComponent> {
+    public FP MaxHealth;
+    partial void MaterializeUser(Frame frame, ref Quantum.HealthComponent result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.HealthComponent component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.HealthComponent result, in PrototypeMaterializationContext context = default) {
+        result.MaxHealth = this.MaxHealth;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.Input))]
   public unsafe partial class InputPrototype : StructPrototype {
     [HideInInspector()]
@@ -217,10 +274,8 @@ namespace Quantum.Prototypes {
   [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.UnitComponent))]
   public unsafe partial class UnitComponentPrototype : ComponentPrototype<Quantum.UnitComponent> {
+    public AssetRef<UnitAsset> unitAsset;
     public FP Speed;
-    public FP HaverstTime;
-    public FP DeployTime;
-    public Int32 ResourcesCapacity;
     partial void MaterializeUser(Frame frame, ref Quantum.UnitComponent result, in PrototypeMaterializationContext context);
     public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
         Quantum.UnitComponent component = default;
@@ -228,10 +283,18 @@ namespace Quantum.Prototypes {
         return f.Set(entity, component) == SetResult.ComponentAdded;
     }
     public void Materialize(Frame frame, ref Quantum.UnitComponent result, in PrototypeMaterializationContext context = default) {
+        result.unitAsset = this.unitAsset;
         result.Speed = this.Speed;
-        result.HaverstTime = this.HaverstTime;
-        result.DeployTime = this.DeployTime;
-        result.ResourcesCapacity = this.ResourcesCapacity;
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.UnitData))]
+  public unsafe partial class UnitDataPrototype : StructPrototype {
+    public AssetRef<UnitAsset> unitAsset;
+    partial void MaterializeUser(Frame frame, ref Quantum.UnitData result, in PrototypeMaterializationContext context);
+    public void Materialize(Frame frame, ref Quantum.UnitData result, in PrototypeMaterializationContext context = default) {
+        result.unitAsset = this.unitAsset;
         MaterializeUser(frame, ref result, in context);
     }
   }

@@ -53,11 +53,6 @@ MonoBehaviour:
     SystemName: 
     StartDisabled: 0
     Children: []
-  - SystemType:
-      AssemblyQualifiedName: Quantum.UnitsSystem2, Quantum.Simulation
-    SystemName: 
-    StartDisabled: 0
-    Children: []
 --- !u!114 &-1424275342070042195
 MonoBehaviour:
   m_ObjectHideFlags: 0
