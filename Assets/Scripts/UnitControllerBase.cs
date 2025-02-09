@@ -2,8 +2,11 @@ using UnityEngine;
 using Quantum;
 using System;
 
-public class UnitControllerBase : QuantumEntityViewComponent
+public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
 {
+    [SerializeField] LifeBar _lifeBarPrefab;
+    private LifeBar _lifeBar;
+  
     Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void OnActivate(Frame frame)
@@ -24,6 +27,20 @@ public class UnitControllerBase : QuantumEntityViewComponent
         QuantumEvent.Subscribe<EventUnitMoving>(this, OnUnitMoving);
         QuantumEvent.Subscribe<EventUnitHarvesting>(this, OnUnitHarvesting);
         QuantumEvent.Subscribe<EventUnitIdle>(this, OnUnitIdle);
+        QuantumEvent.Subscribe<EventOnHealthChanged>(this, OnHealthChanged);
+
+        //Instantiate Lifebar
+        if (_lifeBarPrefab != null)
+        {
+            _lifeBar = Instantiate(_lifeBarPrefab, ViewContext.lifebarsContainer);
+            _lifeBar.Init(transform);
+        }
+    }
+
+    private void OnHealthChanged(EventOnHealthChanged e)
+    {
+        if (e.entity != EntityRef) return;
+        _lifeBar.SetLife(e.amount.AsFloat);
     }
 
     private void OnUnitMoving(EventUnitMoving e)

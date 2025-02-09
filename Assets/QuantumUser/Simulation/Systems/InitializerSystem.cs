@@ -31,6 +31,10 @@ namespace Quantum
                             rPos.Add(pos);
                             var index = f.RNG->Next(0, resources.Count);
                             var r = f.Create(resources[index]);
+                            if (f.Unsafe.TryGetPointer<HealthComponent>(r, out var healthComponent)) 
+                            {
+                                healthComponent->CurrentHealth = healthComponent->MaxHealth;
+                            }
                             var t = f.Unsafe.GetPointer<Transform3D>(r);
                             t->Position = spawnPointPos + pos;
                             t->LookAt(t->Position + GetRandomPosition(f, new FPVector2(1, 1)));
@@ -61,4 +65,5 @@ namespace Quantum
             return true;
         }
     }
+
 }

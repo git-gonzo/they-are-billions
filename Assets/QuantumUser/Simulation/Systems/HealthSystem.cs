@@ -27,7 +27,7 @@ namespace Quantum
             if (!f.Unsafe.TryGetPointer<HealthComponent>(entity, out var healthComp)) return;
             var newHealth = healthComp->CurrentHealth + amount;
             healthComp->CurrentHealth = FPMath.Clamp(newHealth, 0, healthComp->MaxHealth);
-            f.Events.OnHealthChanged(entity, amount);
+            f.Events.OnHealthChanged(entity, newHealth/ healthComp->MaxHealth);
         }
     }
 }

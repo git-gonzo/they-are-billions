@@ -34,6 +34,8 @@ namespace Quantum
                     f.Events.UnitMoving(unitEntity); break;
                 case UnitState.Harversting:
                     f.Events.UnitHarvesting(unitEntity, ResourceType.Stone); break;
+                case UnitState.Attacking:
+                    f.Events.UnitHarvesting(unitEntity, ResourceType.Stone); break;
             }
         }
 

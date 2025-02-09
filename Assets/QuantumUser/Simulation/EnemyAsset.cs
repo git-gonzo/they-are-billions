@@ -83,14 +83,15 @@ namespace Quantum
                     else
                         SetUnitState(f, entity, UnitState.Attacking); //Was Moving
                     break;
+
                 case UnitState.Attacking:
-                    unit->CurrentTime += f.DeltaTime;
+                    unit->CurrentTime -= f.DeltaTime;
                     f.TryGet<Transform3D>(unit->targetEntity, out var farmerTransform);
                     if (FPVector3.Distance(farmerTransform.Position, transform->Position) <= attackRange )
                     {
-                        if (unit->CurrentTime >= attackCooldown) //Attacking
+                        if (unit->CurrentTime <= 0) //Attacking
                         {
-                            unit->CurrentTime = 0;
+                            unit->CurrentTime = attackCooldown;
                             f.Signals.OnHealthChanged(unit->targetEntity,-attack);
                         }
                     }

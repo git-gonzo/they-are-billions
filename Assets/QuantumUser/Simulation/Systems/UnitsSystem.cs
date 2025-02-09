@@ -7,7 +7,8 @@ namespace Quantum
     [Preserve]
     public unsafe class UnitsSystem : SystemMainThreadFilter<UnitsSystem.Filter>,
         ISignalCreateUnit,
-        ISignalOnEntityPrototypeMaterialized
+        ISignalOnEntityPrototypeMaterialized,
+        ISignalOnEntityDie
     {
         public void CreateUnit(Frame f, EntityRef playerEntity)
         {
@@ -44,5 +45,9 @@ namespace Quantum
             f.FindAsset(unit->unitAsset).UpdateUnit(f, filter.Entity);
         }
 
+        public void OnEntityDie(Frame f, EntityRef entity)
+        {
+            f.Destroy(entity);
+        }
     }
 }
