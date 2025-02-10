@@ -25,8 +25,8 @@ namespace Quantum
                     f.Events.UnitIdle(unitEntity); break;
                 case UnitState.Moving:
                     FPVector3 dest;
-                    if (unit->targetEntity != EntityRef.None)
-                        dest = f.Get<Transform3D>(unit->targetEntity).Position;
+                    if (unit->targetEntity != EntityRef.None && f.TryGet<Transform3D>(unit->targetEntity, out var target))
+                        dest = target.Position;
                     else
                         dest = unit->patrolTarget;
                     var t = f.Unsafe.GetPointer<Transform3D>(unitEntity);

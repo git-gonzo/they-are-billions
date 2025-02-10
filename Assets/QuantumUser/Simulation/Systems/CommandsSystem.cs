@@ -49,7 +49,11 @@ namespace Quantum
                 f.Signals.ConsumeCost(c.PlayerEntityRef, building.cost);
                 f.Signals.CreateBuilding(c.PlayerEntityRef, c.building, c.position);
             }
-
+            else if (command is CommandMoveUnit)
+            {
+                var c = command as CommandMoveUnit;
+                f.Signals.OnMoveUnit(c.entity, c.destination);
+            }
         }
         private bool Canbuy(Frame f, EntityRef playerEntity, ResourceAmount cost) 
         {

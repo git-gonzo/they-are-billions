@@ -949,6 +949,9 @@ namespace Quantum {
   public unsafe partial interface ISignalCreateUnit : ISignal {
     void CreateUnit(Frame f, EntityRef playerEntity);
   }
+  public unsafe partial interface ISignalOnMoveUnit : ISignal {
+    void OnMoveUnit(Frame f, EntityRef entity, FPVector3 destination);
+  }
   public unsafe partial interface ISignalCreateBuilding : ISignal {
     void CreateBuilding(Frame f, EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position);
   }
@@ -965,6 +968,7 @@ namespace Quantum {
     private ISignalOnResourceAdded[] _ISignalOnResourceAddedSystems;
     private ISignalOnAddWorkerToBuilding[] _ISignalOnAddWorkerToBuildingSystems;
     private ISignalCreateUnit[] _ISignalCreateUnitSystems;
+    private ISignalOnMoveUnit[] _ISignalOnMoveUnitSystems;
     private ISignalCreateBuilding[] _ISignalCreateBuildingSystems;
     private ISignalOnEntityDie[] _ISignalOnEntityDieSystems;
     private ISignalOnHealthChanged[] _ISignalOnHealthChangedSystems;
@@ -983,6 +987,7 @@ namespace Quantum {
       _ISignalOnResourceAddedSystems = BuildSignalsArray<ISignalOnResourceAdded>();
       _ISignalOnAddWorkerToBuildingSystems = BuildSignalsArray<ISignalOnAddWorkerToBuilding>();
       _ISignalCreateUnitSystems = BuildSignalsArray<ISignalCreateUnit>();
+      _ISignalOnMoveUnitSystems = BuildSignalsArray<ISignalOnMoveUnit>();
       _ISignalCreateBuildingSystems = BuildSignalsArray<ISignalCreateBuilding>();
       _ISignalOnEntityDieSystems = BuildSignalsArray<ISignalOnEntityDie>();
       _ISignalOnHealthChangedSystems = BuildSignalsArray<ISignalOnHealthChanged>();
@@ -1100,6 +1105,15 @@ namespace Quantum {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
             s.CreateUnit(_f, playerEntity);
+          }
+        }
+      }
+      public void OnMoveUnit(EntityRef entity, FPVector3 destination) {
+        var array = _f._ISignalOnMoveUnitSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.OnMoveUnit(_f, entity, destination);
           }
         }
       }

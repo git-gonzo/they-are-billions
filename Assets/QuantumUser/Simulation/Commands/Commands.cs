@@ -18,6 +18,22 @@ namespace Quantum
         {
             
         }
+    }    
+    public class CommandMoveUnit : DeterministicCommand
+    {
+        public EntityRef entity;
+        public FPVector3 destination;
+
+        public override void Serialize(BitStream stream)
+        {
+            stream.Serialize(ref entity);
+            stream.Serialize(ref destination);
+        }
+
+        public void Execute(Frame f) 
+        {
+            
+        }
     }
     public class CommandBuyWorker : DeterministicCommand
     {

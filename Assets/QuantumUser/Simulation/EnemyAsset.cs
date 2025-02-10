@@ -45,6 +45,7 @@ namespace Quantum
                     //Check if target still exist
                     if (unit->targetEntity != EntityRef.None && !f.Exists(unit->targetEntity))
                     {
+                        unit->targetEntity = EntityRef.None;
                         if (!TryToFindTarget(f, entity, unit, *transform))
                         {
                             SetUnitState(f, entity, UnitState.Idle);
