@@ -68,6 +68,12 @@ namespace Quantum {
     Harversting,
     Deploying,
   }
+  public enum UnitType : int {
+    None,
+    Farmer,
+    Enemy,
+    Troop,
+  }
   [System.FlagsAttribute()]
   public enum InputButtons : int {
   }
@@ -875,6 +881,22 @@ namespace Quantum {
     }
   }
   [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct TroopSpawnPointComponent : Quantum.IComponent {
+    public const Int32 SIZE = 4;
+    public const Int32 ALIGNMENT = 4;
+    [FieldOffset(0)]
+    private fixed Byte _alignment_padding_[4];
+    public override Int32 GetHashCode() {
+      unchecked { 
+        var hash = 12109;
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (TroopSpawnPointComponent*)ptr;
+    }
+  }
+  [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct UnitComponent : Quantum.IComponent {
     public const Int32 SIZE = 72;
     public const Int32 ALIGNMENT = 8;
@@ -947,7 +969,7 @@ namespace Quantum {
     void OnAddWorkerToBuilding(Frame f, EntityRef buildingEntity, Int32 amount);
   }
   public unsafe partial interface ISignalCreateUnit : ISignal {
-    void CreateUnit(Frame f, EntityRef playerEntity);
+    void CreateUnit(Frame f, EntityRef playerEntity, UnitType unitType);
   }
   public unsafe partial interface ISignalOnMoveUnit : ISignal {
     void OnMoveUnit(Frame f, EntityRef entity, FPVector3 destination);
@@ -1047,6 +1069,8 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<Transform2DVertical>();
       BuildSignalsArrayOnComponentAdded<Transform3D>();
       BuildSignalsArrayOnComponentRemoved<Transform3D>();
+      BuildSignalsArrayOnComponentAdded<Quantum.TroopSpawnPointComponent>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.TroopSpawnPointComponent>();
       BuildSignalsArrayOnComponentAdded<Quantum.UnitComponent>();
       BuildSignalsArrayOnComponentRemoved<Quantum.UnitComponent>();
       BuildSignalsArrayOnComponentAdded<View>();
@@ -1099,12 +1123,12 @@ namespace Quantum {
           }
         }
       }
-      public void CreateUnit(EntityRef playerEntity) {
+      public void CreateUnit(EntityRef playerEntity, UnitType unitType) {
         var array = _f._ISignalCreateUnitSystems;
         for (Int32 i = 0; i < array.Length; ++i) {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
-            s.CreateUnit(_f, playerEntity);
+            s.CreateUnit(_f, playerEntity, unitType);
           }
         }
       }
@@ -1247,15 +1271,17 @@ namespace Quantum {
       typeRegistry.Register(typeof(Transform2D), Transform2D.SIZE);
       typeRegistry.Register(typeof(Transform2DVertical), Transform2DVertical.SIZE);
       typeRegistry.Register(typeof(Transform3D), Transform3D.SIZE);
+      typeRegistry.Register(typeof(Quantum.TroopSpawnPointComponent), Quantum.TroopSpawnPointComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.UnitComponent), Quantum.UnitComponent.SIZE);
       typeRegistry.Register(typeof(Quantum.UnitData), Quantum.UnitData.SIZE);
       typeRegistry.Register(typeof(Quantum.UnitState), 4);
+      typeRegistry.Register(typeof(Quantum.UnitType), 4);
       typeRegistry.Register(typeof(View), View.SIZE);
       typeRegistry.Register(typeof(Quantum.WorkerSpawnPointComponent), Quantum.WorkerSpawnPointComponent.SIZE);
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 11)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 12)
         .AddBuiltInComponents()
         .Add<Quantum.AnimalComponent>(Quantum.AnimalComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.FarmerComponent>(Quantum.FarmerComponent.Serialize, null, null, ComponentFlags.None)
@@ -1266,6 +1292,7 @@ namespace Quantum {
         .Add<Quantum.ResourceCollectorComponent>(Quantum.ResourceCollectorComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourceContainerComponent>(Quantum.ResourceContainerComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.ResourcesSpawnPointComponent>(Quantum.ResourcesSpawnPointComponent.Serialize, null, Quantum.ResourcesSpawnPointComponent.OnRemoved, ComponentFlags.None)
+        .Add<Quantum.TroopSpawnPointComponent>(Quantum.TroopSpawnPointComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.UnitComponent>(Quantum.UnitComponent.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.WorkerSpawnPointComponent>(Quantum.WorkerSpawnPointComponent.Serialize, null, null, ComponentFlags.None)
         .Finish();
@@ -1279,6 +1306,7 @@ namespace Quantum {
       FramePrinter.EnsurePrimitiveNotStripped<QueryOptions>();
       FramePrinter.EnsurePrimitiveNotStripped<Quantum.ResourceType>();
       FramePrinter.EnsurePrimitiveNotStripped<Quantum.UnitState>();
+      FramePrinter.EnsurePrimitiveNotStripped<Quantum.UnitType>();
     }
   }
 }

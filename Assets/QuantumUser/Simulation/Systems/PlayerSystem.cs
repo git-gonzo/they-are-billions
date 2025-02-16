@@ -25,7 +25,10 @@ namespace Quantum
 
             // ADD WORKERS
             var config = f.SimulationConfig.GameConfig;
-            for (int i = 0; i < config.initialWorkers; i++) f.Signals.CreateUnit(playerCharacter);
+            for (int i = 0; i < config.initialWorkers; i++) f.Signals.CreateUnit(playerCharacter, UnitType.Farmer);
+
+            // ADD TROOPS
+            for (int i = 0; i < config.initialTroops; i++) f.Signals.CreateUnit(playerCharacter, UnitType.Troop);
 
             //Assign player to existing buildings (temp) will be replaced when buildings instanciated for the player
             var filter = f.Filter<ResourceCollectorComponent>();

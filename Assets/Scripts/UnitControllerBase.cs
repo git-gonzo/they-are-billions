@@ -5,6 +5,7 @@ using System;
 public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
 {
     [SerializeField] LifeBar _lifeBarPrefab;
+    [SerializeField] GameObject _selected;
     private LifeBar _lifeBar;
   
     Animator animator;
@@ -60,5 +61,12 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
         if (e.unitEntity != EntityRef) return;
         if (animator == null) return;
         animator.SetTrigger("Idle");
+    }
+
+
+
+    public void SelectObject(bool value)
+    {
+        _selected.SetActive(value);
     }
 }

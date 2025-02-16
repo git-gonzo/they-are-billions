@@ -17,7 +17,26 @@ public class BuyButtonController : MonoBehaviour
             CommandBuyUnit command = new CommandBuyUnit()
             {
                 PlayerEntityRef = HudController.LocalPlayerEntity,
-                resourceAmount = _cost
+                resourceAmount = _cost,
+                unitType = UnitType.Farmer
+            };
+            QuantumRunner.Default.Game.SendCommand(command);
+        }
+        else
+        {
+            Debug.Log("Not enough " + _cost.Resource);
+        }
+    }    
+    
+    public void BuyTroop() 
+    {
+        if(CanBuy())
+        {
+            CommandBuyUnit command = new CommandBuyUnit()
+            {
+                PlayerEntityRef = HudController.LocalPlayerEntity,
+                resourceAmount = _cost,
+                unitType = UnitType.Troop
             };
             QuantumRunner.Default.Game.SendCommand(command);
         }

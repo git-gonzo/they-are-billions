@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e73ae1908ddf5841a9c15239e47050f, type: 3}
-  m_Name: New Farmer Asset
+  m_Name: FarmerAsset
   m_EditorClassIdentifier: 
   Identifier:
-    Path: QuantumUser/Config/Units/New Farmer Asset
+    Path: QuantumUser/Config/Units/FarmerAsset
     Guid:
       Value: 275386514519330206
+  unitType: 0
+  deployTime:
+    RawValue: 0
+  resourcesCapacity: 0
+  haverstTime:
+    RawValue: 0

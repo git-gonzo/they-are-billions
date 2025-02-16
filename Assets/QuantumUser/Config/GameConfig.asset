@@ -17,6 +17,7 @@ MonoBehaviour:
     Guid:
       Value: 314653018149520442
   initialWorkers: 6
+  initialTroops: 1
   workerPrototype:
     Id:
       Value: 1520969653244342770
@@ -31,6 +32,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b6bc856df7dcc4429e5bbb887308486, type: 2}
   - {fileID: 11400000, guid: 0955859bbd800f14fac849ae1753e729, type: 2}
   - {fileID: 11400000, guid: bf8e236f9543e2042b68ef4ea41ba5d4, type: 2}
+  troopsConfig:
+    basicTroopPrototype:
+      Id:
+        Value: 1481137281292615953
   workerCost:
     Resource: 3
     Amount: 5

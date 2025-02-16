@@ -38,7 +38,7 @@ namespace Quantum
                 if (!Canbuy(f, c.PlayerEntityRef, c.resourceAmount)) return;
                 
                 f.Signals.ConsumeCost(c.PlayerEntityRef, c.resourceAmount);
-                f.Signals.CreateUnit(c.PlayerEntityRef);
+                f.Signals.CreateUnit(c.PlayerEntityRef, c.unitType);
             }
             else if (command is CommandPlaceBuilding)
             {

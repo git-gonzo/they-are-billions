@@ -12683,6 +12683,9 @@ MonoBehaviour:
     - rid: 8909708599542939648
     - rid: 8909708599542939649
   - Components:
+    - rid: 8020429736800944128
+    - rid: 8020429736800944129
+  - Components:
     - rid: 5370288682269933568
     - rid: 5370288682269933569
   - Components:
@@ -13173,6 +13176,27 @@ MonoBehaviour:
             RawValue: 262144
         separation:
           RawValue: 131072
+    - rid: 8020429736800944128
+      type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: -476446
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: -744488
+        Rotation:
+          X:
+            RawValue: 0
+          Y:
+            RawValue: 0
+          Z:
+            RawValue: 0
+    - rid: 8020429736800944129
+      type: {class: TroopSpawnPointComponentPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        _empty_prototype_dummy_field_: 0
     - rid: 8128251592232140800
       type: {class: Transform3DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
       data:

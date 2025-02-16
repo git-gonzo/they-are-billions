@@ -5,6 +5,8 @@ namespace Quantum
 {
     public class FarmerAsset : UnitAsset 
     {
+        UnitType unitType => UnitType.Farmer;
+
         [SerializeField] private FP deployTime;
         [SerializeField] private int resourcesCapacity;
         [SerializeField] private FP haverstTime;
@@ -161,7 +163,12 @@ namespace Quantum
             }
             return false;
         }
-        
+
+        public override FPVector3 GetSpawnPoint(Frame f)
+        {
+            return SpawnPointHelper.GetSpawnPoint<WorkerSpawnPointComponent>(f);
+        }
+
     }
 }
 

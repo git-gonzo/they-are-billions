@@ -8,18 +8,9 @@ namespace Quantum
     public unsafe class UnitsSystem : SystemMainThreadFilter<UnitsSystem.Filter>,
         ISignalCreateUnit,
         ISignalOnEntityPrototypeMaterialized,
-        ISignalOnEntityDie
+        ISignalOnEntityDie,
+        ISignalOnMoveUnit
     {
-        public void CreateUnit(Frame f, EntityRef playerEntity)
-        {
-            var config = f.SimulationConfig.GameConfig;
-            var unit = f.Create(config.workerPrototype);
-            var unitComponent = f.Unsafe.GetPointer<UnitComponent>(unit);
-            unitComponent->playerOwner = playerEntity;
-            f.FindAsset(unitComponent->unitAsset).Init(f, unit);
-            f.Unsafe.GetPointer<Transform3D>(unit)->Position = SpawnPointHelper.GetSpawnPoint<WorkerSpawnPointComponent>(f);
-            f.Events.UpdateWorkers(playerEntity);
-        }
 
         public void OnEntityPrototypeMaterialized(Frame f, EntityRef entity, EntityPrototypeRef prototypeRef)
         {
@@ -48,6 +39,38 @@ namespace Quantum
         public void OnEntityDie(Frame f, EntityRef entity)
         {
             f.Destroy(entity);
+        }
+
+        public void CreateUnit(Frame f, EntityRef playerEntity, UnitType unitType)
+        {
+            var unit = f.Create(GetUnitPrototype(f, unitType));
+            var unitComponent = f.Unsafe.GetPointer<UnitComponent>(unit);
+            unitComponent->playerOwner = playerEntity;
+            var asset = f.FindAsset(unitComponent->unitAsset);
+            asset.Init(f, unit);
+            f.Unsafe.GetPointer<Transform3D>(unit)->Position = asset.GetSpawnPoint(f);
+            f.Events.UpdateWorkers(playerEntity);
+        }
+
+        private AssetRef<EntityPrototype> GetUnitPrototype(Frame f, UnitType unitType) 
+        {
+            var config = f.SimulationConfig.GameConfig;
+            switch (unitType)
+            {
+                case UnitType.Farmer:
+                    return config.workerPrototype;
+                case UnitType.Troop:
+                    return config.troopsConfig.basicTroopPrototype;
+            }
+            return null;
+        }
+
+        public void OnMoveUnit(Frame f, EntityRef entity, FPVector3 destination)
+        {
+            if (!f.TryGet(entity, out UnitComponent unitComponent)) return;
+
+            var asset = f.FindAsset(unitComponent.unitAsset);
+            asset.MoveUnitTo(f, entity, destination);
         }
     }
 }

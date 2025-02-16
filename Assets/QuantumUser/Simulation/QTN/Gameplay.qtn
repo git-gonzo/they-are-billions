@@ -15,6 +15,7 @@ component PlayerEconomyComponent
 }
 
 component WorkerSpawnPointComponent{}
+component TroopSpawnPointComponent{}
 component ResourcesSpawnPointComponent
 {
 	list<AssetRef<EntityPrototype>> Resources;
@@ -88,6 +89,14 @@ enum ResourceType
 	Stone,
 	Wood,
 	Meat
+}
+
+enum UnitType
+{
+	None,
+	Farmer,
+	Enemy,
+	Troop
 }
 
 //this marked as serializable in a partial struct

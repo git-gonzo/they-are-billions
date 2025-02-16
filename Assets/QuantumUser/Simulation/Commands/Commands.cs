@@ -71,11 +71,16 @@ namespace Quantum
     {
         public EntityRef PlayerEntityRef;
         public ResourceAmount resourceAmount;
-
+        public UnitType unitType;
+            
         public override void Serialize(BitStream stream)
         {
             stream.Serialize(ref PlayerEntityRef);
             resourceAmount.Serialize(stream);
+            //Serialize UnitType
+            int unitTypeSer = (int)unitType;
+            stream.Serialize(ref unitTypeSer);
+            unitType = (UnitType)unitTypeSer;
         }
 
         public void Execute(Frame f)

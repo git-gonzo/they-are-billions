@@ -2,9 +2,12 @@ namespace Quantum
 {
     using Photon.Deterministic;
     using UnityEngine;
-
     public class UnitAsset : AssetObject
     {
+        [SerializeField] private ResourceAmount _cost;
+
+        [SerializeField] protected UnitType unitType;
+
         public virtual unsafe void Init(Frame f, EntityRef entity)
         {
             var healthComponent = f.Unsafe.GetPointer<HealthComponent>(entity);
@@ -74,12 +77,43 @@ namespace Quantum
             }
             return entityCandidate;
         }
+        
+        protected EntityRef FindClosestEnemyInRange(Frame f, FPVector3 pos, FP detectionRange)
+        {
+            var entityCandidate = EntityRef.None;
+            FP minDistance = FP.MaxValue;
+            var filter = f.Filter<UnitComponent, Transform3D>();
+            while (filter.Next(out EntityRef entity, out var unit, out var t))
+            {
+                var asset = f.FindAsset(unit.unitAsset);
+                if (!asset.unitType.Equals(UnitType.Enemy)) continue;
+                
+                var distance = FPVector3.Distance(pos, t.Position);
+                if (distance < minDistance && distance<detectionRange)
+                {
+                    entityCandidate = entity;
+                    minDistance = distance;
+                }              
+            }
+            return entityCandidate;
+        }
 
         protected unsafe void MoveTo(Frame f, EntityRef entity, FPVector3 dest)
         {
             NavMeshPathfinder* pathfinder = f.Unsafe.GetPointer<NavMeshPathfinder>(entity);
             NavMesh navMesh = f.Map.GetNavMesh("NavMesh");
             pathfinder->SetTarget(f, dest, navMesh);
+        }
+
+        public virtual unsafe FPVector3 GetSpawnPoint(Frame f)
+        {
+            return FPVector3.Zero;
+        }
+
+        public unsafe void MoveUnitTo(Frame f, EntityRef entity, FPVector3 dest) 
+        {
+            MoveTo(f, entity, dest);
+            SetUnitState(f, entity, UnitState.Moving);
         }
     }
 }
