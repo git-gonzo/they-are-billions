@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ab6a423b1d40742a338ab5cfb0e7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeBarPrefab: {fileID: 0}
+  _lifeBarPrefab: {fileID: 3556452587279168653, guid: 0313d9dd69e36b44998ae8ac42e28e63, type: 3}
   _selected: {fileID: 5153081216626320403}
 --- !u!114 &7786604262510223758
 MonoBehaviour:

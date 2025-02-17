@@ -19,7 +19,7 @@ MonoBehaviour:
   _cost:
     Resource: 0
     Amount: 0
-  unitType: 0
+  unitType: 2
   attack:
     RawValue: 1310720
   stopDistance:

@@ -30,10 +30,13 @@ namespace Quantum
                     unit->CurrentTime += f.DeltaTime;
                     if (unit->CurrentTime >= 1) //Patrol
                     {
+                        if(unit->targetEntity != EntityRef.None)
+                            SetUnitState(f, entity, UnitState.Moving);
                         //TryToFindTarget(f, entity, unit, *transform);
                         unit->CurrentTime = 0;
                         
                     }
+
                     break;
 
                 case UnitState.Moving:
@@ -52,48 +55,32 @@ namespace Quantum
                         return;
                     }
                     NavMeshPathfinder* pathfinder = f.Unsafe.GetPointer<NavMeshPathfinder>(entity);
-                    //if (FPVector3.Distance(filter.Transform->Position, pathfinder->Target) > 1) return;
 
-                    //Check if target has stop distance
-                    if (f.TryGet<FarmerComponent>(unit->targetEntity, out var farmer))
+                    //Update navmesh if target is moving
+                    if(unit->targetEntity != EntityRef.None)
                     {
-                        if (FPVector3.Distance(transform->Position, pathfinder->Target) > stopDistance)
+                        if (!RangeHelper.IsInRange(f, unit->targetEntity, pathfinder->Target, FP._0_10))
                         {
-                            //Update navmesh if target is moving
                             var t = f.Get<Transform3D>(unit->targetEntity).Position;
-                            if (t != pathfinder->Target)
-                            {
-                                MoveTo(f, entity, t);
-                            }
-                            return;
+                            MoveTo(f, entity, t);
                         }
                     }
-                    else if (FPVector3.Distance(transform->Position, pathfinder->Target) > FP._0_50) return;
+                    
+                    
+                    //Check if target is in range 
+                    if (!RangeHelper.IsInRange(f, entity, unit->targetEntity, attackRange))
+                    {
+                        return;
+                    }
 
                     //Has arrived 
                     pathfinder->IsActive = false;
-
 
                     if (unit->targetEntity == EntityRef.None) //Was patrolling
                         SetUnitState(f, entity, UnitState.Idle);
                     else
                         SetUnitState(f, entity, UnitState.Attacking); //Was Moving
                     break;
-
-                case UnitState.MovingAndAttack:
-                    if (unit->targetEntity != EntityRef.None && f.TryGet<Transform3D>(unit->targetEntity, out var targetTransform))
-                    {
-                        if (FPVector3.Distance(transform->Position, targetTransform.Position) <= attackRange)
-                        {
-                            SetUnitState(f, entity, UnitState.Attacking);
-                        }
-                        else
-                        {
-                            MoveTo(f, entity, targetTransform.Position);
-                        }
-                    }
-                    break;
-
                 case UnitState.Attacking:
                     unit->CurrentTime -= f.DeltaTime;
                     f.TryGet<Transform3D>(unit->targetEntity, out var farmerTransform);

@@ -64,7 +64,6 @@ namespace Quantum {
   public enum UnitState : int {
     Idle,
     Moving,
-    MovingAndAttack,
     Attacking,
     Harversting,
     Deploying,
@@ -976,7 +975,7 @@ namespace Quantum {
     void OnMoveUnit(Frame f, EntityRef entity, FPVector3 destination);
   }
   public unsafe partial interface ISignalOnSetAttack : ISignal {
-    void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget, FPVector3 destination);
+    void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget);
   }
   public unsafe partial interface ISignalCreateBuilding : ISignal {
     void CreateBuilding(Frame f, EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position);
@@ -1147,12 +1146,12 @@ namespace Quantum {
           }
         }
       }
-      public void OnSetAttack(EntityRef attacker, EntityRef enemyTarget, FPVector3 destination) {
+      public void OnSetAttack(EntityRef attacker, EntityRef enemyTarget) {
         var array = _f._ISignalOnSetAttackSystems;
         for (Int32 i = 0; i < array.Length; ++i) {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
-            s.OnSetAttack(_f, attacker, enemyTarget, destination);
+            s.OnSetAttack(_f, attacker, enemyTarget);
           }
         }
       }

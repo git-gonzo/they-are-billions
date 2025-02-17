@@ -2,13 +2,13 @@ namespace Quantum
 {
     using Photon.Deterministic;
     using UnityEngine;
+    using static UnityEngine.GraphicsBuffer;
+
     public class UnitAsset : AssetObject
     {
         [SerializeField] private ResourceAmount _cost;
 
         [SerializeField] public UnitType unitType;
-
-        [SerializeField] protected EntityRef targetUnit;
 
         public virtual unsafe void Init(Frame f, EntityRef entity)
         {
@@ -106,6 +106,13 @@ namespace Quantum
             NavMesh navMesh = f.Map.GetNavMesh("NavMesh");
             pathfinder->SetTarget(f, dest, navMesh);
         }
+        protected unsafe void MoveTo(Frame f, EntityRef entity, EntityRef dest)
+        {
+            NavMeshPathfinder* pathfinder = f.Unsafe.GetPointer<NavMeshPathfinder>(entity);
+            NavMesh navMesh = f.Map.GetNavMesh("NavMesh");
+            var t = f.Get<Transform3D>(dest).Position;
+            pathfinder->SetTarget(f, t, navMesh);
+        }
 
         public virtual unsafe FPVector3 GetSpawnPoint(Frame f)
         {
@@ -114,15 +121,17 @@ namespace Quantum
 
         public unsafe void MoveUnitTo(Frame f, EntityRef entity, FPVector3 dest) 
         {
-            targetUnit = EntityRef.None;
+            f.Unsafe.TryGetPointer<UnitComponent>(entity, out var unit);
+            unit->targetEntity = EntityRef.None;
             MoveTo(f, entity, dest);
             SetUnitState(f, entity, UnitState.Moving);
-        }
-        public unsafe void MoveUnitToAttack(Frame f, EntityRef entity, EntityRef enemyToAttack, FPVector3 dest) 
+        } 
+        public unsafe void MoveUnitTo(Frame f, EntityRef entity, EntityRef target) 
         {
-            MoveTo(f, entity, dest);
-            targetUnit = enemyToAttack;
-            SetUnitState(f, entity, UnitState.MovingAndAttack);
+            f.Unsafe.TryGetPointer<UnitComponent>(entity, out var unit);
+            unit->targetEntity = target;
+            MoveTo(f, entity, target);
+            SetUnitState(f, entity, UnitState.Moving);
         }
     }
 }

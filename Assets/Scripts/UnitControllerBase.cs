@@ -67,6 +67,7 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
 
     public void SelectObject(bool value)
     {
+        if (_selected == null) return;
         _selected.SetActive(value);
     }
 }

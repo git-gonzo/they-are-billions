@@ -19,14 +19,14 @@ MonoBehaviour:
   _cost:
     Resource: 0
     Amount: 0
-  unitType: 0
+  unitType: 3
   attack:
-    RawValue: 196608
+    RawValue: 1966080
   stopDistance:
     RawValue: 65536
   detectionRange:
     RawValue: 524288
   attackRange:
-    RawValue: 98304
+    RawValue: 262144
   attackCooldown:
     RawValue: 32768

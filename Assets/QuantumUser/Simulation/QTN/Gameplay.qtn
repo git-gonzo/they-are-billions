@@ -70,7 +70,6 @@ enum UnitState
 {
 	Idle,
 	Moving,
-	MovingAndAttack,
 	Attacking,
 	Harversting,
 	Deploying

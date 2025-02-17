@@ -75,12 +75,12 @@ namespace Quantum
             asset.MoveUnitTo(f, entity, destination);
         }
 
-        public void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget, FPVector3 destination)
+        public void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget)
         {
             if (!f.TryGet(attacker, out UnitComponent unitComponent)) return;
 
             var asset = f.FindAsset(unitComponent.unitAsset);
-            asset.MoveUnitToAttack(f, attacker,enemyTarget, destination);
+            asset.MoveUnitTo(f, attacker,enemyTarget);
         }
     }
 }

@@ -16,7 +16,10 @@ MonoBehaviour:
     Path: QuantumUser/Config/Units/FarmerAsset
     Guid:
       Value: 275386514519330206
-  unitType: 0
+  _cost:
+    Resource: 0
+    Amount: 0
+  unitType: 1
   deployTime:
     RawValue: 0
   resourcesCapacity: 0

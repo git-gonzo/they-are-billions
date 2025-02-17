@@ -109,7 +109,7 @@ public class UnitsManager : MonoBehaviour
             DeselectAllUnits();
         }
 
-        foreach (var unit in FindObjectsOfType<UnitControllerBase>())
+        foreach (var unit in FindObjectsByType<UnitControllerBase>(FindObjectsSortMode.None))
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
             screenPos.y = Screen.height - screenPos.y;
@@ -126,7 +126,10 @@ public class UnitsManager : MonoBehaviour
     {
         foreach (var unit in selectedUnits)
         {
-            unit.SelectObject(false);
+            if(unit != null)
+            {
+                unit.SelectObject(false);
+            }
         }
         selectedUnits.Clear();
     }
