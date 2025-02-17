@@ -64,6 +64,7 @@ namespace Quantum {
   public enum UnitState : int {
     Idle,
     Moving,
+    MovingAndAttack,
     Attacking,
     Harversting,
     Deploying,
@@ -974,6 +975,9 @@ namespace Quantum {
   public unsafe partial interface ISignalOnMoveUnit : ISignal {
     void OnMoveUnit(Frame f, EntityRef entity, FPVector3 destination);
   }
+  public unsafe partial interface ISignalOnSetAttack : ISignal {
+    void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget, FPVector3 destination);
+  }
   public unsafe partial interface ISignalCreateBuilding : ISignal {
     void CreateBuilding(Frame f, EntityRef playerEntity, AssetRef<BuildingConfig> building, FPVector3 position);
   }
@@ -991,6 +995,7 @@ namespace Quantum {
     private ISignalOnAddWorkerToBuilding[] _ISignalOnAddWorkerToBuildingSystems;
     private ISignalCreateUnit[] _ISignalCreateUnitSystems;
     private ISignalOnMoveUnit[] _ISignalOnMoveUnitSystems;
+    private ISignalOnSetAttack[] _ISignalOnSetAttackSystems;
     private ISignalCreateBuilding[] _ISignalCreateBuildingSystems;
     private ISignalOnEntityDie[] _ISignalOnEntityDieSystems;
     private ISignalOnHealthChanged[] _ISignalOnHealthChangedSystems;
@@ -1010,6 +1015,7 @@ namespace Quantum {
       _ISignalOnAddWorkerToBuildingSystems = BuildSignalsArray<ISignalOnAddWorkerToBuilding>();
       _ISignalCreateUnitSystems = BuildSignalsArray<ISignalCreateUnit>();
       _ISignalOnMoveUnitSystems = BuildSignalsArray<ISignalOnMoveUnit>();
+      _ISignalOnSetAttackSystems = BuildSignalsArray<ISignalOnSetAttack>();
       _ISignalCreateBuildingSystems = BuildSignalsArray<ISignalCreateBuilding>();
       _ISignalOnEntityDieSystems = BuildSignalsArray<ISignalOnEntityDie>();
       _ISignalOnHealthChangedSystems = BuildSignalsArray<ISignalOnHealthChanged>();
@@ -1138,6 +1144,15 @@ namespace Quantum {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
             s.OnMoveUnit(_f, entity, destination);
+          }
+        }
+      }
+      public void OnSetAttack(EntityRef attacker, EntityRef enemyTarget, FPVector3 destination) {
+        var array = _f._ISignalOnSetAttackSystems;
+        for (Int32 i = 0; i < array.Length; ++i) {
+          var s = array[i];
+          if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
+            s.OnSetAttack(_f, attacker, enemyTarget, destination);
           }
         }
       }

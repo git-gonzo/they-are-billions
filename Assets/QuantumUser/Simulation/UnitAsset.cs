@@ -6,7 +6,9 @@ namespace Quantum
     {
         [SerializeField] private ResourceAmount _cost;
 
-        [SerializeField] protected UnitType unitType;
+        [SerializeField] public UnitType unitType;
+
+        [SerializeField] protected EntityRef targetUnit;
 
         public virtual unsafe void Init(Frame f, EntityRef entity)
         {
@@ -112,8 +114,15 @@ namespace Quantum
 
         public unsafe void MoveUnitTo(Frame f, EntityRef entity, FPVector3 dest) 
         {
+            targetUnit = EntityRef.None;
             MoveTo(f, entity, dest);
             SetUnitState(f, entity, UnitState.Moving);
+        }
+        public unsafe void MoveUnitToAttack(Frame f, EntityRef entity, EntityRef enemyToAttack, FPVector3 dest) 
+        {
+            MoveTo(f, entity, dest);
+            targetUnit = enemyToAttack;
+            SetUnitState(f, entity, UnitState.MovingAndAttack);
         }
     }
 }

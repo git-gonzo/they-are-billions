@@ -35,6 +35,24 @@ namespace Quantum
             
         }
     }
+    public class CommandAttackUnit : DeterministicCommand
+    {
+        public EntityRef attackerEntity;
+        public EntityRef enemyEntity;
+        public FPVector3 destination;
+
+        public override void Serialize(BitStream stream)
+        {
+            stream.Serialize(ref attackerEntity);
+            stream.Serialize(ref enemyEntity);
+            stream.Serialize(ref destination);
+        }
+
+        public void Execute(Frame f) 
+        {
+            
+        }
+    }
     public class CommandBuyWorker : DeterministicCommand
     {
         public EntityRef buildingEntityRef;

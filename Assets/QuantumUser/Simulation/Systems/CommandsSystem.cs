@@ -54,6 +54,11 @@ namespace Quantum
                 var c = command as CommandMoveUnit;
                 f.Signals.OnMoveUnit(c.entity, c.destination);
             }
+            else if (command is CommandAttackUnit)
+            {
+                var c = command as CommandAttackUnit;
+                f.Signals.OnSetAttack(c.attackerEntity,c.enemyEntity, c.destination);
+            }
         }
         private bool Canbuy(Frame f, EntityRef playerEntity, ResourceAmount cost) 
         {

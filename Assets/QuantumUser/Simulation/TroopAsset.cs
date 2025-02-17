@@ -30,7 +30,7 @@ namespace Quantum
                     unit->CurrentTime += f.DeltaTime;
                     if (unit->CurrentTime >= 1) //Patrol
                     {
-                        TryToFindTarget(f, entity, unit, *transform);
+                        //TryToFindTarget(f, entity, unit, *transform);
                         unit->CurrentTime = 0;
                         
                     }
@@ -80,6 +80,20 @@ namespace Quantum
                         SetUnitState(f, entity, UnitState.Attacking); //Was Moving
                     break;
 
+                case UnitState.MovingAndAttack:
+                    if (unit->targetEntity != EntityRef.None && f.TryGet<Transform3D>(unit->targetEntity, out var targetTransform))
+                    {
+                        if (FPVector3.Distance(transform->Position, targetTransform.Position) <= attackRange)
+                        {
+                            SetUnitState(f, entity, UnitState.Attacking);
+                        }
+                        else
+                        {
+                            MoveTo(f, entity, targetTransform.Position);
+                        }
+                    }
+                    break;
+
                 case UnitState.Attacking:
                     unit->CurrentTime -= f.DeltaTime;
                     f.TryGet<Transform3D>(unit->targetEntity, out var farmerTransform);
@@ -95,7 +109,7 @@ namespace Quantum
                     {
                         SetUnitState(f, entity, UnitState.Idle);
                     }
-                        break;
+                    break;
             }
 
         }

@@ -6,11 +6,16 @@ namespace Quantum
 {
     public class EnemyAsset : UnitAsset 
     {
+
+        UnitType unitType => UnitType.Enemy;
+
         [SerializeField] private FP attack;
         [SerializeField] private FP stopDistance;
         [SerializeField] private FP detectionRange;
         [SerializeField] private FP attackRange;
         [SerializeField] private FP attackCooldown;
+
+        public EntityRef targetToAttack;
         public override void UpdateUnit(Frame f, EntityRef entity)
         {
             base.UpdateUnit(f, entity);
@@ -85,6 +90,7 @@ namespace Quantum
                         SetUnitState(f, entity, UnitState.Attacking); //Was Moving
                     break;
 
+                
                 case UnitState.Attacking:
                     unit->CurrentTime -= f.DeltaTime;
                     f.TryGet<Transform3D>(unit->targetEntity, out var farmerTransform);

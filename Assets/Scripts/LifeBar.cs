@@ -32,6 +32,7 @@ public class LifeBar : MonoBehaviour
 
     public void SetLife(float amount) 
     {
-        _bar.fillAmount = amount;
+        gameObject.SetActive(amount <= 0 ? false : true);
+        _bar.fillAmount = amount > 0 ? amount : 0;
     }
 }

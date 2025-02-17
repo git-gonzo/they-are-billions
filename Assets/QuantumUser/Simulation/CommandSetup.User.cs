@@ -14,6 +14,7 @@
             factories.Add(new CommandBuyUnit());
             factories.Add(new CommandPlaceBuilding());
             factories.Add(new CommandMoveUnit());
+            factories.Add(new CommandAttackUnit());
         }
     }
 }

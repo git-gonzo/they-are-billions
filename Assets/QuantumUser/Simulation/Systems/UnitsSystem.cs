@@ -3,13 +3,15 @@ namespace Quantum
     using Photon.Deterministic;
     using UnityEngine;
     using UnityEngine.Scripting;
+    using static UnityEngine.EventSystems.EventTrigger;
 
     [Preserve]
     public unsafe class UnitsSystem : SystemMainThreadFilter<UnitsSystem.Filter>,
         ISignalCreateUnit,
         ISignalOnEntityPrototypeMaterialized,
         ISignalOnEntityDie,
-        ISignalOnMoveUnit
+        ISignalOnMoveUnit,
+        ISignalOnSetAttack
     {
 
         public void OnEntityPrototypeMaterialized(Frame f, EntityRef entity, EntityPrototypeRef prototypeRef)
@@ -71,6 +73,14 @@ namespace Quantum
 
             var asset = f.FindAsset(unitComponent.unitAsset);
             asset.MoveUnitTo(f, entity, destination);
+        }
+
+        public void OnSetAttack(Frame f, EntityRef attacker, EntityRef enemyTarget, FPVector3 destination)
+        {
+            if (!f.TryGet(attacker, out UnitComponent unitComponent)) return;
+
+            var asset = f.FindAsset(unitComponent.unitAsset);
+            asset.MoveUnitToAttack(f, attacker,enemyTarget, destination);
         }
     }
 }
