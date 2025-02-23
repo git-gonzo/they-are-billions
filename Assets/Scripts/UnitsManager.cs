@@ -1,30 +1,66 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Quantum;
+using System;
 
-public class UnitsManager : MonoBehaviour
+public class UnitsManager : QuantumSceneViewComponent
 {
-    private List<UnitControllerBase> selectedUnits = new List<UnitControllerBase>();
+    private List<UnitControllerBase> _selectedUnits = new List<UnitControllerBase>();
+
+    private Vector3 pointA;
+    private Vector3 pointB;
 
     private Vector2 selectionStart;
     private Vector2 selectionEnd;
     private bool isSelecting = false;
+    private List<UnitControllerBase> _playerUnits = new();
+
+    [SerializeField] LineRenderer _selectionLine;
+
+    public override void OnActivate(Frame f)
+    {
+        base.OnActivate(f);
+        QuantumEvent.Subscribe<EventOnUnitCreated>(this, OnUnitCreated);
+    }
+
+    private void OnUnitCreated(EventOnUnitCreated e)
+    {
+        var f = QuantumRunner.Default.Game.Frames.Predicted;
+        if (!GameUtils.IsEntityLocalPlayer(f, e.playerEntity)) return;
+
+        var unitView = Updater.GetView(e.unitEntity);
+        var unitController = unitView.gameObject.GetComponent<UnitControllerBase>();
+
+        if (unitController == null)
+        {
+            Debug.LogWarning("Looks like there is a unit entity without unitController Zetun");
+            return;
+        }
+        _playerUnits.Add(unitController);
+    }
+
+    public override void OnUpdateView()
+    {
+        base.OnUpdateView();
+    }
 
     void Update()
     {
         if (UnityEngine.Input.GetMouseButtonDown(0))
         {
+            pointA = GetPointFromInput();
+
             selectionStart = UnityEngine.Input.mousePosition;
             isSelecting = true;
         }
         else if (UnityEngine.Input.GetMouseButtonUp(0))
         {
-            isSelecting = false;
-            SelectUnitsInRectangle();
+            isSelecting = false;       
         }
 
-        else if (UnityEngine.Input.GetMouseButtonDown(1) && selectedUnits.Count > 0)
+        else if (UnityEngine.Input.GetMouseButtonDown(1) && _selectedUnits.Count > 0)
         {
+            CleanLists();
             Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
             RaycastHit hit;
 
@@ -56,11 +92,64 @@ public class UnitsManager : MonoBehaviour
                 }
             }
         }
+        if (isSelecting) 
+        {
+            //Draw line
+            CleanLists();
+            DrawLine();
+            SelectUnits();
+        }
+        else
+        {
+            _selectionLine.enabled = false;
+        }
+    }
+
+    private Vector3 GetPointFromInput()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
+    }
+
+    private void DrawLine()
+    {
+        pointB = GetPointFromInput();
+        _selectionLine.enabled = true;
+        _selectionLine.positionCount = 5;
+        Vector3 pointC = pointA;
+        Vector3 pointD = pointA;
+        pointC.x = pointB.x;
+        pointD.z = pointB.z;
+        _selectionLine.SetPosition(0, pointA);
+        _selectionLine.SetPosition(1, pointC);
+        _selectionLine.SetPosition(2, pointB);
+        _selectionLine.SetPosition(3, pointD);
+        _selectionLine.SetPosition(4, pointA);
+    }
+
+    private void SelectUnits() 
+    {
+        if (!(UnityEngine.Input.GetKey(KeyCode.LeftShift) || UnityEngine.Input.GetKey(KeyCode.RightShift)))
+        {
+            DeselectAllUnits();
+        }
+        
+        foreach (var unit in _playerUnits)
+        {
+            var isInside = GameUtils.IsPointInside(unit.transform.position, pointA, pointB);
+            if(isInside) _selectedUnits.Add(unit);
+            unit.SelectObject(_selectedUnits.Contains(unit));
+        }
     }
 
     private void AttackEnemy(EntityRef enemyEntity)
     {
-        foreach (var unit in selectedUnits)
+        foreach (var unit in _selectedUnits)
         {
             if (unit.TryGetComponent<QuantumEntityView>(out var entityView))
             {
@@ -74,9 +163,21 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
+    public void CleanLists() 
+    {
+        for (int i = _playerUnits.Count - 1; i >= 0; i--)
+        {
+            if (_playerUnits[i] == null) _playerUnits.RemoveAt(i);
+        }
+        for (int i = _selectedUnits.Count - 1; i >= 0; i--)
+        {
+            if (_selectedUnits[i] == null) _selectedUnits.RemoveAt(i);
+        }
+    }
+
     private void MoveUnits(Vector3 destination)
     {
-        foreach (var unit in selectedUnits)
+        foreach (var unit in _selectedUnits)
         {
             if (unit.TryGetComponent<QuantumEntityView>(out var entityView))
             {
@@ -90,65 +191,15 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    private void OnGUI()
-    {
-        if (isSelecting)
-        {
-            selectionEnd = UnityEngine.Input.mousePosition;
-            Rect rect = GetScreenRect(selectionStart, selectionEnd);
-            DrawSelectionBox(rect);
-        }
-    }
-
-    private void SelectUnitsInRectangle()
-    {
-        Rect selectionRect = GetScreenRect(selectionStart, selectionEnd);
-
-        if (!(UnityEngine.Input.GetKey(KeyCode.LeftShift) || UnityEngine.Input.GetKey(KeyCode.RightShift)))
-        {
-            DeselectAllUnits();
-        }
-
-        foreach (var unit in FindObjectsByType<UnitControllerBase>(FindObjectsSortMode.None))
-        {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
-            screenPos.y = Screen.height - screenPos.y;
-
-            if (selectionRect.Contains(screenPos, true) && !selectedUnits.Contains(unit))
-            {
-                selectedUnits.Add(unit);
-                unit.SelectObject(true);
-            }
-        }
-    }
-
     private void DeselectAllUnits()
     {
-        foreach (var unit in selectedUnits)
+        foreach (var unit in _selectedUnits)
         {
-            if(unit != null)
+            if (unit != null)
             {
                 unit.SelectObject(false);
             }
         }
-        selectedUnits.Clear();
-    }
-
-    private Rect GetScreenRect(Vector2 start, Vector2 end)
-    {
-        float x = Mathf.Min(start.x, end.x);
-        float y = Mathf.Min(Screen.height - start.y, Screen.height - end.y);
-        float width = Mathf.Abs(start.x - end.x);
-        float height = Mathf.Abs(start.y - end.y);
-
-        return new Rect(x, y, width, height);
-    }
-
-    private void DrawSelectionBox(Rect rect)
-    {
-        Color originalColor = GUI.color;
-        GUI.color = new Color(0, 1, 1, 0.3f); 
-        GUI.Box(rect, "");
-        GUI.color = originalColor;
+        _selectedUnits.Clear();
     }
 }

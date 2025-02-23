@@ -5,6 +5,7 @@ using System;
 public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
 {
     [SerializeField] LifeBar _lifeBarPrefab;
+    [SerializeField] GameObject _view;
     [SerializeField] GameObject _selected;
     private LifeBar _lifeBar;
   
@@ -27,8 +28,10 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
         }
         QuantumEvent.Subscribe<EventUnitMoving>(this, OnUnitMoving);
         QuantumEvent.Subscribe<EventUnitHarvesting>(this, OnUnitHarvesting);
+        QuantumEvent.Subscribe<EventUnitAttackRange>(this, OnUnitAttackRange);
         QuantumEvent.Subscribe<EventUnitIdle>(this, OnUnitIdle);
         QuantumEvent.Subscribe<EventOnHealthChanged>(this, OnHealthChanged);
+        QuantumEvent.Subscribe<EventOnEntityDie>(this, OnEntityDie);
 
         //Instantiate Lifebar
         if (_lifeBarPrefab != null)
@@ -36,6 +39,19 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
             _lifeBar = Instantiate(_lifeBarPrefab, ViewContext.lifebarsContainer);
             _lifeBar.Init(transform);
         }
+    }
+
+    private void OnEntityDie(EventOnEntityDie e)
+    {
+        if (e.entity != EntityRef) return;
+        var deadBody = Instantiate(_view);
+        deadBody.transform.position = transform.position;
+        var animator = deadBody.GetComponent<Animator>();
+        animator.enabled = true;
+        animator.applyRootMotion = true;
+        var deathType = UnityEngine.Random.Range(0, 2) + 1;
+        animator.SetTrigger("Die" + deathType);
+        Destroy(deadBody,5);
     }
 
     private void OnHealthChanged(EventOnHealthChanged e)
@@ -61,6 +77,12 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
         if (e.unitEntity != EntityRef) return;
         if (animator == null) return;
         animator.SetTrigger("Idle");
+    }
+    private void OnUnitAttackRange(EventUnitAttackRange e)
+    {
+        if (e.unitEntity != EntityRef) return;
+        if (animator == null) return;
+        animator.SetTrigger("AttackRange");
     }
 
 

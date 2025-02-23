@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeBarPrefab: {fileID: 3556452587279168653, guid: 0313d9dd69e36b44998ae8ac42e28e63, type: 3}
+  _view: {fileID: 2799231703572722427}
   _selected: {fileID: 7148107851229746365}
 --- !u!114 &7786604262510223758
 MonoBehaviour:
@@ -449,5 +450,10 @@ PrefabInstance:
 --- !u!4 &2797120995514571233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4456113213098170, guid: f11597d739665a54992b8339873fd7bc, type: 3}
+  m_PrefabInstance: {fileID: 2800828259666465115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2799231703572722427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1781282677531552, guid: f11597d739665a54992b8339873fd7bc, type: 3}
   m_PrefabInstance: {fileID: 2800828259666465115}
   m_PrefabAsset: {fileID: 0}

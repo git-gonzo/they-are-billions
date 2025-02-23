@@ -1,8 +1,14 @@
 event UpdateWorkers { EntityRef playerEntity; }
+event OnUnitCreated { 
+	EntityRef playerEntity;  
+	EntityRef unitEntity;
+}
+
 event UpdateResources { EntityRef playerEntity; }
 
 event UnitIdle { EntityRef unitEntity; }
 event UnitMoving { EntityRef unitEntity;}
+event UnitAttackRange { EntityRef unitEntity;}
 event UnitHarvesting
 {
 	EntityRef unitEntity;

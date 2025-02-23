@@ -40,7 +40,7 @@ namespace Quantum
                 case UnitState.Harversting:
                     f.Events.UnitHarvesting(unitEntity, ResourceType.Stone); break;
                 case UnitState.Attacking:
-                    f.Events.UnitHarvesting(unitEntity, ResourceType.Stone); break;
+                    f.Events.UnitAttackRange(unitEntity); break;
             }
         }
 

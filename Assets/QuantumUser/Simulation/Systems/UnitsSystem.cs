@@ -52,6 +52,7 @@ namespace Quantum
             asset.Init(f, unit);
             f.Unsafe.GetPointer<Transform3D>(unit)->Position = asset.GetSpawnPoint(f);
             f.Events.UpdateWorkers(playerEntity);
+            f.Events.OnUnitCreated(playerEntity, unit);
         }
 
         private AssetRef<EntityPrototype> GetUnitPrototype(Frame f, UnitType unitType) 
