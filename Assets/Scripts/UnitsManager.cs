@@ -2,9 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using Quantum;
 using System;
+using Quantum.Physics2D;
 
 public class UnitsManager : QuantumSceneViewComponent
 {
+    [SerializeField] private DestinationMark _destinationMark;
+    [SerializeField] LineRenderer _selectionLine;
+
     private List<UnitControllerBase> _selectedUnits = new List<UnitControllerBase>();
 
     private Vector3 pointA;
@@ -14,8 +18,9 @@ public class UnitsManager : QuantumSceneViewComponent
     private Vector2 selectionEnd;
     private bool isSelecting = false;
     private List<UnitControllerBase> _playerUnits = new();
+    private UnitControllerBase _overUnit;
+    private DestinationMark _currentMark;
 
-    [SerializeField] LineRenderer _selectionLine;
 
     public override void OnActivate(Frame f)
     {
@@ -49,8 +54,6 @@ public class UnitsManager : QuantumSceneViewComponent
         if (UnityEngine.Input.GetMouseButtonDown(0))
         {
             pointA = GetPointFromInput();
-
-            selectionStart = UnityEngine.Input.mousePosition;
             isSelecting = true;
         }
         else if (UnityEngine.Input.GetMouseButtonUp(0))
@@ -101,6 +104,7 @@ public class UnitsManager : QuantumSceneViewComponent
         }
         else
         {
+            CheckOverUnits();
             _selectionLine.enabled = false;
         }
     }
@@ -109,11 +113,60 @@ public class UnitsManager : QuantumSceneViewComponent
     {
         Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        int layerMask = UnityEngine.LayerMask.GetMask("Floor");
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             return hit.point;
         }
         return Vector3.zero;
+    }
+
+    private RaycastHit GetHitFromInput()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        return hit;
+    }
+    private UnitControllerBase GetUnitFromInput()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, Mathf.Infinity);
+        if (hit.transform == null) return null;
+        if (!hit.transform.TryGetComponent<QuantumEntityView>(out var entityView)) return null;
+
+        var unit = _playerUnits.Find(u => u.EntityRef == entityView.EntityRef);
+        return unit;
+    }
+
+    private void CheckOverUnits() 
+    {
+        var unit = GetUnitFromInput();
+
+        //if(unit == null && _overUnit == null) return;
+
+        if (unit == null && _overUnit != null)
+        {
+            _overUnit = null;
+            HideAllLifeBars();
+            return;
+        }
+
+        if(_overUnit == unit) return;
+
+        _overUnit = unit;
+        HideAllLifeBars(unit);
+        unit.ShowLifeBar(true);       
+    }
+
+    private void HideAllLifeBars(UnitControllerBase skipUnit = null) 
+    {
+        foreach (var unit in _playerUnits)
+        {
+            if(unit == skipUnit) continue;
+            unit.ShowLifeBar(false);
+        }
     }
 
     private void DrawLine()
@@ -189,6 +242,15 @@ public class UnitsManager : QuantumSceneViewComponent
                 QuantumRunner.Default.Game.SendCommand(command);
             }
         }
+        var mark = Instantiate(_destinationMark);
+        var position = destination + Vector3.up * 0.2f;
+        mark.transform.position = position;
+        mark.Init();
+        if(_currentMark != null) 
+        {
+            Destroy(_currentMark.gameObject);
+        }
+        _currentMark = mark;
     }
 
     private void DeselectAllUnits()

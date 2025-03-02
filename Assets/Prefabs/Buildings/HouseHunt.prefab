@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5395719139319749352, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: PositionOffset.Y.RawValue
+      value: 20316
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949601898896688468, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
+      propertyPath: m_Center.y
+      value: 0.31
+      objectReference: {fileID: 0}
     - target: {fileID: 8158157667486569838, guid: 05500b951afffaa4f8c7a185c227b100, type: 3}
       propertyPath: m_Name
       value: HouseHunt

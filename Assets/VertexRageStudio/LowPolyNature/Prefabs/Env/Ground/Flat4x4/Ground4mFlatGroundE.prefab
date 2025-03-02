@@ -62,7 +62,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7047976529502168923}
-  - component: {fileID: 6922615546358779391}
   m_Layer: 0
   m_Name: Ground4mFlatGroundE
   m_TagString: Untagged
@@ -87,49 +86,6 @@ Transform:
   - {fileID: 543450651808037717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6922615546358779391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7292192267854096311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc94c3ce6de4c74989839aecde663d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SourceCollider: {fileID: 4705946435176597966}
-  Size:
-    X:
-      RawValue: 262144
-    Y:
-      RawValue: 398
-    Z:
-      RawValue: 262144
-  PositionOffset:
-    X:
-      RawValue: -131072
-    Y:
-      RawValue: -55
-    Z:
-      RawValue: -131072
-  RotationOffset:
-    X:
-      RawValue: 0
-    Y:
-      RawValue: 0
-    Z:
-      RawValue: 0
-  Settings:
-    MutableMode: 0
-    PhysicsMaterial:
-      Id:
-        Value: 0
-    Asset:
-      Id:
-        Value: 0
-    Trigger: 0
 --- !u!1001 &1933941950
 PrefabInstance:
   m_ObjectHideFlags: 0

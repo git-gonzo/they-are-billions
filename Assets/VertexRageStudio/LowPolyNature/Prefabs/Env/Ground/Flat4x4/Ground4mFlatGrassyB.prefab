@@ -62,7 +62,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790434395079596931}
-  - component: {fileID: 4189430367416754411}
   m_Layer: 0
   m_Name: Ground4mFlatGrassyB
   m_TagString: Untagged
@@ -87,49 +86,6 @@ Transform:
   - {fileID: 543450653283036582}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4189430367416754411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2697320970751360134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc94c3ce6de4c74989839aecde663d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SourceCollider: {fileID: 898390459333346908}
-  Size:
-    X:
-      RawValue: 262144
-    Y:
-      RawValue: 229
-    Z:
-      RawValue: 262144
-  PositionOffset:
-    X:
-      RawValue: -131072
-    Y:
-      RawValue: -79
-    Z:
-      RawValue: -131072
-  RotationOffset:
-    X:
-      RawValue: 0
-    Y:
-      RawValue: 0
-    Z:
-      RawValue: 0
-  Settings:
-    MutableMode: 0
-    PhysicsMaterial:
-      Id:
-        Value: 0
-    Asset:
-      Id:
-        Value: 0
-    Trigger: 0
 --- !u!1001 &459197005
 PrefabInstance:
   m_ObjectHideFlags: 0

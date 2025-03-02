@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class LifeBar : MonoBehaviour
@@ -14,6 +16,11 @@ public class LifeBar : MonoBehaviour
 
     private void Update()
     {
+        UpdatePosition();
+    }
+
+    private void UpdatePosition()
+    {
         if (_followTarget == null) return;
         // Convertir la posición del objeto 3D a coordenadas de pantalla
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(_followTarget.position);
@@ -27,12 +34,22 @@ public class LifeBar : MonoBehaviour
         {
             gameObject.SetActive(true);
             transform.position = screenPosition; // Mover el UI al punto en pantalla
-        } 
+        }
     }
 
     public void SetLife(float amount) 
     {
         gameObject.SetActive(amount <= 0 ? false : true);
-        _bar.fillAmount = amount > 0 ? amount : 0;
+        _bar.DOFillAmount(amount > 0 ? amount : 0, 0.1f).SetLink(gameObject);
+    }
+
+    public void Show(bool value) 
+    {
+        if (value)
+        {
+            Debug.Log("Update Lifebar Position on Show");
+            UpdatePosition();
+            gameObject.SetActive(true);
+        }
     }
 }

@@ -85,11 +85,21 @@ public class UnitControllerBase : QuantumEntityViewComponent<HUDContext>
         animator.SetTrigger("AttackRange");
     }
 
-
-
     public void SelectObject(bool value)
     {
         if (_selected == null) return;
         _selected.SetActive(value);
+    }
+
+    public void ShowLifeBar(bool value) 
+    { 
+        if (_lifeBar == null) return;
+        if (_selected != null && _selected.activeSelf)
+        {
+            _lifeBar.Show(true);
+            //_lifeBar.gameObject.SetActive(true);
+            return;
+        }
+        _lifeBar.gameObject.SetActive(value);
     }
 }
